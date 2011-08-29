@@ -1,13 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Hello World, InstantSMSActivity"
-    />
-</LinearLayout>
+<TabHost xmlns:android="http://schemas.android.com/apk/res/android"
+		 android:id="@android:id/tabhost"
+		 android:layout_width="fill_parent"
+		 android:layout_height="fill_parent">
 
+  <LinearLayout
+	  android:orientation="vertical"
+	  android:layout_width="fill_parent"
+	  android:layout_height="fill_parent">
+
+	<TabWidget
+	    android:id="@android:id/tabs"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+		android:layout_weight="0"/>
+	
+	<FrameLayout
+	    android:id="@android:id/tabcontent"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	  
+	  <TextView
+		  android:id="@+id/log_tv"
+		  android:layout_width="fill_parent"
+		  android:layout_height="fill_parent"
+		  android:typeface="monospace" />
+	  
+	  <TextView
+		  android:id="@+id/status_tv"
+		  android:layout_width="fill_parent"
+		  android:layout_height="fill_parent"
+		  android:typeface="monospace" />
+	  
+	</FrameLayout>
+	
+  </LinearLayout>
+  
+</TabHost>
