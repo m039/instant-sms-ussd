@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center"
+              android:padding="4dp">
+
+  <Button
+      android:id="@+id/mqst_provider_button_top"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Top text"
+      android:textColor="#00FF00"
+      android:background="@drawable/mqst_provider_background_top"/>
+
+  <Button
+      android:id="@+id/mqst_provider_button_bottom"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:text="Bottom text"
+      android:textColor="#00FF00"
+      android:background="@drawable/mqst_provider_background_bottom"/>
+  
+</LinearLayout>
