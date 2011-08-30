@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+  <item
+      help              = "Узнать баланс MTC"
+      type              = "sms"
+      address           = "111"
+      text              = "11"
+
+      selected          = "true"
+      find-in-response  = "float-number"
+      />
+
+  <item
+      help              = "Пополнить баланс MTC"
+      type              = "sms"
+      address           = "222"
+      text              = "22"
+      />
+</templates>
