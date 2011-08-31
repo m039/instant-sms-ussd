@@ -16,11 +16,14 @@ abstract public class InstantItem {
         setHelp(help);
     }
     
-    public String getHelp() {
+    public String               getHelp() {
         return mHelp;
     }
 
-    public void setHelp(String help) {
+    public void                 setHelp(String help) {
         mHelp = help;
     }
+
+    abstract public String      getHint();
+    abstract public String      getType();
 }

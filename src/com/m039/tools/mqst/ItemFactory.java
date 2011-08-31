@@ -94,6 +94,13 @@ public class ItemFactory extends DefaultHandler {
                     mItems.add(item);
                 }
 
+                if (type.equals("ussd")) {
+                    item = new InstantUssd(atts.getValue("help"),
+                                           atts.getValue("text"));
+                
+                    mItems.add(item);
+                }
+
                 if (atts.getValue("selected").equals("true")) {
                     mSelectedItem = item;
                 }

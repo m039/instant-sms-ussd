@@ -24,4 +24,11 @@
       address           = "222"
       text              = "22"
       />
+
+  <item
+      help              = "Узнать баланс MTC"
+      type              = "ussd"
+      text              = "*100#"
+      />
+  
 </templates>

@@ -10,7 +10,21 @@ package com.m039.tools.mqst;
  * @version 1.0
  */
 public class InstantSms extends InstantItem {
+    private final String mAddress;
+    private final String mText;
+    
     InstantSms(String help, String address, String text) {
         super(help);
+
+        mAddress = address;
+        mText = text;
+    }
+
+    public String       getType() {
+        return "sms";
+    }
+
+    public String       getHint() {
+        return "addr: " + mAddress + " hint: " + mText;
     }
 }
