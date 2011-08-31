@@ -14,7 +14,7 @@
       address           = "111"
       text              = "11"
 
-      selected          = "true"
+      selected          = "false"
       find-in-response  = "float-number"
       />  
   

@@ -1,26 +1,19 @@
 package com.m039.tools.mqst;
 
-import com.m039.tools.mqst.tabs.TemplatesTab;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.widget.TabHost;
-import android.app.TabActivity;
-import android.content.res.Resources;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import android.widget.TextView;
-import java.io.BufferedReader;
-import android.content.res.AssetManager;
-import android.util.Log;
 import java.io.InputStreamReader;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.helpers.DefaultHandler;
-import javax.xml.parsers.SAXParser;
-import org.xml.sax.Attributes;
+
+import android.app.TabActivity;
 import android.content.Intent;
-import android.widget.ListView;
-import android.widget.ArrayAdapter;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TabHost;
+import android.widget.TextView;
+import com.m039.tools.mqst.tabs.TemplatesTab;
 
 public class InstantSMSActivity extends TabActivity
 {
@@ -84,7 +77,7 @@ public class InstantSMSActivity extends TabActivity
     private void        parseXmlFile() {
         ItemFactory ifactory = ItemFactory.parseTemplates(this);
 
-        setText("The size is " + ifactory.getItems().size() + "\n" +
-                "The selected item is " + ifactory.getSelectedItem().getHelp() + "\n");
+        setText("The size is " + ifactory.getItems().size() + "\n");
+
     }
 }

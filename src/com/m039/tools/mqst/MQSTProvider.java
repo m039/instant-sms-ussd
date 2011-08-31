@@ -60,13 +60,22 @@ public class MQSTProvider extends AppWidgetProvider {
 
     private void                initWidget(Context context, RemoteViews rview) {
         ItemFactory ifactory = ItemFactory.parseTemplates(context);
+        String top, bottom;
 
         mSelectedItem = ifactory.getSelectedItem();
-        
+
+        if (mSelectedItem == null) {
+            top = "Instant";
+            bottom = "<font color='#CCCCCC'><i>SMS</i></font>";
+        } else {
+            top = mSelectedItem.getHelp();
+            bottom = "";
+        }
+
         rview.setCharSequence(R.id.mqst_provider_button_top, "setText",
-                              Html.fromHtml(mSelectedItem.getHelp()));
+                              Html.fromHtml(top));
         rview.setCharSequence(R.id.mqst_provider_button_bottom, "setText",
-                              "");
+                              Html.fromHtml(bottom));
     }
 
     private void                refreshWidget(Context context, RemoteViews rview) {

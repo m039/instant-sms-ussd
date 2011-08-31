@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
-</TextView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="?android:attr/listPreferredItemHeight"
+              android:padding="6dip">
+  
+  <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/template_item_help"            
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+  </TextView>
+  
+</LinearLayout>
