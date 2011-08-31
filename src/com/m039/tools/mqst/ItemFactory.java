@@ -8,6 +8,8 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.InputStream;
 import android.util.Log;
 import org.xml.sax.Attributes;
+import android.content.Context;
+import android.content.res.AssetManager;
 
 /**
  * Describe class ItemFactory here.
@@ -21,7 +23,29 @@ import org.xml.sax.Attributes;
 public class ItemFactory extends DefaultHandler {
     private final static String TAG         = "ItemFactory";
     private final List<InstantItem> mItems  = new ArrayList<InstantItem>();
+    private InstantItem mSelectedItem;
 
+    /**
+     * Check if return value is null !
+     */
+    public static ItemFactory           parseTemplates(Context context) {
+        AssetManager am         = context.getAssets();
+        ItemFactory ifactory    = null;     
+
+        try {
+            InputStream is = am.open("sms_templates.xml");
+
+            ifactory = ItemFactory.parse(is);
+
+            is.close();
+            
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+        }
+
+        return ifactory;
+    }
+    
     public static ItemFactory           parse(InputStream is) {
         ItemFactory ifactory        = new ItemFactory();
         SAXParserFactory factory    = SAXParserFactory.newInstance();
@@ -39,6 +63,14 @@ public class ItemFactory extends DefaultHandler {
         return ifactory;
     }
 
+    
+    /**
+     * Check return for null
+     */
+    public InstantItem                  getSelectedItem() {
+        return mSelectedItem;
+    }
+
     public List<InstantItem>            getItems() {
         return mItems;
     }
@@ -48,13 +80,26 @@ public class ItemFactory extends DefaultHandler {
                                                      String name,
                                                      String qName,
                                                      Attributes atts) {
+        InstantItem item = null;
+
         if (name.equals("item")) {
-            String type = atts.getValue("type");
+            try {
+                String type = atts.getValue("type");
             
-            if (type.equals("sms")) {
-                mItems.add(new InstantSms(atts.getValue("help"),
+                if (type.equals("sms")) {
+                    item = new InstantSms(atts.getValue("help"),
                                           atts.getValue("address"),
-                                          atts.getValue("text")));
+                                          atts.getValue("text"));
+                
+                    mItems.add(item);
+                }
+
+                if (atts.getValue("selected").equals("true")) {
+                    mSelectedItem = item;
+                }
+
+            } catch (NullPointerException e) {
+                // failed if getValue() doesn't find a attribute
             }
         }
     }

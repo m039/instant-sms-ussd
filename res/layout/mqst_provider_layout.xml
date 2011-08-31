@@ -11,7 +11,7 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Top text"
-      android:textColor="#00FF00"
+      android:textColor="#FFFFFF"
       android:background="@drawable/mqst_provider_background_top"/>
 
   <Button
@@ -19,7 +19,7 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Bottom text"
-      android:textColor="#00FF00"
+      android:textColor="#FFFFFF"
       android:background="@drawable/mqst_provider_background_bottom"/>
   
 </LinearLayout>

@@ -1,5 +1,7 @@
 package com.m039.tools.mqst;
 
+import com.m039.tools.mqst.tabs.TemplatesTab;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TabHost;
@@ -16,6 +18,9 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.SAXParser;
 import org.xml.sax.Attributes;
+import android.content.Intent;
+import android.widget.ListView;
+import android.widget.ArrayAdapter;
 
 public class InstantSMSActivity extends TabActivity
 {
@@ -33,7 +38,7 @@ public class InstantSMSActivity extends TabActivity
 
         th.addTab(th.newTabSpec("templates")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_send))
-                  .setContent(R.id.log_tv));
+                  .setContent(new Intent(this, TemplatesTab.class)));
 
         th.addTab(th.newTabSpec("settings")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_preferences))
@@ -46,9 +51,9 @@ public class InstantSMSActivity extends TabActivity
     }
     
     // for debugging purpose
-
+    
     private void        setText(String text) {
-        TextView tv = (TextView) findViewById(R.id.log_tv);
+        TextView tv = (TextView) findViewById(R.id.status_tv);
         tv.setText(text);       
     }
 
@@ -76,39 +81,10 @@ public class InstantSMSActivity extends TabActivity
         }
     }
 
-    private class MyAppHandler extends DefaultHandler {
-        public StringBuilder mSBuilder = new StringBuilder();
-        
-        public void     startElement(String uri, String name, String qName, Attributes atts) {
-            mSBuilder.append("[" + uri + "] [" + name + "] [" + qName + "]" + "\n");
-            
-            if (name.equals("item")) {
-                mSBuilder.append("help = " + atts.getValue("help") + "\n");
-            }
-        }
-        
-        public void     endDocument() {
-            setText(mSBuilder.toString());
-        }
-    }
-
     private void        parseXmlFile() {
-        SAXParser parser;
-        SAXParserFactory factory = SAXParserFactory.newInstance();
-        DefaultHandler handler = new MyAppHandler();
+        ItemFactory ifactory = ItemFactory.parseTemplates(this);
 
-        AssetManager am = getAssets();
-
-        try {
-            InputStream is = am.open("sms_templates.xml");
-            
-            parser = factory.newSAXParser();
-            parser.parse(is, handler);
-
-            is.close();
-            
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-        }
+        setText("The size is " + ifactory.getItems().size() + "\n" +
+                "The selected item is " + ifactory.getSelectedItem().getHelp() + "\n");
     }
 }

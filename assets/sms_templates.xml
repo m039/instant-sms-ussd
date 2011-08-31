@@ -6,11 +6,18 @@
       type              = "sms"
       address           = "111"
       text              = "11"
+      />
+
+  <item
+      help              = "MTC"
+      type              = "sms"
+      address           = "111"
+      text              = "11"
 
       selected          = "true"
       find-in-response  = "float-number"
-      />
-
+      />  
+  
   <item
       help              = "Пополнить баланс MTC"
       type              = "sms"

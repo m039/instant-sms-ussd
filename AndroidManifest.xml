@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-		  package="com.m039.tools.mqst"
-		  android:versionCode="1"
-		  android:versionName="1.0">
+          package="com.m039.tools.mqst"
+          android:versionCode="1"
+          android:versionName="1.0">
   
   <application android:label="@string/app_name" android:icon="@drawable/icon">
 
-	<!-- main activity	 -->
-	
-	<activity android:name="InstantSMSActivity"
-			  android:label="@string/app_name">
-	  <intent-filter>
-		<action android:name="android.intent.action.MAIN" />
-		<category android:name="android.intent.category.LAUNCHER" />
-	  </intent-filter>
-	</activity>
+    <!-- main activity   -->
+    
+    <activity android:name=".InstantSMSActivity"
+              android:label="@string/app_name">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
 
-	<!-- main receiver -->
-	
+    <!-- list of templates activity --> 
+    
+    <activity android:name="com.m039.tools.mqst.tabs.TemplatesTab"/>
+
+    <!-- main receiver -->
+    
     <receiver android:name=".MQSTProvider" >
       <intent-filter>
+        <action android:name="com.m039.tools.mqst.INIT_WIDGET"/>        
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
       </intent-filter>
       <meta-data android:name="android.appwidget.provider"
                  android:resource="@xml/mqst_provider_info" />
     </receiver>
-	
+    
   </application>
   
 </manifest> 
