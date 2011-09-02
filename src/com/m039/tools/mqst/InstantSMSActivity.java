@@ -32,10 +32,6 @@ public class InstantSMSActivity extends TabActivity
 
         TabHost th = getTabHost();
 
-        th.addTab(th.newTabSpec("creation")
-                  .setIndicator("CreationTab")
-                  .setContent(new Intent(this, CreationTab.class)));
-
         th.addTab(th.newTabSpec("templates")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_send))
                   .setContent(new Intent(this, TemplatesTab.class)));

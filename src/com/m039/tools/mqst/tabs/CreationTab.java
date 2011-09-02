@@ -3,6 +3,7 @@ package com.m039.tools.mqst.tabs;
 import com.m039.tools.mqst.InstantItem;
 import com.m039.tools.mqst.InstantUssd;
 import com.m039.tools.mqst.InstantSms;
+import com.m039.tools.mqst.ItemFactory;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -119,28 +120,37 @@ public class CreationTab extends Activity {
         InstantItem item = null;
 
         if (position == TYPE_SMS) {
-            EditText help = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-            EditText addr = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
-            EditText text = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
+            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
 
-            item = new InstantSms(help.getText().toString(),
-                                   addr.getText().toString(),
-                                   text.getText().toString());          
+            String help = ehelp.getText().toString();
+            String addr = eaddr.getText().toString();
+            String text = etext.getText().toString();
+
+            if (!help.equals("") &&
+                !addr.equals("") &&
+                !text.equals("")) {
+                item = new InstantSms(help, addr, text);
+            }
         }
 
         if (position == TYPE_USSD) {
-            EditText help = (EditText) layout.findViewById(R.id.creation_tab_etext_help);          
-            EditText text = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);          
+            EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
 
-            item = new InstantUssd(help.getText().toString(), text.getText().toString());
+            String help = ehelp.getText().toString();
+            String text = etext.getText().toString();
+
+            if (!help.equals("") &&
+                !text.equals("")) {
+                item = new InstantUssd(help, text);
+            }
         }
 
         if (item != null) {
-            Toast.makeText(this, item.getHint(), Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "FAIL", Toast.LENGTH_SHORT).show();
+            ItemFactory.addItem(this, item);
         }
-
     }
 
     private void        initLayouts() {

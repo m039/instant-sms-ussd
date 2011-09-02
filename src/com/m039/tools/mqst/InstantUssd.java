@@ -3,6 +3,9 @@ package com.m039.tools.mqst;
 import android.content.Intent;
 import android.net.Uri;
 import android.content.Context;
+import android.util.Log;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  * Describe class InstantUssd here.
@@ -22,6 +25,10 @@ public class InstantUssd extends InstantItem {
         mText = text;
     }
 
+    public String       getText() {
+        return mText;
+    }
+    
     public String       getType() {
         return "ussd";
     }
@@ -31,9 +38,23 @@ public class InstantUssd extends InstantItem {
     }
 
     public void         send(Context context) {
-        String encodedHash = Uri.encode("#");
-        String ussd = "*" + encodedHash + mText + encodedHash;
+        try {
+            String encodedHash = Uri.encode("#");
+            String ussd = "*" + encodedHash + mText + encodedHash;
         
-        context.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd)));
+            context.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd)));
+        } catch (Exception e) {
+            Log.e("InstantItem", "send failed");            
+        }
     }
+
+    public Element      createElement(Document doc) {
+        Element el = doc.createElement("item");
+
+        el.setAttribute("help", getHelp());
+        el.setAttribute("type", getType());
+        el.setAttribute("text", getText());
+
+        return el;
+    }   
 }

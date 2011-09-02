@@ -69,11 +69,11 @@ public class TemplatesTab extends ListActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
         case ADD_ITEM_REQUEST:
             if (resultCode == RESULT_OK) {
-
+                updateAdapter();
             }
 
             break;
@@ -130,7 +130,15 @@ public class TemplatesTab extends ListActivity {
                 }
 
                 if (hint != null) {
-                    hint.setText(item.getHint());
+                    String h = item.getHint();
+
+                    // strip the hint
+                    
+                    if (h.length() > 33) {
+                        h = h.substring(0, 33) + "...";
+                    }
+
+                    hint.setText(h);
                 }
 
                 // setting callback for send button
@@ -163,16 +171,20 @@ public class TemplatesTab extends ListActivity {
         }
     }
 
+    private void    updateAdapter() {
+        ItemFactory ifactory = ItemFactory.parseTemplates(this);
+        setListAdapter(new TemplatesAdapter(this, R.layout.template_item, ifactory.getItems()));
+    }
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void     onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ListView lv = getListView();
         
         lv.setItemsCanFocus(true);
 
-        ItemFactory ifactory = ItemFactory.parseTemplates(this);
-        setListAdapter(new TemplatesAdapter(this, R.layout.template_item, ifactory.getItems()));
+        updateAdapter();
 
         // register context menu
         registerForContextMenu(lv);

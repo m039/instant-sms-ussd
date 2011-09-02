@@ -1,6 +1,8 @@
 package com.m039.tools.mqst;
 
 import android.content.Context;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  * Describe class InstantItem here.
@@ -29,4 +31,5 @@ abstract public class InstantItem {
     abstract public String      getHint();
     abstract public String      getType();
     abstract public void        send(Context context);
+    abstract public Element     createElement(Document doc);
 }

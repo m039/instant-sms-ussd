@@ -3,6 +3,9 @@ package com.m039.tools.mqst;
 import android.content.Context;
 import android.telephony.SmsManager;
 import android.widget.Toast;
+import android.util.Log;
+import org.w3c.dom.Element;
+import org.w3c.dom.Document;
 
 /**
  * Describe class InstantSms here.
@@ -24,6 +27,14 @@ public class InstantSms extends InstantItem {
         mText = text;
     }
 
+    public String       getAddress() {
+        return mAddress;
+    }
+
+    public String       getText() {
+        return mText;
+    }
+    
     public String       getType() {
         return "sms";
     }
@@ -33,10 +44,25 @@ public class InstantSms extends InstantItem {
     }
 
     public void         send(Context context) {
-        SmsManager sms = SmsManager.getDefault();
+        try {
+            SmsManager sms = SmsManager.getDefault();
 
-        sms.sendTextMessage(mAddress, null, mText, null, null);
+            sms.sendTextMessage(mAddress, null, mText, null, null);
         
-        Toast.makeText(context, "sending sms", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "sending sms", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e("InstantItem", "send failed");
+        }
+    }
+
+    public Element      createElement(Document doc) {
+        Element el = doc.createElement("item");
+
+        el.setAttribute("help", getHelp());
+        el.setAttribute("type", getType());
+        el.setAttribute("address", getAddress());
+        el.setAttribute("text", getText());
+
+        return el;
     }
 }
