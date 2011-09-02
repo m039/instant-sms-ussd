@@ -66,7 +66,7 @@ public class MQSTProvider extends AppWidgetProvider {
 
         if (mSelectedItem == null) {
             top = "Instant";
-            bottom = "<font color='#CCCCCC'><i>SMS</i></font>";
+            bottom = "<font color='#CCCCCC'><i>SMS|USSD</i></font>";
         } else {
             top = mSelectedItem.getHelp();
             bottom = "";

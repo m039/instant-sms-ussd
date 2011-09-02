@@ -1,5 +1,9 @@
 package com.m039.tools.mqst;
 
+import android.content.Context;
+import android.telephony.SmsManager;
+import android.widget.Toast;
+
 /**
  * Describe class InstantSms here.
  *
@@ -26,5 +30,13 @@ public class InstantSms extends InstantItem {
 
     public String       getHint() {
         return "addr: " + mAddress + " hint: " + mText;
+    }
+
+    public void         send(Context context) {
+        SmsManager sms = SmsManager.getDefault();
+
+        sms.sendTextMessage(mAddress, null, mText, null, null);
+        
+        Toast.makeText(context, "sending sms", Toast.LENGTH_SHORT).show();
     }
 }

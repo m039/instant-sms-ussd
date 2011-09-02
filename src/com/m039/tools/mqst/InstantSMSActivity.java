@@ -14,6 +14,9 @@ import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TextView;
 import com.m039.tools.mqst.tabs.TemplatesTab;
+import com.m039.tools.mqst.tabs.CreationTab;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class InstantSMSActivity extends TabActivity
 {
@@ -29,6 +32,10 @@ public class InstantSMSActivity extends TabActivity
 
         TabHost th = getTabHost();
 
+        th.addTab(th.newTabSpec("creation")
+                  .setIndicator("CreationTab")
+                  .setContent(new Intent(this, CreationTab.class)));
+
         th.addTab(th.newTabSpec("templates")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_send))
                   .setContent(new Intent(this, TemplatesTab.class)));
@@ -42,12 +49,12 @@ public class InstantSMSActivity extends TabActivity
         updateTextView();
         parseXmlFile();
     }
-    
+
     // for debugging purpose
-    
+
     private void        setText(String text) {
         TextView tv = (TextView) findViewById(R.id.status_tv);
-        tv.setText(text);       
+        tv.setText(text);
     }
 
     private void        updateTextView() {

@@ -16,8 +16,15 @@
 
       selected          = "false"
       find-in-response  = "float-number"
-      />  
-  
+      />
+
+  <item
+      help              = "+100р себе на телефон"
+      type              = "sms"
+      address           = "900"
+      text              = "MTC 100"
+      />
+
   <item
       help              = "Пополнить баланс MTC"
       type              = "sms"
@@ -28,7 +35,7 @@
   <item
       help              = "Узнать баланс MTC"
       type              = "ussd"
-      text              = "*100#"
+      text              = "100"
       />
-  
+
 </templates>

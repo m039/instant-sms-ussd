@@ -1,5 +1,9 @@
 package com.m039.tools.mqst;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.content.Context;
+
 /**
  * Describe class InstantUssd here.
  *
@@ -11,18 +15,25 @@ package com.m039.tools.mqst;
  */
 public class InstantUssd extends InstantItem {
     private final String mText;
-    
+
     InstantUssd(String help, String text) {
         super(help);
 
         mText = text;
-    }   
+    }
 
     public String       getType() {
         return "ussd";
     }
 
     public String       getHint() {
-        return "hint: " + mText;
+        return "hint: *#" + mText + "#";
+    }
+
+    public void         send(Context context) {
+        String encodedHash = Uri.encode("#");
+        String ussd = "*" + encodedHash + mText + encodedHash;
+        
+        context.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd)));
     }
 }

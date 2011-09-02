@@ -20,6 +20,11 @@
     
     <activity android:name="com.m039.tools.mqst.tabs.TemplatesTab"/>
 
+    <!-- dialog to create an item --> 
+    
+    <activity android:name="com.m039.tools.mqst.tabs.CreationTab"/>
+
+    
     <!-- main receiver -->
     
     <receiver android:name=".MQSTProvider" >
@@ -32,5 +37,8 @@
     </receiver>
     
   </application>
+  
+  <uses-permission android:name="android.permission.CALL_PHONE"/>
+  <uses-permission android:name="android.permission.SEND_SMS"/>
   
 </manifest> 
