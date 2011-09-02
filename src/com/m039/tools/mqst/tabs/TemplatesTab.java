@@ -14,9 +14,7 @@ import android.view.View;
 import android.content.Context;
 import java.util.List;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.view.View.OnClickListener;
 import android.util.Log;
 import android.widget.Button;
@@ -25,6 +23,8 @@ import android.view.Menu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.content.Intent;
+import android.widget.Toast;
 
 /**
  * Describe class TemplatesListView here.
@@ -38,6 +38,7 @@ import android.view.MenuItem;
 public class TemplatesTab extends ListActivity {
     private static final String TAG                 = "m039";
     private static ItemListener mItemListener       = new ItemListener();
+    private static final int ADD_ITEM_REQUEST       = 0;
 
     // menu
     
@@ -51,6 +52,38 @@ public class TemplatesTab extends ListActivity {
         return true;
     }
 
+    @Override
+    public boolean      onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+        case R.id.menu_add_item:
+            startActivityForResult(new Intent(this, CreationTab.class),
+                                   ADD_ITEM_REQUEST);
+            break;
+        default:
+            break;
+        }
+        
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+        case ADD_ITEM_REQUEST:
+            if (resultCode == RESULT_OK) {
+
+            }
+
+            break;
+        default:
+            break;
+        }
+
+    }
+
+    
     // context menu
 
     @Override
@@ -60,12 +93,6 @@ public class TemplatesTab extends ListActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.template_menu, menu);
     }
-
-    // @Override
-    // public boolean      onContextItemSelected(MenuItem item) {
-    //     Toast.makeText(this, "id = " + 1, Toast.LENGTH_SHORT).show();
-    //     return true;
-    // }
 
     private class TemplatesAdapter extends ArrayAdapter<InstantItem> {
         public TemplatesAdapter(Context context, int id, List<InstantItem> objs) {

@@ -5,17 +5,17 @@
 
   <EditText android:layout_width="match_parent"
             android:hint="Name of an item"
-                        android:layout_height="wrap_content" android:id="@+id/editText1">
+                        android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_help">
     <requestFocus></requestFocus>
   </EditText>
 
   <EditText android:layout_width="match_parent"
             android:hint="Address"
-            android:layout_height="wrap_content" android:id="@+id/editText2"></EditText>
+            android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_address"></EditText>
 
   <EditText android:layout_width="match_parent"
             android:gravity="top"
             android:hint="Enter here a message"
-            android:layout_height="wrap_content" android:id="@+id/editText3" android:layout_weight="1"></EditText>
+            android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_text" android:layout_weight="1"></EditText>
 
 </LinearLayout>

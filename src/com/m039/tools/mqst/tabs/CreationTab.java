@@ -1,5 +1,9 @@
 package com.m039.tools.mqst.tabs;
 
+import com.m039.tools.mqst.InstantItem;
+import com.m039.tools.mqst.InstantUssd;
+import com.m039.tools.mqst.InstantSms;
+
 import android.app.Activity;
 import android.os.Bundle;
 import com.m039.tools.mqst.R;
@@ -14,6 +18,10 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.Button;
+import android.widget.EditText;
+import com.m039.tools.mqst.InstantUssd;
+import com.m039.tools.mqst.R.layout;
 
 /**
  * Describe class CreationTab here.
@@ -37,6 +45,8 @@ public class CreationTab extends Activity {
         mLayoutParams = new LinearLayout.LayoutParams(-1, -1, 1);
     }
 
+    // on spinner listener
+    
     private AdapterView.OnItemSelectedListener mTypeSelectListener = new AdapterView.OnItemSelectedListener()  {
             public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
                 ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
@@ -61,12 +71,34 @@ public class CreationTab extends Activity {
             }
         };
 
+    // on buttons listener (name is taken from the xml file)
+    
+    public void         onButtonClick(View v) {
+        int id = v.getId();
+
+        switch (id) {
+        case R.id.creation_tab_add_button:
+            createInstantItem();
+            setResult(RESULT_OK);
+            break;
+        case R.id.creation_tab_cancel_button:
+            setResult(RESULT_CANCELED);
+            break;
+        default:
+            break;
+        }
+
+        finish();               
+    }
+
+
     @Override
     public void         onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_tab);
 
-        createLayouts();
+        initLayouts();
+        // initButtons();
 
         Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
 
@@ -77,7 +109,41 @@ public class CreationTab extends Activity {
         s.setOnItemSelectedListener(mTypeSelectListener);
     }
 
-    private void        createLayouts() {
+    
+    private void        createInstantItem() {
+        Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
+        int position = s.getSelectedItemPosition();
+
+        View layout = findViewById(R.id.creation_tab_layout);
+        
+        InstantItem item = null;
+
+        if (position == TYPE_SMS) {
+            EditText help = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
+            EditText addr = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText text = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+
+            item = new InstantSms(help.getText().toString(),
+                                   addr.getText().toString(),
+                                   text.getText().toString());          
+        }
+
+        if (position == TYPE_USSD) {
+            EditText help = (EditText) layout.findViewById(R.id.creation_tab_etext_help);          
+            EditText text = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+
+            item = new InstantUssd(help.getText().toString(), text.getText().toString());
+        }
+
+        if (item != null) {
+            Toast.makeText(this, item.getHint(), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "FAIL", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private void        initLayouts() {
         LayoutInflater inflater = getLayoutInflater();
         ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
         View v;
@@ -97,5 +163,16 @@ public class CreationTab extends Activity {
         v = inflater.inflate(R.layout.creation_tab_buttons, null);      
         vg.addView(v);
     }
+
+    // /**
+    //  * Call after initLayout otherwise error!
+    //  */
+    // private void        initButtons() {
+    //     Button add = (Button) findViewById(R.id.creation_tab_add_button);
+    //     Button cancel = (Button) findViewById(R.id.creation_tab_cancel_button);
+
+    //     add.setOnClickListener(mOnClickListener);
+    //     cancel.setOnClickListener(mOnClickListener);
+    // }
 
 }

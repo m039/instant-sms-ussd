@@ -3,15 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
-  <EditText android:layout_width="match_parent"
+  <EditText android:id="@+id/creation_tab_etext_help"
+      android:layout_width="match_parent"
             android:hint="Name of an item"
-            android:layout_height="wrap_content" android:id="@+id/editText1">
+            android:layout_height="wrap_content" >
     <requestFocus></requestFocus>
   </EditText>
 
-  <EditText android:layout_width="match_parent"
+  <EditText android:id="@+id/creation_tab_etext_text"
+            android:layout_width="match_parent"
             android:hint="Enter here a number"
             android:gravity="top"
-            android:layout_height="wrap_content" android:id="@+id/editText3" android:layout_weight="1"></EditText>
+            android:layout_height="wrap_content"  android:layout_weight="1"></EditText>
 
 </LinearLayout>

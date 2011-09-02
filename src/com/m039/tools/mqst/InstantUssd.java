@@ -16,7 +16,7 @@ import android.content.Context;
 public class InstantUssd extends InstantItem {
     private final String mText;
 
-    InstantUssd(String help, String text) {
+    public InstantUssd(String help, String text) {
         super(help);
 
         mText = text;

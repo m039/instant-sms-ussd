@@ -17,7 +17,7 @@ public class InstantSms extends InstantItem {
     private final String mAddress;
     private final String mText;
     
-    InstantSms(String help, String address, String text) {
+    public InstantSms(String help, String address, String text) {
         super(help);
 
         mAddress = address;
