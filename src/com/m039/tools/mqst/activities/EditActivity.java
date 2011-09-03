@@ -1,4 +1,4 @@
-package com.m039.tools.mqst.tabs;
+package com.m039.tools.mqst.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,12 +12,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
-import com.m039.tools.mqst.InstantItem;
-import com.m039.tools.mqst.InstantSms;
-import com.m039.tools.mqst.InstantUssd;
+
+import com.m039.tools.mqst.items.InstantUssd;
+import com.m039.tools.mqst.items.InstantSms;
+import com.m039.tools.mqst.items.InstantItem;
+
 import com.m039.tools.mqst.ItemFactory;
 import com.m039.tools.mqst.R;
-import com.m039.tools.mqst.R.layout;
 import android.widget.Button;
 
 /**
@@ -29,7 +30,7 @@ import android.widget.Button;
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class EditionTab extends Activity {
+public class EditActivity extends Activity {
     static private final int TYPE_SMS       = 0;
     static private final int TYPE_USSD      = 1;
 
@@ -70,7 +71,7 @@ public class EditionTab extends Activity {
     }
 
     private void        selectLayoutType(int type) {
-        ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
+        ViewGroup vg = (ViewGroup) findViewById(R.id.add_activity_layout);
         View v = null;
 
         if (type == TYPE_SMS) {
@@ -88,7 +89,7 @@ public class EditionTab extends Activity {
 
         // set spinner selection item
 
-        Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
+        Spinner s = (Spinner) findViewById(R.id.add_activity_spinner);
         s.setSelection(type);
     }
 
@@ -98,7 +99,7 @@ public class EditionTab extends Activity {
         int id = v.getId();
 
         switch (id) {
-        case R.id.creation_tab_add_button:
+        case R.id.add_activity_add_button:
             InstantItem item = createInstantItem();
 
             if (item != null) {
@@ -107,7 +108,7 @@ public class EditionTab extends Activity {
 
             setResult(RESULT_OK);
             break;
-        case R.id.creation_tab_cancel_button:
+        case R.id.add_activity_cancel_button:
             setResult(RESULT_CANCELED);
             break;
         default:
@@ -121,14 +122,14 @@ public class EditionTab extends Activity {
     @Override
     public void         onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.creation_tab);
+        setContentView(R.layout.add_activity);
 
         initLayouts();
 
-        Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
+        Spinner s = (Spinner) findViewById(R.id.add_activity_spinner);
 
         s.setAdapter(new ArrayAdapter<String>(this,
-                                              R.layout.creation_tab_spinner_item,
+                                              R.layout.add_activity_spinner_item,
                                               mTypes));
 
         s.setOnItemSelectedListener(mTypeSelectListener);
@@ -145,16 +146,16 @@ public class EditionTab extends Activity {
     }
 
     private void           fillLayoutWithItem(InstantItem item) {
-        View layout = findViewById(R.id.creation_tab_layout);
+        View layout = findViewById(R.id.add_activity_layout);
 
         if (item != null) {
 
             if (item instanceof InstantSms) {
                 InstantSms sms = (InstantSms) item;
 
-                EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-                EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_address);
-                EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+                EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+                EditText eaddr = (EditText) layout.findViewById(R.id.add_activity_etext_address);
+                EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
 
                 ehelp.setText(sms.getHelp());
                 eaddr.setText(sms.getAddress());
@@ -165,8 +166,8 @@ public class EditionTab extends Activity {
             if (item instanceof InstantUssd) {
                 InstantUssd ussd = (InstantUssd) item;
 
-                EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-                EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+                EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+                EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
 
                 ehelp.setText(ussd.getHelp());
                 etext.setText(ussd.getText());
@@ -178,17 +179,17 @@ public class EditionTab extends Activity {
      * Return null if text fields are empty
      */
     private InstantItem    createInstantItem() {
-        Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
+        Spinner s = (Spinner) findViewById(R.id.add_activity_spinner);
         int position = s.getSelectedItemPosition();
 
-        View layout = findViewById(R.id.creation_tab_layout);
+        View layout = findViewById(R.id.add_activity_layout);
 
         InstantItem item = null;
 
         if (position == TYPE_SMS) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_address);
-            EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+            EditText eaddr = (EditText) layout.findViewById(R.id.add_activity_etext_address);
+            EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
 
             String help = ehelp.getText().toString();
             String addr = eaddr.getText().toString();
@@ -202,8 +203,8 @@ public class EditionTab extends Activity {
         }
 
         if (position == TYPE_USSD) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-            EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+            EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
 
             String help = ehelp.getText().toString();
             String text = etext.getText().toString();
@@ -219,34 +220,34 @@ public class EditionTab extends Activity {
 
     private void        initLayouts() {
         LayoutInflater inflater = getLayoutInflater();
-        ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
+        ViewGroup vg = (ViewGroup) findViewById(R.id.add_activity_layout);
         View v;
 
-        mSmsLayout = inflater.inflate(R.layout.creation_tab_sms, null);
-        mTypeLayout = inflater.inflate(R.layout.creation_tab_ussd, null);
+        mSmsLayout = inflater.inflate(R.layout.add_activity_sms, null);
+        mTypeLayout = inflater.inflate(R.layout.add_activity_ussd, null);
 
         // set default view
         vg.addView(mSmsLayout, 0, mLayoutParams);
 
         // adds buttons to layouts
         vg = (ViewGroup) mSmsLayout;
-        v = inflater.inflate(R.layout.creation_tab_buttons, null);
+        v = inflater.inflate(R.layout.add_activity_buttons, null);
         vg.addView(v);
 
         // change text of the button
 
         Button b;
 
-        b = (Button) v.findViewById(R.id.creation_tab_add_button);
+        b = (Button) v.findViewById(R.id.add_activity_add_button);
         b.setText("Edit");
 
         vg = (ViewGroup) mTypeLayout;
-        v = inflater.inflate(R.layout.creation_tab_buttons, null);
+        v = inflater.inflate(R.layout.add_activity_buttons, null);
         vg.addView(v);
 
         // change text of the button
 
-        b = (Button) v.findViewById(R.id.creation_tab_add_button);
+        b = (Button) v.findViewById(R.id.add_activity_add_button);
         b.setText("Edit");
     }
 

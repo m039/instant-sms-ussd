@@ -10,14 +10,14 @@
   <Button android:text="Add"
           android:layout_weight="1"
           android:layout_width="0dp"
-          android:id="@+id/creation_tab_add_button"
+          android:id="@+id/add_activity_add_button"
           android:onClick="onButtonClick"         
           android:layout_height="wrap_content"/>
   
   <Button android:text="Cancel"
           android:layout_weight="1"
           android:layout_width="0dp"
-          android:id="@+id/creation_tab_cancel_button"
+          android:id="@+id/add_activity_cancel_button"
           android:onClick="onButtonClick"
           android:layout_height="wrap_content"/>
   

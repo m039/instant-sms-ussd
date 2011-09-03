@@ -1,31 +1,32 @@
-package com.m039.tools.mqst.tabs;
+package com.m039.tools.mqst;
 
-import com.m039.tools.mqst.R;
-import com.m039.tools.mqst.InstantItem;
-import com.m039.tools.mqst.ItemFactory;
+import java.util.List;
 
 import android.app.ListActivity;
-import android.widget.ArrayAdapter;
-import android.os.Bundle;
-import android.widget.TextView;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.view.View;
 import android.content.Context;
-import java.util.List;
-import android.widget.ListView;
-import android.widget.AdapterView;
-import android.view.View.OnClickListener;
-import android.util.Log;
-import android.widget.Button;
-import android.view.MenuInflater;
-import android.view.Menu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.content.Intent;
-import android.widget.Toast;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import com.m039.tools.mqst.ItemFactory;
+import com.m039.tools.mqst.R;
+import com.m039.tools.mqst.activity.AddActivity;
+import com.m039.tools.mqst.activity.EditActivity;
+import com.m039.tools.mqst.items.InstantItem;
 
 /**
  * Describe class TemplatesListView here.
@@ -36,7 +37,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class TemplatesTab extends ListActivity {
+public class InstantActivity extends ListActivity {
     private static final String TAG                 = "m039";
     private static final int ADD_ITEM_REQUEST       = 0;
     private static final int EDIT_ITEM_REQUEST      = 1;
@@ -65,7 +66,7 @@ public class TemplatesTab extends ListActivity {
         super.onCreateOptionsMenu(menu);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.app_menu, menu);
+        inflater.inflate(R.menu.main, menu);
 
         return true;
     }
@@ -75,8 +76,8 @@ public class TemplatesTab extends ListActivity {
         int id = item.getItemId();
 
         switch (id) {
-        case R.id.menu_add_item:
-            Intent intent = new Intent(this, CreationTab.class);            
+        case R.id.menu_main_add_item:
+            Intent intent = new Intent(this, AddActivity.class);            
             startActivityForResult(intent, ADD_ITEM_REQUEST);
             break;
         default:
@@ -109,7 +110,7 @@ public class TemplatesTab extends ListActivity {
         super.onCreateContextMenu(menu, v, minfo);
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.template_menu, menu);
+        inflater.inflate(R.menu.context, menu);
     }
 
     @Override
@@ -121,12 +122,12 @@ public class TemplatesTab extends ListActivity {
 
 
         switch (id) {
-        case R.id.template_menu_delete:
+        case R.id.menu_context_delete:
             ItemFactory.getFactory().removeItem(minfo.position);
             updateAdapter();
             break;
-        case R.id.template_menu_edit:
-            Intent intent = new Intent(this, EditionTab.class);
+        case R.id.menu_context_edit:
+            Intent intent = new Intent(this, EditActivity.class);
             intent.putExtra("item position", minfo.position);
             startActivityForResult(intent, EDIT_ITEM_REQUEST);
             break;
@@ -198,7 +199,7 @@ public class TemplatesTab extends ListActivity {
         }
 
         public void onClick(View v) {
-            mInstantItem.send(TemplatesTab.this);
+            mInstantItem.send(InstantActivity.this);
         }
     }
 

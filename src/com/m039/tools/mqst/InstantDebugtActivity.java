@@ -13,12 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TextView;
-import com.m039.tools.mqst.tabs.TemplatesTab;
-import com.m039.tools.mqst.tabs.CreationTab;
-import android.view.Menu;
-import android.view.MenuInflater;
 
-public class InstantSMSActivity extends TabActivity
+public class InstantDebugtActivity extends TabActivity
 {
     private static final String TAG = "InstantSMS";
 
@@ -26,7 +22,7 @@ public class InstantSMSActivity extends TabActivity
     @Override
     public void         onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.debug_activity);
 
         Resources res = getResources();
 
@@ -34,7 +30,7 @@ public class InstantSMSActivity extends TabActivity
 
         th.addTab(th.newTabSpec("templates")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_send))
-                  .setContent(new Intent(this, TemplatesTab.class)));
+                  .setContent(new Intent(this, InstantActivity.class)));
 
         th.addTab(th.newTabSpec("settings")
                   .setIndicator("", res.getDrawable(android.R.drawable.ic_menu_preferences))

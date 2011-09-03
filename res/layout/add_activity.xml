@@ -19,13 +19,13 @@
               android:paddingLeft="10dp"/>
     
     <Spinner android:layout_weight="1"
-             android:id="@+id/creation_tab_spinner"
+             android:id="@+id/add_activity_spinner"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"/>t 
     
   </LinearLayout>
   
-  <LinearLayout  android:id="@+id/creation_tab_layout"
+  <LinearLayout  android:id="@+id/add_activity_layout"
                  android:orientation="vertical"
                  android:layout_width="fill_parent"
                  android:layout_height="fill_parent">

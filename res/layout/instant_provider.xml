@@ -7,19 +7,19 @@
               android:padding="4dp">
 
   <Button
-      android:id="@+id/mqst_provider_button_top"
+      android:id="@+id/instant_provider_button_top"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="Instant"
       android:textColor="#FFFFFF"
-      android:background="@drawable/mqst_provider_background_top"/>
+      android:background="@drawable/instant_provider_background_top"/>
 
   <Button
-      android:id="@+id/mqst_provider_button_bottom"
+      android:id="@+id/instant_provider_button_bottom"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
       android:text="SMS/USSD"
       android:textColor="#FFFFFF"
-      android:background="@drawable/mqst_provider_background_bottom"/>
+      android:background="@drawable/instant_provider_background_bottom"/>
   
 </LinearLayout>

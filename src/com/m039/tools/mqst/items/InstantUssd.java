@@ -1,4 +1,4 @@
-package com.m039.tools.mqst;
+package com.m039.tools.mqst.items;
 
 import android.content.Intent;
 import android.net.Uri;

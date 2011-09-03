@@ -1,5 +1,8 @@
 package com.m039.tools.mqst;
 
+import com.m039.tools.mqst.items.InstantItem;
+
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -12,7 +15,7 @@ import android.text.Html;
 import android.content.ComponentName;
 
 /**
- * Describe class MQSTProvider here.
+ * Describe class InstantProvider here.
  *
  *
  * Created: Mon Aug 29 20:07:05 2011
@@ -20,7 +23,7 @@ import android.content.ComponentName;
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class MQSTProvider extends AppWidgetProvider {
+public class InstantProvider extends AppWidgetProvider {
     private static final String         TAG                 = "MDBWidget";
     private static final String         ACTION_INIT_WIDGET  = "com.m039.tools.mqst.INIT_WIDGET";
     private static InstantItem          mSelectedItem;
@@ -72,9 +75,9 @@ public class MQSTProvider extends AppWidgetProvider {
             bottom = "";
         }
 
-        rview.setCharSequence(R.id.mqst_provider_button_top, "setText",
+        rview.setCharSequence(R.id.instant_provider_button_top, "setText",
                               Html.fromHtml(top));
-        rview.setCharSequence(R.id.mqst_provider_button_bottom, "setText",
+        rview.setCharSequence(R.id.instant_provider_button_bottom, "setText",
                               Html.fromHtml(bottom));
     }
 
@@ -91,13 +94,13 @@ public class MQSTProvider extends AppWidgetProvider {
     private RemoteViews         getViews(Context context) {
         RemoteViews rview;
 
-        rview = new RemoteViews(context.getPackageName(), R.layout.mqst_provider_layout);
+        rview = new RemoteViews(context.getPackageName(), R.layout.instant_provider);
 
         return rview;
     }
 
     private void                updateWidgetClick(Context context, RemoteViews rview) {
-        Intent intent           = new Intent(context, InstantSMSActivity.class);
+        Intent intent           = new Intent(context, InstantActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         
         PendingIntent pintent   = PendingIntent.getActivity(context,
@@ -105,7 +108,7 @@ public class MQSTProvider extends AppWidgetProvider {
                                                             intent,
                                                             PendingIntent.FLAG_UPDATE_CURRENT);
 
-        rview.setOnClickPendingIntent(R.id.mqst_provider_button_top, pintent);
-        rview.setOnClickPendingIntent(R.id.mqst_provider_button_bottom, pintent);
+        rview.setOnClickPendingIntent(R.id.instant_provider_button_top, pintent);
+        rview.setOnClickPendingIntent(R.id.instant_provider_button_bottom, pintent);
     }
 }

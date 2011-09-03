@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
-  <EditText android:id="@+id/creation_tab_etext_help"
+  <EditText android:id="@+id/add_activity_etext_help"
       android:layout_width="match_parent"
             android:hint="Description"
             android:layout_height="wrap_content" >
     <requestFocus></requestFocus>
   </EditText>
 
-  <EditText android:id="@+id/creation_tab_etext_text"
+  <EditText android:id="@+id/add_activity_etext_text"
             android:layout_width="match_parent"
             android:hint="USSD code"
             android:gravity="top"
-            android:layout_height="wrap_content"  android:layout_weight="1"></EditText>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
 
 </LinearLayout>

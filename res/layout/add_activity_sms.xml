@@ -5,17 +5,21 @@
 
   <EditText android:layout_width="match_parent"
             android:hint="Description"
-                        android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_help">
+            android:layout_height="wrap_content"
+            android:id="@+id/add_activity_etext_help">
     <requestFocus></requestFocus>
   </EditText>
 
   <EditText android:layout_width="match_parent"
             android:hint="Address"
-            android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_address"></EditText>
+            android:layout_height="wrap_content"
+            android:id="@+id/add_activity_etext_address" />
 
   <EditText android:layout_width="match_parent"
             android:gravity="top"
             android:hint="Message"
-            android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_text" android:layout_weight="1"></EditText>
+            android:layout_height="wrap_content"
+            android:id="@+id/add_activity_etext_text"
+            android:layout_weight="1" />
 
 </LinearLayout>
