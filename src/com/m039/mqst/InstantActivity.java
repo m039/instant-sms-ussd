@@ -1,6 +1,8 @@
-package com.m039.tools.mqst;
+package com.m039.mqst;
 
 import java.util.List;
+
+import com.m039.mqst.R;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -22,11 +24,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.m039.tools.mqst.ItemFactory;
-import com.m039.tools.mqst.R;
-import com.m039.tools.mqst.activity.AddActivity;
-import com.m039.tools.mqst.activity.EditActivity;
-import com.m039.tools.mqst.items.InstantItem;
+import com.m039.mqst.ItemFactory;
+import com.m039.mqst.activities.AddActivity;
+import com.m039.mqst.activities.EditActivity;
+import com.m039.mqst.items.InstantItem;
+import android.widget.Toast;
 
 /**
  * Describe class TemplatesListView here.
@@ -221,6 +223,7 @@ public class InstantActivity extends ListActivity {
     @Override
     protected void     onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.instant_activity);
 
         ListView lv = getListView();
 
@@ -232,5 +235,18 @@ public class InstantActivity extends ListActivity {
         // register context menu
         
         registerForContextMenu(lv);
+
+        // enable fading
+        
+        lv.setScrollbarFadingEnabled(true);
+
+        // notify the user if there are no items
+        
+        ItemFactory ifactory = ItemFactory.getFactory();
+
+        if (ifactory.getItems().size() == 0) {
+            Toast.makeText(this, "Use menu button to add an item", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

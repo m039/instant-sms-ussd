@@ -1,7 +1,6 @@
-package com.m039.tools.mqst;
+package com.m039.mqst;
 
-import com.m039.tools.mqst.items.InstantItem;
-
+import com.m039.mqst.items.InstantItem;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -25,7 +24,7 @@ import android.content.ComponentName;
  */
 public class InstantProvider extends AppWidgetProvider {
     private static final String         TAG                 = "MDBWidget";
-    private static final String         ACTION_INIT_WIDGET  = "com.m039.tools.mqst.INIT_WIDGET";
+    private static final String         ACTION_INIT_WIDGET  = "com.m039.mqst.INIT_WIDGET";
     private static InstantItem          mSelectedItem;
 
     @Override

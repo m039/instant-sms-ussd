@@ -1,28 +1,34 @@
-package com.m039.tools.mqst.items;
+package com.m039.mqst.items;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.content.Context;
+import android.telephony.SmsManager;
+import android.widget.Toast;
 import android.util.Log;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
 
 /**
- * Describe class InstantUssd here.
+ * Describe class InstantSms here.
  *
  *
- * Created: Wed Aug 31 21:56:15 2011
+ * Created: Tue Aug 30 21:03:06 2011
  *
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class InstantUssd extends InstantItem {
+public class InstantSms extends InstantItem {
+    private final String mAddress;
     private final String mText;
-
-    public InstantUssd(String help, String text) {
+    
+    public InstantSms(String help, String address, String text) {
         super(help);
 
+        mAddress = address;
         mText = text;
+    }
+
+    public String       getAddress() {
+        return mAddress;
     }
 
     public String       getText() {
@@ -30,21 +36,22 @@ public class InstantUssd extends InstantItem {
     }
     
     public String       getType() {
-        return "ussd";
+        return "sms";
     }
 
     public String       getHint() {
-        return "hint: " + mText;
+        return "addr: " + mAddress + " hint: " + mText;
     }
 
     public void         send(Context context) {
         try {
-            String encodedHash = Uri.encode("#");
-            String ussd = mText.replace("#", encodedHash);
+            SmsManager sms = SmsManager.getDefault();
+
+            sms.sendTextMessage(mAddress, null, mText, null, null);
         
-            context.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd)));
+            Toast.makeText(context, "sending sms", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e("InstantItem", "send failed");            
+            Log.e("InstantItem", "send failed");
         }
     }
 
@@ -53,8 +60,9 @@ public class InstantUssd extends InstantItem {
 
         el.setAttribute("help", getHelp());
         el.setAttribute("type", getType());
+        el.setAttribute("address", getAddress());
         el.setAttribute("text", getText());
 
         return el;
-    }   
+    }
 }

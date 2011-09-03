@@ -1,8 +1,8 @@
-package com.m039.tools.mqst;
+package com.m039.mqst;
 
-import com.m039.tools.mqst.items.InstantUssd;
-import com.m039.tools.mqst.items.InstantSms;
-import com.m039.tools.mqst.items.InstantItem;
+import com.m039.mqst.items.InstantUssd;
+import com.m039.mqst.items.InstantSms;
+import com.m039.mqst.items.InstantItem;
 
 import org.xml.sax.helpers.DefaultHandler;
 import java.util.List;

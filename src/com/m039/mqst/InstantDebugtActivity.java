@@ -1,4 +1,4 @@
-package com.m039.tools.mqst;
+package com.m039.mqst;
 
 import java.io.BufferedReader;
 import java.io.IOException;
