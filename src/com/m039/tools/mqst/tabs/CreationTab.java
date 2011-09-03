@@ -149,7 +149,7 @@ public class CreationTab extends Activity {
         }
 
         if (item != null) {
-            ItemFactory.addItem(this, item);
+            ItemFactory.getFactory().addItem(item);
         }
     }
 

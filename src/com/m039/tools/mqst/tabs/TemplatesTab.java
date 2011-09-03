@@ -25,6 +25,7 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Toast;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 
 /**
  * Describe class TemplatesListView here.
@@ -39,9 +40,24 @@ public class TemplatesTab extends ListActivity {
     private static final String TAG                 = "m039";
     private static ItemListener mItemListener       = new ItemListener();
     private static final int ADD_ITEM_REQUEST       = 0;
+    private static final int EDIT_ITEM_REQUEST       = 1;
+
+    private boolean isItemsUpdated = false;
+
+    @Override
+    protected void         onPause() {
+        super.onPause();
+
+        if (isItemsUpdated == true) {
+            ItemFactory.saveFactory(this);
+            isItemsUpdated = false;
+
+            Log.d(TAG, "Factory is saved");
+        }
+    }
 
     // menu
-    
+
     @Override
     public boolean      onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -64,7 +80,7 @@ public class TemplatesTab extends ListActivity {
         default:
             break;
         }
-        
+
         return true;
     }
 
@@ -83,7 +99,7 @@ public class TemplatesTab extends ListActivity {
 
     }
 
-    
+
     // context menu
 
     @Override
@@ -93,6 +109,28 @@ public class TemplatesTab extends ListActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.template_menu, menu);
     }
+
+    @Override
+    public boolean      onContextItemSelected(MenuItem mitem) {
+        super.onContextItemSelected(mitem);
+
+        int id = mitem.getItemId();
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) mitem.getMenuInfo();
+
+
+        switch (id) {
+        case R.id.template_menu_delete:
+            ItemFactory.getFactory().removeItem(info.position);
+            updateAdapter();
+            break;
+        default:
+            break;
+        }
+
+        return true;
+    }
+
+    // class for listview adapter
 
     private class TemplatesAdapter extends ArrayAdapter<InstantItem> {
         public TemplatesAdapter(Context context, int id, List<InstantItem> objs) {
@@ -133,7 +171,7 @@ public class TemplatesTab extends ListActivity {
                     String h = item.getHint();
 
                     // strip the hint
-                    
+
                     if (h.length() > 33) {
                         h = h.substring(0, 33) + "...";
                     }
@@ -150,6 +188,8 @@ public class TemplatesTab extends ListActivity {
             return v;
         }
     }
+
+
 
     private class ButtonListener
         implements OnClickListener {
@@ -172,16 +212,18 @@ public class TemplatesTab extends ListActivity {
     }
 
     private void    updateAdapter() {
-        ItemFactory ifactory = ItemFactory.parseTemplates(this);
+        ItemFactory ifactory = ItemFactory.getFactory(this);
         setListAdapter(new TemplatesAdapter(this, R.layout.template_item, ifactory.getItems()));
+
+        isItemsUpdated = true;
     }
 
     @Override
-    public void     onCreate(Bundle savedInstanceState) {
+    protected void     onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ListView lv = getListView();
-        
+
         lv.setItemsCanFocus(true);
 
         updateAdapter();

@@ -59,7 +59,7 @@ public class MQSTProvider extends AppWidgetProvider {
     // private
 
     private void                initWidget(Context context, RemoteViews rview) {
-        ItemFactory ifactory = ItemFactory.parseTemplates(context);
+        ItemFactory ifactory = ItemFactory.getFactory(context);
         String top, bottom;
 
         mSelectedItem = ifactory.getSelectedItem();

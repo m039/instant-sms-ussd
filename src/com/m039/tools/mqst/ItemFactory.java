@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 /**
- * Describe class ItemFactory here.
+ * This is a singleton class.
  *
  * In this class static methods use IO (via DOM, writeonly)
  * operations.
@@ -36,29 +36,115 @@ import java.io.OutputStream;
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class ItemFactory extends DefaultHandler {
+public class ItemFactory {
     private final static String TAG             = "ItemFactory";
     private final static String TEMPLATES_FILE  = "ItemFactory";
+
+    private static ItemFactory mFactory = null;
+
+    /**
+     * This class parse the xml file and fill the mItems appropriate.
+     *
+     */
+    private class MyHandler extends DefaultHandler {
+        @Override
+        public void                         startElement(String uri,
+                                                         String name,
+                                                         String qName,
+                                                         Attributes atts) {
+            InstantItem item = null;
+
+            if (name.equals("item")) {
+                try {
+                    String type = atts.getValue("type");
+
+                    if (type.equals("sms")) {
+                        item = new InstantSms(atts.getValue("help"),
+                                              atts.getValue("address"),
+                                              atts.getValue("text"));
+
+                        mItems.add(item);
+                    }
+
+                    if (type.equals("ussd")) {
+                        item = new InstantUssd(atts.getValue("help"),
+                                               atts.getValue("text"));
+
+                        mItems.add(item);
+                    }
+
+                    if (atts.getValue("selected").equals("true")) {
+                        mSelectedItem = item;
+                    }
+
+                } catch (NullPointerException e) {
+                    // failed if getValue() doesn't find a attribute
+                    Log.e(TAG, "startElement");
+                }
+            }
+        }
+
+    }
+
+    private final MyHandler mHandler = new MyHandler();
     private final List<InstantItem> mItems      = new ArrayList<InstantItem>();
     private InstantItem mSelectedItem;
+
+    public static ItemFactory           getFactory() {
+        return mFactory;
+    }
+
+    /**
+     * Use this function to intialize and return mFactory reference
+     */
+    public static ItemFactory           getFactory(Context context) {
+        if (mFactory == null) {
+            mFactory = ItemFactory.parse(context);
+        }
+
+        return mFactory;
+    }
+
+    public static void                  saveFactory(Context context) {
+        try {
+            DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dbuilder = dfactory.newDocumentBuilder();
+
+            Document doc = dbuilder.newDocument();
+
+            Element templates = doc.createElement("templates");
+
+            for (InstantItem item: ItemFactory.getFactory().getItems()) {
+                Element el = item.createElement(doc);
+                templates.appendChild(el);
+            }
+
+            OutputStream os = context.openFileOutput(TEMPLATES_FILE, Context.MODE_PRIVATE);
+            os.write(getStringFromNode(templates).getBytes());
+            os.close();
+
+        } catch (Exception e) {
+            Log.e(TAG, "addItem");
+        }       
+    }
 
     /**
      * Check if return value is null !
      */
-    public static ItemFactory           parseTemplates(Context context) {
+    public static ItemFactory           parse(Context context) {
         assetsToInternalStorage(context);
-        
-        ItemFactory ifactory    = null;
+
+        ItemFactory ifactory = new ItemFactory();
 
         try {
             InputStream is = context.openFileInput(TEMPLATES_FILE);
 
-            ifactory = ItemFactory.parse(is);
+            ifactory.parse(is);
 
             is.close();
 
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "parse");
         }
 
         return ifactory;
@@ -66,7 +152,7 @@ public class ItemFactory extends DefaultHandler {
 
     private static void                 assetsToInternalStorage(Context context) {
         // check if the file already in the internal storage
-        
+
         String[] files  = context.fileList();
 
         for (String f: files) {
@@ -76,9 +162,9 @@ public class ItemFactory extends DefaultHandler {
         }
 
         // read the file from assets
-        
+
         AssetManager am = context.getAssets();
-        
+
         try {
             InputStream is          = am.open("sms_templates.xml");
             FileOutputStream fos    = context.openFileOutput(TEMPLATES_FILE, Context.MODE_PRIVATE);
@@ -87,41 +173,49 @@ public class ItemFactory extends DefaultHandler {
             while (is.read(bytes) != -1) {
                 fos.write(bytes);
             }
-            
+
             is.close();
             fos.close();
-            
+
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "assetsToInternalStorage");
         }
     }
 
-    public static ItemFactory           parse(InputStream is) {
-        ItemFactory ifactory        = new ItemFactory();
+    public void                         parse(InputStream is) {
         SAXParserFactory factory    = SAXParserFactory.newInstance();
         SAXParser parser;
 
         try {
+            mItems.clear();     // reset items
 
             parser = factory.newSAXParser();
-            parser.parse(is, ifactory);
+            parser.parse(is, mHandler);
 
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "parse");
         }
-
-        return ifactory;
     }
+
+    public void                         addItem(InstantItem item) {
+        mItems.add(item);
+    }
+
+    public void                         removeItem(int position) {
+        mItems.remove(position);
+    }
+
+    // debugging purpose
 
     public static void                  addItem(Context context, InstantItem item) {
         try {
             DocumentBuilderFactory dfactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dbuilder = dfactory.newDocumentBuilder();
-    
+
             InputStream is = context.openFileInput(TEMPLATES_FILE);
             Document doc = dbuilder.parse(is);
             is.close();
-            
+
             Node templates = doc.getElementsByTagName("templates").item(0);
 
             Element el = item.createElement(doc);
@@ -133,15 +227,13 @@ public class ItemFactory extends DefaultHandler {
             os.close();
 
         } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
+            Log.e(TAG, "addItem");
         }
-
-        Log.d(TAG, item.getHint());
     }
 
     // taken from SO
 
-    private static String getStringFromNode(Node root) throws IOException {
+    private static String               getStringFromNode(Node root) throws IOException {
 
         StringBuilder result = new StringBuilder();
 
@@ -174,8 +266,8 @@ public class ItemFactory extends DefaultHandler {
             }
         }
         return result.toString();
-    }   
-    
+    }
+
 
     /**
      * Check return for null
@@ -186,41 +278,5 @@ public class ItemFactory extends DefaultHandler {
 
     public List<InstantItem>            getItems() {
         return mItems;
-    }
-
-    @Override
-    public void                         startElement(String uri,
-                                                     String name,
-                                                     String qName,
-                                                     Attributes atts) {
-        InstantItem item = null;
-
-        if (name.equals("item")) {
-            try {
-                String type = atts.getValue("type");
-
-                if (type.equals("sms")) {
-                    item = new InstantSms(atts.getValue("help"),
-                                          atts.getValue("address"),
-                                          atts.getValue("text"));
-
-                    mItems.add(item);
-                }
-
-                if (type.equals("ussd")) {
-                    item = new InstantUssd(atts.getValue("help"),
-                                           atts.getValue("text"));
-
-                    mItems.add(item);
-                }
-
-                if (atts.getValue("selected").equals("true")) {
-                    mSelectedItem = item;
-                }
-
-            } catch (NullPointerException e) {
-                // failed if getValue() doesn't find a attribute
-            }
-        }
     }
 }

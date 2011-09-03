@@ -78,7 +78,7 @@ public class InstantSMSActivity extends TabActivity
     }
 
     private void        parseXmlFile() {
-        ItemFactory ifactory = ItemFactory.parseTemplates(this);
+        ItemFactory ifactory = ItemFactory.getFactory(this);
 
         setText("The size is " + ifactory.getItems().size() + "\n");
 
