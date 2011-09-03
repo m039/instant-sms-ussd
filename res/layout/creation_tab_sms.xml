@@ -4,7 +4,7 @@
     android:orientation="vertical">
 
   <EditText android:layout_width="match_parent"
-            android:hint="Name of an item"
+            android:hint="Description"
                         android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_help">
     <requestFocus></requestFocus>
   </EditText>
@@ -15,7 +15,7 @@
 
   <EditText android:layout_width="match_parent"
             android:gravity="top"
-            android:hint="Enter here a message"
+            android:hint="Message"
             android:layout_height="wrap_content" android:id="@+id/creation_tab_etext_text" android:layout_weight="1"></EditText>
 
 </LinearLayout>

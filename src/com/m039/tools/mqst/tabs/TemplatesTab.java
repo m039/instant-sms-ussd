@@ -38,10 +38,12 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
  */
 public class TemplatesTab extends ListActivity {
     private static final String TAG                 = "m039";
-    private static ItemListener mItemListener       = new ItemListener();
     private static final int ADD_ITEM_REQUEST       = 0;
     private static final int EDIT_ITEM_REQUEST      = 1;
 
+    // for short clicks
+    private final ItemListener mItemListener = new ItemListener();
+    
     private boolean isItemsUpdated = false;
 
     @Override
@@ -155,6 +157,7 @@ public class TemplatesTab extends ListActivity {
                 v.setBackgroundResource(android.R.drawable.menuitem_background);
 
                 v.setOnCreateContextMenuListener(null);
+                v.setOnClickListener(new ItemListener());
             }
 
             InstantItem item = getItem(position);
@@ -173,15 +176,7 @@ public class TemplatesTab extends ListActivity {
                 }
 
                 if (hint != null) {
-                    String h = item.getHint();
-
-                    // strip the hint
-
-                    if (h.length() > 33) {
-                        h = h.substring(0, 33) + "...";
-                    }
-
-                    hint.setText(h);
+                    hint.setText(item.getHint());
                 }
 
                 // setting callback for send button
@@ -193,8 +188,6 @@ public class TemplatesTab extends ListActivity {
             return v;
         }
     }
-
-
 
     private class ButtonListener
         implements OnClickListener {
@@ -209,10 +202,11 @@ public class TemplatesTab extends ListActivity {
         }
     }
 
-    static private class ItemListener
+    private class ItemListener
         implements OnClickListener {
+        
         public void onClick(View v) {
-            Log.d(TAG, "Item is clicked");
+            openContextMenu(v);
         }
     }
 
@@ -230,10 +224,12 @@ public class TemplatesTab extends ListActivity {
         ListView lv = getListView();
 
         lv.setItemsCanFocus(true);
+        lv.setLongClickable(false);
 
         updateAdapter();
 
         // register context menu
+        
         registerForContextMenu(lv);
     }
 }

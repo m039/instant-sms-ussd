@@ -5,14 +5,14 @@
 
   <EditText android:id="@+id/creation_tab_etext_help"
       android:layout_width="match_parent"
-            android:hint="Name of an item"
+            android:hint="Description"
             android:layout_height="wrap_content" >
     <requestFocus></requestFocus>
   </EditText>
 
   <EditText android:id="@+id/creation_tab_etext_text"
             android:layout_width="match_parent"
-            android:hint="Enter here a number"
+            android:hint="USSD code"
             android:gravity="top"
             android:layout_height="wrap_content"  android:layout_weight="1"></EditText>
 

@@ -10,7 +10,7 @@
       android:id="@+id/mqst_provider_button_top"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="Top text"
+      android:text="Instant"
       android:textColor="#FFFFFF"
       android:background="@drawable/mqst_provider_background_top"/>
 
@@ -18,7 +18,7 @@
       android:id="@+id/mqst_provider_button_bottom"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="Bottom text"
+      android:text="SMS/USSD"
       android:textColor="#FFFFFF"
       android:background="@drawable/mqst_provider_background_bottom"/>
   

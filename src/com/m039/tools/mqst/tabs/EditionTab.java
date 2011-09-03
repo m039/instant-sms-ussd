@@ -141,8 +141,6 @@ public class EditionTab extends Activity {
 
             selectLayoutType(item);
             fillLayoutWithItem(item);
-
-            Toast.makeText(this, "Pos is " + mItemPosition, Toast.LENGTH_SHORT).show();
         }
     }
 

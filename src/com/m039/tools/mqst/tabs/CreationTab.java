@@ -120,7 +120,7 @@ public class CreationTab extends Activity {
 
         if (position == TYPE_SMS) {
             EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_address);
             EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
 
             String help = ehelp.getText().toString();

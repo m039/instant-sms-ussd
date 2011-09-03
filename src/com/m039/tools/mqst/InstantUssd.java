@@ -34,13 +34,13 @@ public class InstantUssd extends InstantItem {
     }
 
     public String       getHint() {
-        return "hint: *#" + mText + "#";
+        return "hint: " + mText;
     }
 
     public void         send(Context context) {
         try {
             String encodedHash = Uri.encode("#");
-            String ussd = "*" + encodedHash + mText + encodedHash;
+            String ussd = mText.replace("#", encodedHash);
         
             context.startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + ussd)));
         } catch (Exception e) {
