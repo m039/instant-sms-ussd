@@ -20,10 +20,13 @@
     
     <activity android:name="com.m039.tools.mqst.tabs.TemplatesTab"/>
 
-    <!-- dialog to create an item --> 
+    <!-- dialog to add an item --> 
     
     <activity android:name="com.m039.tools.mqst.tabs.CreationTab"/>
 
+    <!-- dialog to edit an item --> 
+    
+    <activity android:name="com.m039.tools.mqst.tabs.EditionTab"/>
     
     <!-- main receiver -->
     

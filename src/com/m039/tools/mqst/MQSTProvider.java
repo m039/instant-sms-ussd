@@ -98,6 +98,8 @@ public class MQSTProvider extends AppWidgetProvider {
 
     private void                updateWidgetClick(Context context, RemoteViews rview) {
         Intent intent           = new Intent(context, InstantSMSActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        
         PendingIntent pintent   = PendingIntent.getActivity(context,
                                                             0,
                                                             intent,

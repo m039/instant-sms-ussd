@@ -205,6 +205,14 @@ public class ItemFactory {
         mItems.remove(position);
     }
 
+    public void                         setItem(int position, InstantItem item) {
+        mItems.set(position, item);
+    }
+
+    public InstantItem                  getItem(int position) {
+        return mItems.get(position);
+    }
+
     // debugging purpose
 
     public static void                  addItem(Context context, InstantItem item) {

@@ -40,7 +40,7 @@ public class TemplatesTab extends ListActivity {
     private static final String TAG                 = "m039";
     private static ItemListener mItemListener       = new ItemListener();
     private static final int ADD_ITEM_REQUEST       = 0;
-    private static final int EDIT_ITEM_REQUEST       = 1;
+    private static final int EDIT_ITEM_REQUEST      = 1;
 
     private boolean isItemsUpdated = false;
 
@@ -74,8 +74,8 @@ public class TemplatesTab extends ListActivity {
 
         switch (id) {
         case R.id.menu_add_item:
-            startActivityForResult(new Intent(this, CreationTab.class),
-                                   ADD_ITEM_REQUEST);
+            Intent intent = new Intent(this, CreationTab.class);            
+            startActivityForResult(intent, ADD_ITEM_REQUEST);
             break;
         default:
             break;
@@ -87,6 +87,7 @@ public class TemplatesTab extends ListActivity {
     @Override
     protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+        case EDIT_ITEM_REQUEST:         
         case ADD_ITEM_REQUEST:
             if (resultCode == RESULT_OK) {
                 updateAdapter();
@@ -98,7 +99,6 @@ public class TemplatesTab extends ListActivity {
         }
 
     }
-
 
     // context menu
 
@@ -115,13 +115,18 @@ public class TemplatesTab extends ListActivity {
         super.onContextItemSelected(mitem);
 
         int id = mitem.getItemId();
-        AdapterContextMenuInfo info = (AdapterContextMenuInfo) mitem.getMenuInfo();
+        AdapterContextMenuInfo minfo = (AdapterContextMenuInfo) mitem.getMenuInfo();
 
 
         switch (id) {
         case R.id.template_menu_delete:
-            ItemFactory.getFactory().removeItem(info.position);
+            ItemFactory.getFactory().removeItem(minfo.position);
             updateAdapter();
+            break;
+        case R.id.template_menu_edit:
+            Intent intent = new Intent(this, EditionTab.class);
+            intent.putExtra("item position", minfo.position);
+            startActivityForResult(intent, EDIT_ITEM_REQUEST);
             break;
         default:
             break;

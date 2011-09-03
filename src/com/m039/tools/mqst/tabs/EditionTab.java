@@ -18,6 +18,7 @@ import com.m039.tools.mqst.InstantUssd;
 import com.m039.tools.mqst.ItemFactory;
 import com.m039.tools.mqst.R;
 import com.m039.tools.mqst.R.layout;
+import android.widget.Button;
 
 /**
  * Describe class CreationTab here.
@@ -28,7 +29,7 @@ import com.m039.tools.mqst.R.layout;
  * @author <a href="mailto:flam44@gmail.com">Mozgin Dmitry</a>
  * @version 1.0
  */
-public class CreationTab extends Activity {
+public class EditionTab extends Activity {
     static private final int TYPE_SMS       = 0;
     static private final int TYPE_USSD      = 1;
 
@@ -41,34 +42,58 @@ public class CreationTab extends Activity {
         mLayoutParams = new LinearLayout.LayoutParams(-1, -1, 1);
     }
 
+    private int mItemPosition = 0;
+
     // on spinner listener
-    
+
     private AdapterView.OnItemSelectedListener mTypeSelectListener = new AdapterView.OnItemSelectedListener()  {
             public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
-                ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
-                View v = null;
-
-                if (position == TYPE_SMS) {
-                    v = mSmsLayout;
-                }
-
-                if (position == TYPE_USSD) {
-                    v = mTypeLayout;
-                }
-
-                if (v != null) {
-                    vg.removeViewAt(0);
-                    vg.addView(v, 0, mLayoutParams);
-                }
-
+                selectLayoutType(position);
             }
 
             public void onNothingSelected (AdapterView<?> parent) {
             }
         };
 
+    private void        selectLayoutType(InstantItem item) {
+        selectLayoutType(item.getType());
+    }
+
+    private void        selectLayoutType(String type) {
+        if (type.equals("sms")) {
+            selectLayoutType(TYPE_SMS);
+        }
+
+        if (type.equals("ussd")) {
+            selectLayoutType(TYPE_USSD);
+        }
+    }
+
+    private void        selectLayoutType(int type) {
+        ViewGroup vg = (ViewGroup) findViewById(R.id.creation_tab_layout);
+        View v = null;
+
+        if (type == TYPE_SMS) {
+            v = mSmsLayout;
+        }
+
+        if (type == TYPE_USSD) {
+            v = mTypeLayout;
+        }
+
+        if (v != null) {
+            vg.removeViewAt(0);
+            vg.addView(v, 0, mLayoutParams);
+        }
+
+        // set spinner selection item
+
+        Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
+        s.setSelection(type);
+    }
+
     // on buttons listener (name is taken from the xml file)
-    
+
     public void         onButtonClick(View v) {
         int id = v.getId();
 
@@ -77,7 +102,7 @@ public class CreationTab extends Activity {
             InstantItem item = createInstantItem();
 
             if (item != null) {
-                ItemFactory.getFactory().addItem(item);
+                ItemFactory.getFactory().setItem(mItemPosition, item);
             }
 
             setResult(RESULT_OK);
@@ -89,7 +114,7 @@ public class CreationTab extends Activity {
             break;
         }
 
-        finish();               
+        finish();
     }
 
 
@@ -107,20 +132,64 @@ public class CreationTab extends Activity {
                                               mTypes));
 
         s.setOnItemSelectedListener(mTypeSelectListener);
+
+        Intent intent = getIntent();
+
+        if (intent != null) {
+            mItemPosition = intent.getExtras().getInt("item position");
+            InstantItem item = ItemFactory.getFactory().getItem(mItemPosition);
+
+            selectLayoutType(item);
+            fillLayoutWithItem(item);
+
+            Toast.makeText(this, "Pos is " + mItemPosition, Toast.LENGTH_SHORT).show();
+        }
     }
 
-    
+    private void           fillLayoutWithItem(InstantItem item) {
+        View layout = findViewById(R.id.creation_tab_layout);
+
+        if (item != null) {
+
+            if (item instanceof InstantSms) {
+                InstantSms sms = (InstantSms) item;
+
+                EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
+                EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_address);
+                EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+
+                ehelp.setText(sms.getHelp());
+                eaddr.setText(sms.getAddress());
+                etext.setText(sms.getText());
+
+            }
+
+            if (item instanceof InstantUssd) {
+                InstantUssd ussd = (InstantUssd) item;
+
+                EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
+                EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+
+                ehelp.setText(ussd.getHelp());
+                etext.setText(ussd.getText());
+            }
+        }
+    }
+
+    /**
+     * Return null if text fields are empty
+     */
     private InstantItem    createInstantItem() {
         Spinner s = (Spinner) findViewById(R.id.creation_tab_spinner);
         int position = s.getSelectedItemPosition();
 
         View layout = findViewById(R.id.creation_tab_layout);
-        
+
         InstantItem item = null;
 
         if (position == TYPE_SMS) {
             EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
-            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
+            EditText eaddr = (EditText) layout.findViewById(R.id.creation_tab_etext_address);
             EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
 
             String help = ehelp.getText().toString();
@@ -135,7 +204,7 @@ public class CreationTab extends Activity {
         }
 
         if (position == TYPE_USSD) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);          
+            EditText ehelp = (EditText) layout.findViewById(R.id.creation_tab_etext_help);
             EditText etext = (EditText) layout.findViewById(R.id.creation_tab_etext_text);
 
             String help = ehelp.getText().toString();
@@ -166,9 +235,21 @@ public class CreationTab extends Activity {
         v = inflater.inflate(R.layout.creation_tab_buttons, null);
         vg.addView(v);
 
+        // change text of the button
+
+        Button b;
+
+        b = (Button) v.findViewById(R.id.creation_tab_add_button);
+        b.setText("Edit");
+
         vg = (ViewGroup) mTypeLayout;
-        v = inflater.inflate(R.layout.creation_tab_buttons, null);      
+        v = inflater.inflate(R.layout.creation_tab_buttons, null);
         vg.addView(v);
+
+        // change text of the button
+
+        b = (Button) v.findViewById(R.id.creation_tab_add_button);
+        b.setText("Edit");
     }
 
 }
