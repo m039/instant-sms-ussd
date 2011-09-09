@@ -1,7 +1,4 @@
-* Features [1/9]
-  - [X] remove title from overs activity
-  - [ ] add warning if the sms cost something
-  - [ ] add only numbers for address field
+* Features [3/9]
   - [ ] support additional languages
   - [ ] add not sended sms activity
   - [ ] add choose from contacts button
@@ -9,4 +6,7 @@
   - [ ] add sort options
   - [ ] add selection of the command, this command will used by button
     widget
+  - [X] add warning if the sms cost something
+  - [X] add only numbers for address field
+  - [X] remove title from overs activity
 

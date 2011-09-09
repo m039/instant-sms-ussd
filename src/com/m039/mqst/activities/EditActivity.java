@@ -20,6 +20,7 @@ import com.m039.mqst.items.InstantItem;
 import com.m039.mqst.R;
 import com.m039.mqst.ItemFactory;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 /**
  * Describe class CreationTab here.
@@ -153,14 +154,15 @@ public class EditActivity extends Activity {
             if (item instanceof InstantSms) {
                 InstantSms sms = (InstantSms) item;
 
-                EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
-                EditText eaddr = (EditText) layout.findViewById(R.id.add_activity_etext_address);
-                EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
+                EditText ehelp  = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+                EditText eaddr  = (EditText) layout.findViewById(R.id.add_activity_etext_address);
+                EditText etext  = (EditText) layout.findViewById(R.id.add_activity_etext_text);
+                CheckBox cwarn  = (CheckBox) layout.findViewById(R.id.add_activity_cbox_warning);
 
                 ehelp.setText(sms.getHelp());
                 eaddr.setText(sms.getAddress());
                 etext.setText(sms.getText());
-
+                cwarn.setChecked(sms.getWarning());
             }
 
             if (item instanceof InstantUssd) {
@@ -187,18 +189,20 @@ public class EditActivity extends Activity {
         InstantItem item = null;
 
         if (position == TYPE_SMS) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
-            EditText eaddr = (EditText) layout.findViewById(R.id.add_activity_etext_address);
-            EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
-
-            String help = ehelp.getText().toString();
-            String addr = eaddr.getText().toString();
-            String text = etext.getText().toString();
-
+            EditText ehelp  = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+            EditText eaddr  = (EditText) layout.findViewById(R.id.add_activity_etext_address);
+            EditText etext  = (EditText) layout.findViewById(R.id.add_activity_etext_text);
+            CheckBox cwarn  = (CheckBox) layout.findViewById(R.id.add_activity_cbox_warning);
+            
+            String help     = ehelp.getText().toString();
+            String addr     = eaddr.getText().toString();
+            String text     = etext.getText().toString();
+            Boolean warn    = cwarn.isChecked();
+            
             if (!help.equals("") &&
                 !addr.equals("") &&
                 !text.equals("")) {
-                item = new InstantSms(help, addr, text);
+                item = new InstantSms(help, addr, text, warn);              
             }
         }
 

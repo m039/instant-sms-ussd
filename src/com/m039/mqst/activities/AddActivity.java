@@ -19,6 +19,7 @@ import com.m039.mqst.items.InstantItem;
 
 import com.m039.mqst.ItemFactory;
 import com.m039.mqst.R;
+import android.widget.CheckBox;
 
 /**
  * Describe class CreationTab here.
@@ -43,7 +44,7 @@ public class AddActivity extends Activity {
     }
 
     // on spinner listener
-    
+
     private AdapterView.OnItemSelectedListener mTypeSelectListener = new AdapterView.OnItemSelectedListener()  {
             public void onItemSelected (AdapterView<?> parent, View view, int position, long id) {
                 ViewGroup vg = (ViewGroup) findViewById(R.id.add_activity_layout);
@@ -69,7 +70,7 @@ public class AddActivity extends Activity {
         };
 
     // on buttons listener (name is taken from the xml file)
-    
+
     public void         onButtonClick(View v) {
         int id = v.getId();
 
@@ -90,7 +91,7 @@ public class AddActivity extends Activity {
             break;
         }
 
-        finish();               
+        finish();
     }
 
 
@@ -110,33 +111,35 @@ public class AddActivity extends Activity {
         s.setOnItemSelectedListener(mTypeSelectListener);
     }
 
-    
+
     private InstantItem    createInstantItem() {
         Spinner s = (Spinner) findViewById(R.id.add_activity_spinner);
         int position = s.getSelectedItemPosition();
 
         View layout = findViewById(R.id.add_activity_layout);
-        
+
         InstantItem item = null;
 
         if (position == TYPE_SMS) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
-            EditText eaddr = (EditText) layout.findViewById(R.id.add_activity_etext_address);
-            EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
+            EditText ehelp  = (EditText) layout.findViewById(R.id.add_activity_etext_help);
+            EditText eaddr  = (EditText) layout.findViewById(R.id.add_activity_etext_address);
+            EditText etext  = (EditText) layout.findViewById(R.id.add_activity_etext_text);
+            CheckBox cwarn  = (CheckBox) layout.findViewById(R.id.add_activity_cbox_warning);
 
-            String help = ehelp.getText().toString();
-            String addr = eaddr.getText().toString();
-            String text = etext.getText().toString();
+            String help     = ehelp.getText().toString();
+            String addr     = eaddr.getText().toString();
+            String text     = etext.getText().toString();
+            Boolean warn    = cwarn.isChecked();
 
             if (!help.equals("") &&
                 !addr.equals("") &&
                 !text.equals("")) {
-                item = new InstantSms(help, addr, text);
+                item = new InstantSms(help, addr, text, warn);
             }
         }
 
         if (position == TYPE_USSD) {
-            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);          
+            EditText ehelp = (EditText) layout.findViewById(R.id.add_activity_etext_help);
             EditText etext = (EditText) layout.findViewById(R.id.add_activity_etext_text);
 
             String help = ehelp.getText().toString();
@@ -168,7 +171,7 @@ public class AddActivity extends Activity {
         vg.addView(v);
 
         vg = (ViewGroup) mTypeLayout;
-        v = inflater.inflate(R.layout.add_activity_buttons, null);      
+        v = inflater.inflate(R.layout.add_activity_buttons, null);
         vg.addView(v);
     }
 

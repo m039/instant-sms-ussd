@@ -65,7 +65,8 @@ public class ItemFactory {
                     if (type.equals("sms")) {
                         item = new InstantSms(atts.getValue("help"),
                                               atts.getValue("address"),
-                                              atts.getValue("text"));
+                                              atts.getValue("text"),
+                                              Boolean.valueOf(atts.getValue("warning")));
 
                         mItems.add(item);
                     }
