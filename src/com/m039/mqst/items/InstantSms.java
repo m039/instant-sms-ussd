@@ -6,6 +6,11 @@ import android.widget.Toast;
 import android.util.Log;
 import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import android.content.BroadcastReceiver;
+import android.app.Activity;
+import android.content.Intent;
+import android.app.PendingIntent;
+import android.content.IntentFilter;
 
 /**
  * Describe class InstantSms here.
@@ -17,9 +22,12 @@ import org.w3c.dom.Document;
  * @version 1.0
  */
 public class InstantSms extends InstantItem {
-    private final String mAddress;
-    private final String mText;
+    private static final String         ACTION_SMS_SENT = "com.m039.mqst.items.SMS_SENT";
     
+    private static BroadcastReceiver    mReceiver;
+    private final String                mAddress;
+    private final String                mText;
+
     public InstantSms(String help, String address, String text) {
         super(help);
 
@@ -34,7 +42,7 @@ public class InstantSms extends InstantItem {
     public String       getText() {
         return mText;
     }
-    
+
     public String       getType() {
         return "sms";
     }
@@ -44,12 +52,49 @@ public class InstantSms extends InstantItem {
     }
 
     public void         send(Context context) {
-        try {
-            SmsManager sms = SmsManager.getDefault();
+        if (mReceiver == null) {
+            mReceiver = new BroadcastReceiver() {
+                    // almost taken from API DEMOS
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        String message = null;
+                        boolean error = true;
 
-            sms.sendTextMessage(mAddress, null, mText, null, null);
-        
-            Toast.makeText(context, "sending sms", Toast.LENGTH_SHORT).show();
+                        switch (getResultCode()) {
+                        case Activity.RESULT_OK:
+                            message = "The SMS has been sent";
+                            error = false;
+                            break;
+                        case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
+                            message = "Error: The SMS hasn't been sent";
+                            break;
+                        case SmsManager.RESULT_ERROR_NO_SERVICE:
+                            message = "Error: No service.";
+                            break;
+                        case SmsManager.RESULT_ERROR_NULL_PDU:
+                            message = "Error: Null PDU.";
+                            break;
+                        case SmsManager.RESULT_ERROR_RADIO_OFF:
+                            message = "Error: Radio off.";
+                            break;
+                        }
+
+                        Toast.makeText(context,
+                                       message,
+                                       error? Toast.LENGTH_LONG : Toast.LENGTH_SHORT).show();
+                    }
+                };
+
+            context.registerReceiver(mReceiver, new IntentFilter(ACTION_SMS_SENT));
+        }
+
+        try {
+            SmsManager sms          = SmsManager.getDefault();
+            PendingIntent pintent   = PendingIntent.getBroadcast(context, 0, new Intent(ACTION_SMS_SENT), 0);
+
+            sms.sendTextMessage(mAddress, null, mText, pintent, null);
+
+            Toast.makeText(context, "Sending SMS", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("InstantItem", "send failed");
         }

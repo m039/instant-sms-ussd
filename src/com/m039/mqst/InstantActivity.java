@@ -29,6 +29,7 @@ import com.m039.mqst.activities.AddActivity;
 import com.m039.mqst.activities.EditActivity;
 import com.m039.mqst.items.InstantItem;
 import android.widget.Toast;
+import com.m039.mqst.R.menu;
 
 /**
  * Describe class TemplatesListView here.
@@ -110,7 +111,7 @@ public class InstantActivity extends ListActivity {
     @Override
     public void         onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo minfo) {
         super.onCreateContextMenu(menu, v, minfo);
-
+        
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context, menu);
     }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.m039.mqst"
-          android:versionCode="2"
+          android:versionCode="4"
           android:versionName="1.1">
 
   <uses-sdk android:minSdkVersion="7"/> 
@@ -25,11 +25,13 @@
 
     <!-- dialog to add an item -->
 
-    <activity android:name="com.m039.mqst.activities.AddActivity"/>
+    <activity android:name="com.m039.mqst.activities.AddActivity"
+              android:theme="@android:style/Theme.NoTitleBar"/>
 
     <!-- dialog to edit an item -->
 
-    <activity android:name="com.m039.mqst.activities.EditActivity"/>
+    <activity android:name="com.m039.mqst.activities.EditActivity"
+              android:theme="@android:style/Theme.NoTitleBar"/>
 
     <!-- admob activity -->
     <activity android:name="com.google.ads.AdActivity"
