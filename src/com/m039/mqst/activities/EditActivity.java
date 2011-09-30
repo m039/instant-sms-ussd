@@ -21,6 +21,13 @@ import com.m039.mqst.R;
 import com.m039.mqst.ItemFactory;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
+import android.widget.TextView;
+import android.provider.Contacts.People;
+import android.net.Uri;
+import android.database.Cursor;
+import android.util.Log;
 
 /**
  * Describe class CreationTab here.
@@ -119,7 +126,57 @@ public class EditActivity extends Activity {
         finish();
     }
 
+    // look at add_activity_sms.xml for image button widget
 
+    private static final int PICK_CONTACT_REQUEST      = 1;
+    
+    public void         onContactButtonClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(intent, PICK_CONTACT_REQUEST);
+    }
+
+    @Override
+    protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+        case PICK_CONTACT_REQUEST:
+            if (resultCode == RESULT_OK) {
+                Cursor cur = managedQuery(data.getData(), null, null, null, null);
+
+                try {
+                    if (cur.moveToFirst()) {
+                        String contactId = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+                        int hasPhone = cur.getInt(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER));
+
+                        if (hasPhone == 1) {
+
+                            Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                                                                       null,
+                                                                       ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ contactId,
+                                                                       null,
+                                                                       null);
+
+                            if (phones.moveToFirst()) {
+                                String number = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+                                if (number != null) {
+                                    TextView tv = (TextView) findViewById(R.id.add_activity_etext_help);
+                                    tv.setText(number);
+                                }
+                            }
+
+                            phones.close();
+                        }
+                    }
+                } catch (IllegalArgumentException  e) {
+                    Log.e("m039", e.getMessage());
+                }
+            }
+            break;
+        default:
+            break;
+        }
+    }
+    
     @Override
     public void         onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

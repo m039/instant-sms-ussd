@@ -34,6 +34,11 @@ import com.m039.mqst.items.InstantItem;
 import android.widget.Toast;
 import com.m039.mqst.R.menu;
 import android.widget.ImageButton;
+import java.util.Comparator;
+import java.util.Collections;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 
 /**
  * Describe class TemplatesListView here.
@@ -226,15 +231,104 @@ public class InstantActivity extends ListActivity {
         }
     }
 
+    private class ItemComparator implements Comparator<InstantItem> {
+        private String mStype;
+        private String mSname;
+
+        public void     update() {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+            String stype = sp.getString("sort_type", "none");
+            String sname = sp.getString("sort_name", "none");
+
+            init(stype, sname);
+            
+            Log.d(TAG, "Sorting started:" + stype + " and " + sname);           
+        }
+        
+        public void     init(String stype, String sname) {
+            mStype = stype;
+            mSname = sname;
+        }
+
+        public int compare(InstantItem i1, InstantItem i2) {
+            // type1 <=> type2
+                
+            if (!i1.getType().equals(i2.getType())) {
+                // type1 != type2
+                    
+                if (mStype.equals("none")) {
+                        
+                    if (mSname.equals("none")) {
+                        return 0;
+                    }
+
+                    // help1 <=> help2
+                        
+                    int cmp = i1.getHelp().compareTo(i2.getHelp());
+
+                    if (mSname.equals("a-z")) {
+                        return cmp;
+                    } else {
+                        return -cmp;
+                    }
+
+                } else if (i1.getType().equals("sms")) {
+
+                    if (mStype.equals("sms")) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                } else {
+                    if (mStype.equals("ussd")) {
+                        return -1;
+                    } else {
+                        return 1;
+                    }
+                }
+            } else {
+                // type1 == type2
+                    
+                if (mSname.equals("none")) {
+                    return 0;
+                }
+
+                // help1 <=> help2
+                    
+                int cmp = i1.getHelp().compareTo(i2.getHelp());
+
+                if (mSname.equals("a-z")) {
+                    return cmp;
+                } else {
+                    return -cmp;
+                }
+            }
+        }       
+    }
+
+    private final ItemComparator ITEM_COMPORATOR =  new ItemComparator();
+
     private void    updateAdapter() {
-        ItemFactory ifactory = ItemFactory.getFactory(this);
-        setListAdapter(new TemplatesAdapter(this, R.layout.template_item, ifactory.getItems()));
+        ItemFactory ifactory        = ItemFactory.getFactory(this);
+        List<InstantItem>  iitems   = ifactory.getItems();
+
+        ITEM_COMPORATOR.update();
+        
+        Collections.sort(iitems, ITEM_COMPORATOR);
+
+        setListAdapter(new TemplatesAdapter(this, R.layout.template_item, iitems));
 
         isItemsUpdated = true;
     }
 
     @Override
-    protected void     onCreate(Bundle savedInstanceState) {
+    protected void      onResume() {
+        super.onResume();
+        updateAdapter();
+    }
+
+    @Override
+    protected void      onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.instant_activity);
 
