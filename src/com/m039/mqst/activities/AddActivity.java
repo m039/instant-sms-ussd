@@ -136,10 +136,13 @@ public class AddActivity extends Activity {
                                 if (number != null) {
                                     TextView tv = (TextView) findViewById(R.id.add_activity_etext_help);
                                     tv.setText(number);
-                                }
+                                } 
+
                             }
 
                             phones.close();
+                        } else {
+                            Toast.makeText(this, "This contact doesn't have a phone number", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (IllegalArgumentException  e) {

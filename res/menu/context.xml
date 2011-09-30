@@ -4,4 +4,5 @@
           android:title="Edit" />
     <item android:id="@+id/menu_context_delete"
           android:title="Delete" />
+    <item android:title="Go back" />    
 </menu>
