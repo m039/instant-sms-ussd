@@ -1,12 +1,15 @@
-* Features [3/9]
+* Features [3/12]
   - [ ] support additional languages
+  - [ ] add export function
   - [ ] add not sended sms activity
   - [ ] add choose from contacts button
   - [ ] add categories and groups
   - [ ] add sort options
   - [ ] add selection of the command, this command will used by button
     widget
+  - [ ] create admob_free.patch
+  - [ ] change send button's style
   - [X] add warning if the sms cost something
   - [X] add only numbers for address field
-  - [X] remove title from overs activity
+  - [X] remove title from others activity
 

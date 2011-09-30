@@ -4,14 +4,14 @@
     android:orientation="vertical">
 
   <EditText android:id="@+id/add_activity_etext_help"
-      android:layout_width="match_parent"
+      android:layout_width="fill_parent"
             android:hint="Description"
             android:layout_height="wrap_content" >
     <requestFocus></requestFocus>
   </EditText>
 
   <EditText android:id="@+id/add_activity_etext_text"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:hint="USSD code"
             android:inputType="phone"          
             android:gravity="top"

@@ -3,6 +3,8 @@ package com.m039.mqst;
 import java.util.List;
 
 import com.m039.mqst.R;
+import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -26,10 +28,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.m039.mqst.ItemFactory;
 import com.m039.mqst.activities.AddActivity;
+import com.m039.mqst.activities.SortActivity;
 import com.m039.mqst.activities.EditActivity;
 import com.m039.mqst.items.InstantItem;
 import android.widget.Toast;
 import com.m039.mqst.R.menu;
+import android.widget.ImageButton;
 
 /**
  * Describe class TemplatesListView here.
@@ -47,7 +51,7 @@ public class InstantActivity extends ListActivity {
 
     // for short clicks
     private final ItemListener mItemListener = new ItemListener();
-    
+
     private boolean isItemsUpdated = false;
 
     @Override
@@ -80,7 +84,7 @@ public class InstantActivity extends ListActivity {
 
         switch (id) {
         case R.id.menu_main_add_item:
-            Intent intent = new Intent(this, AddActivity.class);            
+            Intent intent = new Intent(this, AddActivity.class);
             startActivityForResult(intent, ADD_ITEM_REQUEST);
             break;
         default:
@@ -93,7 +97,7 @@ public class InstantActivity extends ListActivity {
     @Override
     protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-        case EDIT_ITEM_REQUEST:         
+        case EDIT_ITEM_REQUEST:
         case ADD_ITEM_REQUEST:
             if (resultCode == RESULT_OK) {
                 updateAdapter();
@@ -111,7 +115,7 @@ public class InstantActivity extends ListActivity {
     @Override
     public void         onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo minfo) {
         super.onCreateContextMenu(menu, v, minfo);
-        
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.context, menu);
     }
@@ -162,6 +166,14 @@ public class InstantActivity extends ListActivity {
 
                 v.setOnCreateContextMenuListener(null);
                 v.setOnClickListener(new ItemListener());
+
+                // set background
+
+                if (position % 2 == 0) {
+                    v.setBackgroundResource(R.drawable.background_even);
+                } else {
+                    v.setBackgroundResource(R.drawable.background_odd);
+                }
             }
 
             InstantItem item = getItem(position);
@@ -185,7 +197,7 @@ public class InstantActivity extends ListActivity {
 
                 // setting callback for send button
 
-                Button btn = (Button) v.findViewById(R.id.template_send_button);
+                ImageButton btn = (ImageButton) v.findViewById(R.id.template_send_button);
                 btn.setOnClickListener(new ButtonListener(item));
             }
 
@@ -208,7 +220,7 @@ public class InstantActivity extends ListActivity {
 
     private class ItemListener
         implements OnClickListener {
-        
+
         public void onClick(View v) {
             openContextMenu(v);
         }
@@ -234,20 +246,32 @@ public class InstantActivity extends ListActivity {
         updateAdapter();
 
         // register context menu
-        
+
         registerForContextMenu(lv);
 
         // enable fading
-        
+
         lv.setScrollbarFadingEnabled(true);
 
         // notify the user if there are no items
-        
+
         ItemFactory ifactory = ItemFactory.getFactory();
 
         if (ifactory.getItems().size() == 0) {
             Toast.makeText(this, "Use menu button to add an item", Toast.LENGTH_SHORT).show();
         }
 
+        // set background shape
+
+        lv.setBackgroundResource(R.drawable.background_list);
+
+        //
+        // initalize action bar
+        //
+
+        ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
+        actionBar.addAction(new IntentAction(this,
+                                             new Intent(this, SortActivity.class),
+                                             R.drawable.ic_tab_sort));
     }
 }

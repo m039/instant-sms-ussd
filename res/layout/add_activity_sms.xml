@@ -3,26 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
-  <CheckBox android:layout_width="match_parent"
+  <CheckBox android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Warn me when I send this message (maybe it costs you money)"
             android:gravity="center_vertical|center_horizontal"
             android:id="@+id/add_activity_cbox_warning"/>
 
-  <EditText android:layout_width="match_parent"
+  <EditText android:layout_width="fill_parent"
             android:hint="Description"
             android:layout_height="wrap_content"
             android:id="@+id/add_activity_etext_help">
     <requestFocus></requestFocus>
   </EditText>
 
-  <EditText android:layout_width="match_parent"
+  <EditText android:layout_width="fill_parent"
             android:hint="Address"
             android:inputType="phone"
             android:layout_height="wrap_content"
             android:id="@+id/add_activity_etext_address" />
 
-  <EditText android:layout_width="match_parent"
+  <EditText android:layout_width="fill_parent"
             android:gravity="top"
             android:hint="Message"
             android:layout_height="wrap_content"
