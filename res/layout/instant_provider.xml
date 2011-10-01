@@ -10,7 +10,7 @@
       android:id="@+id/instant_provider_button_top"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="Instant"
+      android:text="@string/widget_top"
       android:textColor="#FFFFFF"
       android:background="@drawable/instant_provider_background_top"/>
 
@@ -18,7 +18,7 @@
       android:id="@+id/instant_provider_button_bottom"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:text="SMS/USSD"
+      android:text="@string/widget_bottom"
       android:textColor="#FFFFFF"
       android:background="@drawable/instant_provider_background_bottom"/>
   

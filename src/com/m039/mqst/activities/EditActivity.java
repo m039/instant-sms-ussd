@@ -159,14 +159,14 @@ public class EditActivity extends Activity {
                                 String number = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
                                 if (number != null) {
-                                    TextView tv = (TextView) findViewById(R.id.add_activity_etext_help);
+                                    TextView tv = (TextView) findViewById(R.id.add_activity_etext_address);
                                     tv.setText(number);
                                 } 
                             } 
 
                             phones.close();
                         } else {
-                            Toast.makeText(this, "This contact doesn't have a phone number", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, R.string.contact_hasnt_phone, Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (IllegalArgumentException  e) {
@@ -302,16 +302,11 @@ public class EditActivity extends Activity {
         Button b;
 
         b = (Button) v.findViewById(R.id.add_activity_add_button);
-        b.setText("Edit");
+        b.setText(R.string.edit_button);
 
         vg = (ViewGroup) mTypeLayout;
         v = inflater.inflate(R.layout.add_activity_buttons, null);
         vg.addView(v);
-
-        // change text of the button
-
-        b = (Button) v.findViewById(R.id.add_activity_add_button);
-        b.setText("Edit");
     }
 
 }

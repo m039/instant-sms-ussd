@@ -1,5 +1,7 @@
 package com.m039.mqst.items;
 
+import com.m039.mqst.R;
+
 import android.content.Context;
 import android.telephony.SmsManager;
 import android.widget.Toast;
@@ -72,25 +74,25 @@ public class InstantSms extends InstantItem {
                     // almost taken from API DEMOS
                     @Override
                     public void onReceive(Context context, Intent intent) {
-                        String message = null;
+                        int message = R.string.sms_sent_ok;
                         boolean error = true;
 
                         switch (getResultCode()) {
                         case Activity.RESULT_OK:
-                            message = "The SMS has been sent";
+                            message = R.string.sms_sent_ok;
                             error = false;
                             break;
                         case SmsManager.RESULT_ERROR_GENERIC_FAILURE:
-                            message = "Error: The SMS hasn't been sent";
+                            message = R.string.sms_sent_generic_failure;
                             break;
                         case SmsManager.RESULT_ERROR_NO_SERVICE:
-                            message = "Error: No service.";
+                            message = R.string.sms_sent_no_service;
                             break;
                         case SmsManager.RESULT_ERROR_NULL_PDU:
-                            message = "Error: Null PDU.";
+                            message = R.string.sms_sent_null_pdu;
                             break;
                         case SmsManager.RESULT_ERROR_RADIO_OFF:
-                            message = "Error: Radio off.";
+                            message = R.string.sms_sent_radio_off;
                             break;
                         }
 
@@ -133,7 +135,7 @@ public class InstantSms extends InstantItem {
 
             sms.sendTextMessage(mAddress, null, mText, pintent, null);
 
-            Toast.makeText(mContext, "Sending SMS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, R.string.sms_sending, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Log.e("InstantItem", "send failed");
         }   
@@ -141,9 +143,9 @@ public class InstantSms extends InstantItem {
 
     private void     checkUserDesire() {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setMessage("Do you want to send this message?")
-            .setPositiveButton("Yes", mDialogListener)
-            .setNegativeButton("No", mDialogListener).show();
+        builder.setMessage(R.string.sms_sending_warning)
+            .setPositiveButton(R.string.yes_button, mDialogListener)
+            .setNegativeButton(R.string.no_button, mDialogListener).show();
 
     }
 

@@ -5,21 +5,27 @@
 
   <CheckBox android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Warn me when I send this message (maybe it costs you money)"
+            android:text="@string/sms_sending_cbox_warning"
             android:gravity="center_vertical|center_horizontal"
             android:id="@+id/add_activity_cbox_warning"/>
+  
+  <EditText android:id="@+id/add_activity_etext_help"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/etext_help_hint">
+    <requestFocus/>
+  </EditText>
 
   <LinearLayout android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
     
-    <EditText android:id="@+id/add_activity_etext_help"
-              android:layout_width="fill_parent"
+    <EditText android:id="@+id/add_activity_etext_address"
+              android:hint="@string/etext_address_hint"
+              android:inputType="phone"
               android:layout_height="wrap_content"
-              android:hint="Description"
-              android:layout_weight="1">
-      <requestFocus/>
-    </EditText>
+              android:layout_width="fill_parent"
+              android:layout_weight="1"/>
 
     <!-- find in contacts button -->
     
@@ -30,18 +36,12 @@
                  android:layout_gravity="center"
                  android:onClick="onContactButtonClick"/>
   </LinearLayout>
-
-  <EditText android:layout_width="fill_parent"
-            android:hint="Address"
-            android:inputType="phone"
-            android:layout_height="wrap_content"
-            android:id="@+id/add_activity_etext_address" />
-
-  <EditText android:layout_width="fill_parent"
+  
+  <EditText android:id="@+id/add_activity_etext_text"
             android:gravity="top"
-            android:hint="Message"
+            android:hint="@string/etext_text_hint_sms"
             android:layout_height="wrap_content"
-            android:id="@+id/add_activity_etext_text"
+            android:layout_width="fill_parent"
             android:layout_weight="1" />
 
 </LinearLayout>

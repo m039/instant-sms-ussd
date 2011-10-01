@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  
+  <!-- -->
+  
+  <string name="no_items_warning">Для добавления сообщения используйте меню</string>
+
+  <string name="sms_sent_ok">SMS было отправлено</string>
+  <string name="sms_sent_generic_failure">Ошибка: SMS не было отправлено</string>
+  <string name="sms_sent_no_service">Ошибка: нет сервиса</string>
+  <string name="sms_sent_null_pdu">Ошибка: нет PDU</string>
+  <string name="sms_sent_radio_off">Ошибка: нет сигнала</string>
+
+  <string name="sms_sending">SMS отправляется</string>
+  <string name="sms_sending_warning">Уверены, что хотите отправить это сообщение?</string>
+  <string name="sms_sending_cbox_warning">При отправке сообщения запросить подтверждение</string>
+
+  <string name="contact_hasnt_phone">У этого контакта нету телефона</string>
+
+  <string name="yes_button">Да</string>
+  <string name="no_button">Нет</string>
+  
+  <string name="edit_button">Изменить</string>
+  <string name="add_button">Добавить</string>
+  <string name="cancel_button">Отмена</string>
+
+  <string name="edit_context">Изменить</string>
+  <string name="delete_context">Удалить</string>
+  <string name="go_back_context">Вернуться назад</string>
+
+  <string name="add_item_menu">Добавить</string>
+
+  <string name="select_type">Выбрать тип</string>
+
+  <string name="etext_help_hint">Описание</string>
+  <string name="etext_address_hint">Номер телефона</string>
+  <string name="etext_text_hint_sms">Сообщение</string>
+  <string name="etext_text_hint_ussd">USSD код</string>
+
+  <!-- from preferences -->
+
+  <string name="sort_preferences">Настройки сортировки</string>
+  <string name="sort_preferences_type">Сортировать по типу</string>
+  <string name="sort_preferences_name">Сортировать по имени (описанию)</string>
+  
+  <string-array
+      name="sort_type_entries">
+    <item>SMS вначале</item>
+    <item>USSD вначале</item>
+    <item>не использовать эту сортировку</item>
+  </string-array>
+
+  <string-array
+      name="sort_name_entries">
+    <item>А-Я</item>
+    <item>Я-А</item>
+    <item>не использовать эту сортировку</item>
+  </string-array>  
+
+</resources>

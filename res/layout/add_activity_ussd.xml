@@ -3,34 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
-  <LinearLayout android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-    <EditText android:id="@+id/add_activity_etext_help"
-              android:layout_width="fill_parent"
-              android:hint="Description"
-              android:layout_height="wrap_content"
-              android:layout_weight="1">
-      <requestFocus/>
-    </EditText>
-
-    <!-- find in contacts button -->
-    
-    <ImageButton android:id="@+id/add_activity_ib_contact"
-                 android:src="@drawable/ic_button_body"
-                 android:layout_height="wrap_content"
-                 android:layout_width="wrap_content"
-                 android:layout_gravity="center"
-                 android:onClick="onContactButtonClick"/>
-  </LinearLayout>  
-  
+  <EditText android:id="@+id/add_activity_etext_help"
+            android:hint="@string/etext_help_hint"          
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+    <requestFocus/>
+  </EditText>
 
   <EditText android:id="@+id/add_activity_etext_text"
-            android:layout_width="fill_parent"
-            android:hint="USSD code"
+            android:hint="@string/etext_text_hint_ussd"
             android:inputType="phone"          
             android:gravity="top"
+            android:layout_width="fill_parent"          
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 

@@ -2,9 +2,11 @@ package com.m039.mqst;
 
 import java.util.List;
 
-import com.m039.mqst.R;
 import com.markupartist.android.widget.ActionBar;
 import com.markupartist.android.widget.ActionBar.IntentAction;
+
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -23,10 +25,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.m039.mqst.ItemFactory;
 import com.m039.mqst.activities.AddActivity;
 import com.m039.mqst.activities.SortActivity;
 import com.m039.mqst.activities.EditActivity;
@@ -34,10 +34,9 @@ import com.m039.mqst.items.InstantItem;
 import android.widget.Toast;
 import com.m039.mqst.R.menu;
 import android.widget.ImageButton;
-import java.util.Comparator;
 import java.util.Collections;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -231,90 +230,15 @@ public class InstantActivity extends ListActivity {
         }
     }
 
-    private class ItemComparator implements Comparator<InstantItem> {
-        private String mStype;
-        private String mSname;
-
-        public void     update() {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-            String stype = sp.getString("sort_type", "none");
-            String sname = sp.getString("sort_name", "none");
-
-            init(stype, sname);
-            
-            Log.d(TAG, "Sorting started:" + stype + " and " + sname);           
-        }
-        
-        public void     init(String stype, String sname) {
-            mStype = stype;
-            mSname = sname;
-        }
-
-        public int compare(InstantItem i1, InstantItem i2) {
-            // type1 <=> type2
-                
-            if (!i1.getType().equals(i2.getType())) {
-                // type1 != type2
-                    
-                if (mStype.equals("none")) {
-                        
-                    if (mSname.equals("none")) {
-                        return 0;
-                    }
-
-                    // help1 <=> help2
-                        
-                    int cmp = i1.getHelp().compareTo(i2.getHelp());
-
-                    if (mSname.equals("a-z")) {
-                        return cmp;
-                    } else {
-                        return -cmp;
-                    }
-
-                } else if (i1.getType().equals("sms")) {
-
-                    if (mStype.equals("sms")) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                } else {
-                    if (mStype.equals("ussd")) {
-                        return -1;
-                    } else {
-                        return 1;
-                    }
-                }
-            } else {
-                // type1 == type2
-                    
-                if (mSname.equals("none")) {
-                    return 0;
-                }
-
-                // help1 <=> help2
-                    
-                int cmp = i1.getHelp().compareTo(i2.getHelp());
-
-                if (mSname.equals("a-z")) {
-                    return cmp;
-                } else {
-                    return -cmp;
-                }
-            }
-        }       
-    }
-
-    private final ItemComparator ITEM_COMPORATOR =  new ItemComparator();
-
     private void    updateAdapter() {
         ItemFactory ifactory        = ItemFactory.getFactory(this);
         List<InstantItem>  iitems   = ifactory.getItems();
 
-        ITEM_COMPORATOR.update();
+        ItemComparator icmp = ItemComparator.getInstance();
         
-        Collections.sort(iitems, ITEM_COMPORATOR);
+        icmp.update(this);
+        
+        Collections.sort(iitems, icmp);
 
         setListAdapter(new TemplatesAdapter(this, R.layout.template_item, iitems));
 
@@ -352,7 +276,7 @@ public class InstantActivity extends ListActivity {
         ItemFactory ifactory = ItemFactory.getFactory();
 
         if (ifactory.getItems().size() == 0) {
-            Toast.makeText(this, "Use menu button to add an item", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_items_warning, Toast.LENGTH_SHORT).show();
         }
 
         // set background shape
@@ -367,5 +291,26 @@ public class InstantActivity extends ListActivity {
         actionBar.addAction(new IntentAction(this,
                                              new Intent(this, SortActivity.class),
                                              R.drawable.ic_tab_sort));
+
+        initAd();
+    }
+
+    private void            initAd() {
+        Map<String, Object> extras = new HashMap<String, Object>();
+        
+        extras.put("color_bg",       "305E8b");
+        extras.put("color_bg_top",   "305Ecd");
+        extras.put("color_border",   "1A1A8B");
+        extras.put("color_link",     "FFB913");
+        extras.put("color_text",     "FFFFFF");
+        extras.put("color_url",      "FFFFFF");
+
+        AdRequest adRequest = new AdRequest();
+        
+        adRequest.setExtras(extras);
+
+        AdView adview = (AdView) findViewById(R.id.instant_activity_ad);
+
+        adview.loadAd(adRequest);
     }
 }

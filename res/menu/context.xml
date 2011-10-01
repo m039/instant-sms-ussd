@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_context_edit"
-          android:title="Edit" />
+          android:title="@string/edit_context" />
     <item android:id="@+id/menu_context_delete"
-          android:title="Delete" />
-    <item android:title="Go back" />    
+          android:title="@string/delete_context" />
+    <item android:title="@string/go_back_context" />    
 </menu>

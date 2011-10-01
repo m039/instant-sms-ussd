@@ -9,7 +9,7 @@
       android:layout_width="fill_parent"
       android:layout_height="wrap_content">
     
-    <TextView android:text="Select type"
+    <TextView android:text="@string/select_type"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:textAppearance="?android:attr/textAppearanceLarge"
@@ -21,7 +21,7 @@
     <Spinner android:layout_weight="1"
              android:id="@+id/add_activity_spinner"
              android:layout_width="wrap_content"
-             android:layout_height="wrap_content"/>t 
+             android:layout_height="wrap_content"/>
     
   </LinearLayout>
   

@@ -91,7 +91,7 @@ public class ItemFactory {
 
     }
 
-    private final MyHandler mHandler = new MyHandler();
+    private final MyHandler mHandler            = new MyHandler();
     private final List<InstantItem> mItems      = new ArrayList<InstantItem>();
     private InstantItem mSelectedItem;
 

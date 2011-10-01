@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
   <PreferenceCategory
-      android:title="Sort preferences">
+      android:title="@string/sort_preferences">
     <ListPreference
-        android:title="Sort by type"
+        android:title="@string/sort_preferences_type"
         android:key="sort_type"
         android:defaultValue="none"
         android:entries="@array/sort_type_entries"
         android:entryValues="@array/sort_type_values" />
     <ListPreference
-        android:title="Sort by name (description)"
+        android:title="@string/sort_preferences_name"
         android:key="sort_name"
         android:defaultValue="none"
         android:entries="@array/sort_name_entries"

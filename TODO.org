@@ -1,12 +1,13 @@
-* Features [6/13]
-  - [ ] support additional languages
-  - [ ] add export function
+* Features [8/14]
+  - [ ] add export / import / _restore_ function
+  - [ ] think how to merge AddActivity and EditActivity together
   - [ ] add not sended sms activity
   - [ ] add categories and groups
   - [ ] add selection of the command, this command will used by button
     widget
   - [ ] create admob_free.patch
-  - [ ] think how to merge AddActivity and EditActivity together
+  - [X] support additional languages
+  - [X] change admob colors!
   - [X] add choose from contacts button
   - [X] change send button's style
   - [X] add sort options

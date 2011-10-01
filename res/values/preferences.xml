@@ -2,23 +2,9 @@
 <resources>
 
   <string-array
-      name="sort_type_entries">
-    <item>SMS first</item>
-    <item>USSD first</item>
-    <item>none</item>   
-  </string-array>
-
-  <string-array
       name="sort_type_values">
     <item>sms</item>
     <item>ussd</item>
-    <item>none</item>
-  </string-array>
-  
-  <string-array
-      name="sort_name_entries">
-    <item>A-Z</item>
-    <item>Z-A</item>
     <item>none</item>
   </string-array>
 
