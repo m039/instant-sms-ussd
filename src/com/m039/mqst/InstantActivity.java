@@ -292,25 +292,25 @@ public class InstantActivity extends ListActivity {
                                              new Intent(this, SortActivity.class),
                                              R.drawable.ic_tab_sort));
 
-        initAd();
+        // initAd();
     }
 
-    private void            initAd() {
-        Map<String, Object> extras = new HashMap<String, Object>();
+    // private void            initAd() {
+    //     Map<String, Object> extras = new HashMap<String, Object>();
         
-        extras.put("color_bg",       "305E8b");
-        extras.put("color_bg_top",   "305Ecd");
-        extras.put("color_border",   "1A1A8B");
-        extras.put("color_link",     "FFB913");
-        extras.put("color_text",     "FFFFFF");
-        extras.put("color_url",      "FFFFFF");
+    //     extras.put("color_bg",       "305E8b");
+    //     extras.put("color_bg_top",   "305Ecd");
+    //     extras.put("color_border",   "1A1A8B");
+    //     extras.put("color_link",     "FFB913");
+    //     extras.put("color_text",     "FFFFFF");
+    //     extras.put("color_url",      "FFFFFF");
 
-        AdRequest adRequest = new AdRequest();
+    //     AdRequest adRequest = new AdRequest();
         
-        adRequest.setExtras(extras);
+    //     adRequest.setExtras(extras);
 
-        AdView adview = (AdView) findViewById(R.id.instant_activity_ad);
+    //     AdView adview = (AdView) findViewById(R.id.instant_activity_ad);
 
-        adview.loadAd(adRequest);
-    }
+    //     adview.loadAd(adRequest);
+    // }
 }
