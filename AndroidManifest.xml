@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.m039.mqst"
-          android:versionCode="14"
-          android:versionName="1.2">
+          android:versionCode="15"
+          android:versionName="2.0.0"
+          >
 
-  <uses-sdk android:minSdkVersion="7"/> 
+  <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14" />
 
-  <application android:label="@string/app_name" android:icon="@drawable/icon">
+  <application android:label="@string/app_name"
+               android:icon="@drawable/icon"
+               >
+
+    <activity android:name="com.m039.isms.activity.MainActivity"
+              android:theme="@style/Common.Theme"
+              android:noHistory="true"
+              >
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+    </activity>
+
+    <!---->
+    <!---->
+    <!--new-->
+    <!---->
+    <!---->
+
+    <activity android:name="com.m039.isms.activity.HeadActivity"
+              android:theme="@style/Common.Theme"
+              />
+    
+    <!---->
+    <!---->
+    <!--old-->
+    <!---->
+    <!---->
 
     <!-- main activity   -->
 
     <activity android:name=".InstantActivity"
-              android:theme="@android:style/Theme.Light.NoTitleBar"
+              android:theme="@style/Common.Theme"
               android:label="@string/app_name">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -34,10 +65,10 @@
               android:theme="@android:style/Theme.NoTitleBar"/>
 
     <!-- sort settings/preferences -->
-    
+
     <activity android:name="com.m039.mqst.activities.SortActivity"
-              android:theme="@android:style/Theme.NoTitleBar"/>           
-    
+              android:theme="@android:style/Theme.NoTitleBar"/>
+
     <!-- admob activity -->
     <activity android:name="com.google.ads.AdActivity"
               android:configChanges="keyboard|keyboardHidden|orientation"/>
@@ -60,7 +91,7 @@
 
   <!-- for pick contact button -->
   <uses-permission android:name="android.permission.READ_CONTACTS"/>
-  
+
   <!-- for admob -->
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

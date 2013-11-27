@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="app_name">Instant SMS/USSD</string>
 
-  <!-- -->  
+  <string name="app_name">Fire SMS/USSD</string>
+
+  <!-- -->
   <string name="no_items_warning">Use menu button to add an item</string>
 
   <string name="sms_sent_ok">The SMS has been sent</string>
@@ -19,7 +20,7 @@
 
   <string name="yes_button">Yes</string>
   <string name="no_button">No</string>
-  
+
   <string name="edit_button">Edit</string>
   <string name="add_button">Add</string>
   <string name="cancel_button">Cancel</string>
@@ -45,7 +46,7 @@
   <string name="sort_preferences">Sort preferences</string>
   <string name="sort_preferences_type">Sort by type</string>
   <string name="sort_preferences_name">Sort by name (description)</string>
-  
+
   <string-array
       name="sort_type_entries">
     <item>SMS first</item>

@@ -1,31 +1,31 @@
 package com.m039.mqst;
 
-import com.m039.mqst.items.InstantUssd;
-import com.m039.mqst.items.InstantSms;
-import com.m039.mqst.items.InstantItem;
-
-import org.xml.sax.helpers.DefaultHandler;
-import java.util.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import java.io.InputStream;
-import android.util.Log;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.Attributes;
+import org.xml.sax.helpers.DefaultHandler;
+
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.widget.Toast;
-import java.io.FileOutputStream;
-import java.io.DataInputStream;
-import android.content.res.AssetFileDescriptor;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import java.io.IOException;
-import java.io.OutputStream;
+import android.util.Log;
+
+import com.m039.mqst.items.InstantItem;
+import com.m039.mqst.items.InstantSms;
+import com.m039.mqst.items.InstantUssd;
 
 /**
  * This is a singleton class.
@@ -130,7 +130,7 @@ public class ItemFactory {
 
         } catch (Exception e) {
             Log.e(TAG, "addItem");
-        }       
+        }
     }
 
     /**
