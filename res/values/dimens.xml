@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <dimen name="e_msg__margin_left">16dp</dimen>
+  <dimen name="e_msg__margin_right">16dp</dimen>
+  <dimen name="e_msg__margin_top">10dp</dimen>
+  <dimen name="e_msg__margin_bottom">10dp</dimen>
+
+  <dimen name="e_msg__type__margin_right">25dp</dimen>
+  <dimen name="e_msg__type__line_width">2px</dimen>
+
+  <dimen name="f_list__list__divider_height">1px</dimen>
+  <dimen name="f_list__list__divider__padding_left">8dp</dimen>
+  <dimen name="f_list__list__divider__padding_right">8dp</dimen>
+
+</resources>

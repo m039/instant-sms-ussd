@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="actionbar_separator">#1A1A8B</color>
-    <color name="actionbar_title">#FFFFFF</color>
-    <color name="actionbar_background_start">#305E8b</color>
-    <color name="actionbar_background_end">#305Ecd</color>
 
-    <color name="template_help">#334A54</color>
-    <color name="template_odd">#FFFFFF</color>
-    <color name="template_even">#F0F0F0</color>
-    <color name="template_list">#FFFFFF</color>
+  <!-- old -->
+  <color name="actionbar_separator">#1A1A8B</color>
+  <color name="actionbar_title">#FFFFFF</color>
+  <color name="actionbar_background_start">#305E8b</color>
+  <color name="actionbar_background_end">#305Ecd</color>
+
+  <color name="template_help">#334A54</color>
+  <color name="template_odd">#FFFFFF</color>
+  <color name="template_even">#F0F0F0</color>
+  <color name="template_list">#FFFFFF</color>
+
+  <!-- new -->
+
+  <color name="f_list__list__divider_color">#FFFFFF</color>  
+  
+  <color name="e_msg__type">#FFFFFF</color>
+  <color name="e_msg__type__sms">#8BC53E</color>
+  <color name="e_msg__type__ussd">#28AAE1</color>
+
 </resources>

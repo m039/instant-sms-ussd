@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
         }
 
         // launch activity
-        startActivity(new Intent(this, HeadActivity.class));        
+        startActivity(new Intent(this, HeadActivity.class));
     }
 
     private void launchOldActivity() {

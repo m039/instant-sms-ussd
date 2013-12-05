@@ -12,6 +12,9 @@ package com.m039.isms.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.m039.isms.fragment.MsgListFragment;
+import com.m039.mqst.R;
+
 /**
  *
  * Created: 11/28/13
@@ -25,12 +28,16 @@ public class HeadActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.a_head);
 
-        TextView tv = new TextView(this);
-
-        tv.setText("DUMP VIEW");
-
-        setContentView(tv);
+        if (savedInstanceState == null) {
+            if (findViewById(R.id.f_list) != null) {
+                getFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.f_list, MsgListFragment.newInstance())
+                    .commit();
+            }
+        }
     }
 
 

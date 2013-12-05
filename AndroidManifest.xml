@@ -32,7 +32,7 @@
     <activity android:name="com.m039.isms.activity.HeadActivity"
               android:theme="@style/Common.Theme"
               />
-    
+
     <!---->
     <!---->
     <!--old-->

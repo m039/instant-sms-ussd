@@ -47,7 +47,7 @@ public class DB {
         return sDB;
     }
 
-    private class DBHelper extends SQLiteOpenHelper {
+    public class DBHelper extends SQLiteOpenHelper {
         public static final int DB_VERSION = 2;
         public static final String DB_NAME = "isms.db";
 
@@ -79,6 +79,10 @@ public class DB {
 
     private DB(Context ctx) {
         mDBHelper = new DBHelper(ctx);
+    }
+
+    public DBHelper getDBHelper() {
+        return mDBHelper;
     }
 
     public boolean importOldData(List<InstantItem> items) {
