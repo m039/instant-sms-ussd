@@ -9,7 +9,9 @@
 
 package com.m039.isms.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.os.Bundle;
 
 /**
  * 
@@ -21,6 +23,15 @@ import android.app.Activity;
  * @since 
  */
 public class BaseActivity extends Activity {
-    
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        ActionBar ab = getActionBar();
+        if (ab != null) {
+            ab.setDisplayShowTitleEnabled(false);
+        }
+
+        super.onCreate(savedInstanceState);     
+    }
 
 } // BaseActivity

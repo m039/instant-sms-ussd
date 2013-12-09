@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <string name="app_name">Fire SMS/USSD</string>
+  <string name="app_name">Instant\nSMS / USSD</string>
 
+  <string name="head__action_new">Add message</string>
+
+  <string name="a_create_msg__type">Type</string>
+  <string name="a_create_msg__general">General</string>
+  <string name="a_create_msg__options">Options</string>
+
+  <string name="a_create_msg__address__hint">Address</string>
+  <string name="a_create_msg__description__hint">Description</string>
+  <string name="a_create_msg__message__hint">Message</string>
+
+  <string name="a_create_msg__warning__costs_money__line_1">Warn me when I send this message</string>
+  <string name="a_create_msg__warning__costs_money__line_2">maybe it costs you money</string>
+
+  <string name="a_create_msg__buttons__add">Add</string>
+  <string name="a_create_msg__buttons__save">Save</string>
+  <string name="a_create_msg__buttons__cancel">Cancel</string>    
+  
   <!-- -->
+
   <string name="no_items_warning">Use menu button to add an item</string>
 
   <string name="sms_sent_ok">The SMS has been sent</string>
@@ -60,5 +78,12 @@
     <item>Z-A</item>
     <item>none</item>
   </string-array>
+
+  <string-array
+        name="a_create_msg__spinner__entries">
+        <item>USSD</item>
+        <item>SMS</item>
+    </string-array>
+
 
 </resources>

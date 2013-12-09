@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="a_msg__separator__text" >
+    <item name="android:minEms">@integer/a_create_msg__type__min_ems</item>
+    <item name="android:textSize">@dimen/a_create_msg__type__size</item>
+    <item name="android:textColor">@color/a_create_msg__type</item>
+  </style>
+
+</resources>

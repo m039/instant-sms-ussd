@@ -37,7 +37,7 @@ public class MsgCursorAdapter extends CursorAdapter {
         super(context, c, 0);
     }
 
-    static boolean CONSTANTS_INITIALIZED = false;   
+    static boolean CONSTANTS_INITIALIZED = false;
     static int COLOR_SMS = -1;
     static int COLOR_USSD = -1;
 
@@ -95,8 +95,8 @@ public class MsgCursorAdapter extends CursorAdapter {
 
             CONSTANTS_INITIALIZED = true;
         }
-        
-        
+
+
         LayoutInflater inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
 
         View v = inflater.inflate(R.layout.e_msg, parent, false);

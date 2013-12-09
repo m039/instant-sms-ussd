@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  res/drawable/edittext_rounded_corners.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item android:state_pressed="true" android:state_focused="true">
+    <shape>
+      <solid
+          android:color="#CC0000"
+          />
+      <corners
+          android:radius="4dp" />
+    </shape>
+  </item>
+
+  <item android:state_pressed="true" android:state_focused="false">
+    <shape>
+      <solid
+          android:color="#CC0000"
+          />
+      <corners
+          android:radius="4dp" />
+    </shape>
+  </item>
+
+  <item android:state_pressed="false" android:state_focused="true">
+    <shape>
+      <solid
+          android:color="#CC0000"
+          />
+      <corners
+          android:radius="4dp" />
+    </shape>
+  </item>
+
+  <!-- default -->
+  <item android:state_pressed="false" android:state_focused="false">
+    <shape>
+      <solid
+          android:color="#FF4444"
+          />
+      <corners
+          android:radius="4dp"
+          />
+    </shape>
+  </item>
+
+  <item android:state_enabled="true">
+    <shape>
+      <padding
+          android:left="12dp"
+          android:right="12dp"
+          android:top="6dp"
+          android:bottom="6dp"
+          />
+    </shape>
+  </item>
+
+</selector>

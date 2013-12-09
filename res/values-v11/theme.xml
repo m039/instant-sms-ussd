@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   
-  <style name="Common.Theme" parent="android:Theme.Holo">
+  <style name="Common.Theme" parent="android:Theme.Holo.Light">
+  </style>
+
+  <style name="Common.Theme.NoActionBar" parent="android:Theme.Holo.Light.NoActionBar">
   </style>
   
 </resources>
