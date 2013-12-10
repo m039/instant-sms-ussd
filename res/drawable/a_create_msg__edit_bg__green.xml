@@ -13,7 +13,7 @@
           />
       <stroke
           android:width="2.3dp"
-          android:color="#BDBDBD" />
+          android:color="#669900" />
       <corners
           android:radius="4dp" />
     </shape>
@@ -30,7 +30,7 @@
           />
       <stroke
           android:width="2.3dp"
-          android:color="#BDBDBD" />
+          android:color="#669900" />
       <corners
           android:radius="4dp" />
     </shape>
@@ -47,7 +47,7 @@
           />
       <stroke
           android:width="2.3dp"
-          android:color="#BDBDBD" />
+          android:color="#99CC00" />
       <corners
           android:radius="4dp" />
     </shape>

@@ -9,6 +9,8 @@
 
 package com.m039.isms.items;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.provider.BaseColumns;
 
 /**
@@ -20,7 +22,7 @@ import android.provider.BaseColumns;
  * @version
  * @since
  */
-public abstract class Msg {
+public abstract class Msg implements Parcelable {
 
     public interface SQL {
         public static final String TABLE = "msg";
@@ -35,19 +37,20 @@ public abstract class Msg {
         }
     }
 
+    public static final String TYPE_NONE = "";
     public static final String TYPE_USSD = "ussd";
     public static final String TYPE_SMS = "sms";
 
-    protected final String mDescription;
-    protected final String mMessage;
-    protected final boolean mIsShowWarning;
+    protected String mDescription;
+    protected String mAddress;
+    protected boolean mIsShowWarning;
 
     public String getDescription() {
         return mDescription;
     }
 
-    public String getMessage() {
-        return mMessage;
+    public String getAddress() {
+        return mAddress;
     }
 
     public boolean isShowWarning() {
@@ -55,13 +58,42 @@ public abstract class Msg {
     }
 
     public Msg(String description,
-               String message,
+               String address,
                boolean isShowWarning) {
         mDescription = description;
-        mMessage = message;
+        mAddress = address;
         mIsShowWarning = isShowWarning;
     }
 
+    protected Msg() {
+    }
+
     abstract public String getType();
+
+    @Override
+    public String toString() {
+        return String.format("{ class: %s, type: '%s', desc: '%s', addr: '%s', w: %s }",
+                             Msg.class.getSimpleName(),
+                             getType(),
+                             getDescription(),
+                             getAddress(),
+                             mIsShowWarning);
+    }
+
+    //
+    // Parcelable
+    //
+    
+    protected void readFromParcelAux(Parcel in) {
+        mDescription = in.readString();
+        mAddress = in.readString();
+        mIsShowWarning = in.readInt() == 1;
+    }
+    
+    protected void writeToParcelAux(Parcel out, int flags) {
+        out.writeString(mDescription);
+        out.writeString(mAddress);
+        out.writeInt(mIsShowWarning? 1 : 0);               
+    }
 
 } // Msg

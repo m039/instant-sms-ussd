@@ -34,7 +34,7 @@
 
   <dimen name="a_create_msg__pick_user__margin_right">12dp</dimen>
 
-  <dimen name="a_create_msg__checkbox__margin_right">12dp</dimen>
+  <dimen name="a_create_msg__checkbox__margin_right">6dp</dimen>
 
   <integer name="a_create_msg__type__min_ems">3</integer>
 </resources>

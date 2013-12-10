@@ -12,6 +12,7 @@
                >
 
     <activity android:name="com.m039.isms.activity.MainActivity"
+              android:screenOrientation="portrait"
               android:theme="@style/Common.Theme"
               android:noHistory="true"
               android:label="@string/app_name"
@@ -32,14 +33,17 @@
 
     <activity android:name="com.m039.isms.activity.HeadActivity"
               android:theme="@style/Common.Theme"
+              android:screenOrientation="portrait"
               />
 
     <activity android:name="com.m039.isms.activity.CreateMsgActivity"
               android:theme="@style/Common.Theme.NoActionBar"
+              android:screenOrientation="portrait"
               />
 
     <activity android:name="com.m039.isms.activity.EditMsgActivity"
               android:theme="@style/Common.Theme.NoActionBar"
+              android:screenOrientation="portrait"
               />
 
     <!---->

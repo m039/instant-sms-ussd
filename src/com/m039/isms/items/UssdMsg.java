@@ -9,6 +9,9 @@
 
 package com.m039.isms.items;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  *
  *
@@ -20,13 +23,39 @@ package com.m039.isms.items;
  */
 public class UssdMsg extends Msg {
 
-    public UssdMsg(String desc, String message, boolean isShowWarning) {
-        super(desc, message, isShowWarning);
+    public UssdMsg(String desc, String address, boolean isShowWarning) {
+        super(desc, address, isShowWarning);
     }
 
     @Override
     public String getType() {
         return TYPE_USSD;
     }
+
+    //
+    // Parcelable
+    //
+    
+    private UssdMsg(Parcel in) {
+        readFromParcelAux(in);
+    }
+    
+    public int describeContents() {
+        return 0;
+    }
+    
+    public void writeToParcel(Parcel out, int flags) {
+        writeToParcelAux(out, flags);
+    }
+    
+    public static final Parcelable.Creator<UssdMsg> CREATOR = new Parcelable.Creator<UssdMsg>() {
+        public UssdMsg createFromParcel(Parcel in) {
+            return new UssdMsg(in);
+        }
+        
+        public UssdMsg[] newArray(int size) {
+            return new UssdMsg[size];
+        }
+    };
 
 } // UssdMsg

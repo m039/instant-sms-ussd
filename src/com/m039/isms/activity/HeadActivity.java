@@ -13,8 +13,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.m039.isms.fragment.MsgListFragment;
+import com.m039.isms.items.Msg;
 import com.m039.mqst.R;
 
 /**
@@ -26,6 +28,9 @@ import com.m039.mqst.R;
  * @since
  */
 public class HeadActivity extends BaseActivity {
+
+    static final int REQUEST_CREATE_MSG = 1;
+    static final int REQUEST_EDIT_MSG = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +65,26 @@ public class HeadActivity extends BaseActivity {
     }
 
     private void onActionNewClicked() {
-        startActivity(new Intent(this, CreateMsgActivity.class));
+        startActivityForResult(new Intent(this, CreateMsgActivity.class), REQUEST_CREATE_MSG);
         overridePendingTransition(R.anim.msg_activity_enter, R.anim.head_activity_exit);
+    }
+
+    @Override
+    protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+            case REQUEST_CREATE_MSG:
+
+                Msg msg = (Msg) data.getParcelableExtra(CreateMsgActivity.EXTRA_MSG);
+                
+                Toast.makeText(this, "Created: " + msg, Toast.LENGTH_SHORT).show();
+
+                break;
+            default:
+                break;
+            }
+
+        }
     }
 
 } // HeadActivity

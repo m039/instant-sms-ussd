@@ -18,8 +18,11 @@
 
   <string name="a_create_msg__buttons__add">Add</string>
   <string name="a_create_msg__buttons__save">Save</string>
-  <string name="a_create_msg__buttons__cancel">Cancel</string>    
-  
+  <string name="a_create_msg__buttons__cancel">Cancel</string>
+
+  <string name="a_create_msg__error__cannot_create_msg">Please, fill out all necessary fields</string>
+  <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
+
   <!-- -->
 
   <string name="no_items_warning">Use menu button to add an item</string>

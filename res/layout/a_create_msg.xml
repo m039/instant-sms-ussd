@@ -44,6 +44,7 @@
 
       <!-- spinner -->
       <FrameLayout
+          android:id="@+id/spinner_bg"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_gravity="center_horizontal"
@@ -59,159 +60,23 @@
             android:gravity="center_horizontal"
             android:minWidth="@dimen/a_create_msg__spinner__min_width"
             android:entries="@array/a_create_msg__spinner__entries"
+            android:textColor="#FFF"
             />
 
       </FrameLayout>
 
-
-      <!-- separator: general -->
-
-      <TextView
-          style="@style/a_msg__separator__text"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/a_create_msg__separator_text__margin_right"
-          android:layout_marginLeft="@dimen/a_create_msg__separator_text__margin_left"
-          android:layout_marginBottom="@dimen/a_create_msg__separator_text__margin_bottom"
-          android:layout_marginTop="@dimen/a_create_msg__top_padding"
-          android:layout_gravity="left"
-          android:text="@string/a_create_msg__general"
-          />
-
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/a_create_msg__separator_line__height"
-          android:layout_marginBottom="@dimen/a_create_msg__separator_line__margin_bottom"
-          android:background="@color/a_create_msg__separator"
-          />
-
-      <!-- address -->
       <FrameLayout
+          android:id="@+id/stub"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/a_create_msg__child__margin_left"
-          android:layout_marginRight="@dimen/a_create_msg__child__margin_right"
-          android:layout_marginBottom="@dimen/a_create_msg__child__margin_bottom"
-          android:orientation="horizontal"
-          >
-
-        <EditText
-            android:id="@+id/address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingRight="@dimen/a_create_msg__address__padding_right"
-            android:background="@drawable/a_create_msg__edit_bg"
-            android:hint="@string/a_create_msg__address__hint"
-            android:singleLine="true"
-            android:imeOptions="actionNext"
-            android:inputType="phone"
-            />
-
-        <ImageView
-            android:id="@+id/pick_user"
-            android:src="@drawable/create_msg__user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/a_create_msg__pick_user__margin_right"
-            android:layout_gravity="right|center_vertical"
-            />
-
-      </FrameLayout>
-
-      <!-- description -->
-      <EditText
-          android:id="@+id/description"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/a_create_msg__child__margin_left"
-          android:layout_marginRight="@dimen/a_create_msg__child__margin_right"
-          android:layout_marginBottom="@dimen/a_create_msg__child__margin_bottom"
-          android:background="@drawable/a_create_msg__edit_bg"
-          android:hint="@string/a_create_msg__description__hint"
-          android:singleLine="true"
-          android:imeOptions="actionNext"
-          />
-
-      <!-- message -->
-      <EditText
-          android:id="@+id/message"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/a_create_msg__child__margin_left"
-          android:layout_marginRight="@dimen/a_create_msg__child__margin_right"
-          android:layout_marginBottom="@dimen/a_create_msg__child__margin_bottom"
-          android:background="@drawable/a_create_msg__edit_bg"
-          android:hint="@string/a_create_msg__message__hint"
-          android:imeOptions="actionDone"
-          />
-
-      <!-- separator: options -->
-
-      <TextView
-          style="@style/a_msg__separator__text"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginRight="@dimen/a_create_msg__separator_text__margin_right"
-          android:layout_marginLeft="@dimen/a_create_msg__separator_text__margin_left"
-          android:layout_marginTop="@dimen/a_create_msg__top_padding"
-          android:layout_marginBottom="@dimen/a_create_msg__separator_text__margin_bottom"
-          android:layout_gravity="left"
-          android:text="@string/a_create_msg__options"
-          />
-
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="@dimen/a_create_msg__separator_line__height"
-          android:layout_marginBottom="@dimen/a_create_msg__separator_line__margin_bottom"
-          android:background="@color/a_create_msg__separator"
-          />
-
-      <!-- warning -->
-      <RelativeLayout
-          android:layout_width="wrap_content"
           android:layout_height="match_parent"
-          android:layout_marginLeft="@dimen/a_create_msg__child__margin_left"
-          android:layout_marginRight="@dimen/a_create_msg__child__margin_right"
-          >
-
-        <CheckBox
-            android:id="@+id/warning__cost_money__checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/a_create_msg__checkbox__margin_right"
-            />
-
-        <TextView
-            android:id="@+id/warning_line_1"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_toLeftOf="@id/warning__cost_money__checkbox"
-            android:layout_gravity="fill"
-            android:text="@string/a_create_msg__warning__costs_money__line_1"
-            />
-
-        <TextView
-            android:id="@+id/warning_line_2"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="fill"
-            android:layout_toLeftOf="@id/warning__cost_money__checkbox"
-            android:layout_below="@id/warning_line_1"
-            android:text="@string/a_create_msg__warning__costs_money__line_2"
-            android:textColor="@color/a_create_msg__warning_line_2"
-            android:textStyle="italic"
-            />
-
-      </RelativeLayout>
+          />
 
     </LinearLayout>
-
   </ScrollView>
 
   <!-- bottom buttons -->
   <LinearLayout
+      android:id="@+id/buttons"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_weight="0"
@@ -221,28 +86,28 @@
       >
 
     <Button
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/a_create_msg__add_bg"
         android:drawableLeft="@drawable/create_msg__buttons__add"
+        android:background="@drawable/a_create_msg__button_bg"
         android:minWidth="140dp"
         android:text="@string/a_create_msg__buttons__add"
-        android:textColor="@color/a_create_msg__button__text"
         />
 
     <View
-        android:layout_width="16dp"
+        android:layout_width="8dp"
         android:layout_height="1px"
         />
 
     <Button
+        android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/a_create_msg__cancel_bg"
         android:drawableLeft="@drawable/create_msg__buttons__cancel"
+        android:background="@drawable/a_create_msg__button_bg"
         android:minWidth="140dp"
         android:text="@string/a_create_msg__buttons__cancel"
-        android:textColor="@color/a_create_msg__button__text"
         />
 
   </LinearLayout>

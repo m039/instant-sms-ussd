@@ -9,6 +9,9 @@
 
 package com.m039.isms.items;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  *
  *
@@ -20,15 +23,15 @@ package com.m039.isms.items;
  */
 public class SmsMsg extends Msg {
 
-    private final String mAddress;
+    private final String mMessage;
 
     public SmsMsg(String desc,
-                  String message,
+                  String address,
                   boolean isShowWarning,
-                  String address) {
-        super(desc, message, isShowWarning);
+                  String message) {
+        super(desc, address, isShowWarning);
 
-        mAddress = address;
+        mMessage = message;
     }
 
     @Override
@@ -36,9 +39,39 @@ public class SmsMsg extends Msg {
         return TYPE_SMS;
     }
 
-    public String getAddress() {
-        return mAddress;
+    public String getMessage() {
+        return mMessage;
     }
+
+    //
+    // Parcelable
+    //
+    
+    private SmsMsg(Parcel in) {
+        readFromParcelAux(in);
+
+        mMessage = in.readString();
+    }
+    
+    public int describeContents() {
+        return 0;
+    }
+    
+    public void writeToParcel(Parcel out, int flags) {
+        writeToParcelAux(out, flags);
+
+        out.writeString(mMessage);
+    }
+    
+    public static final Parcelable.Creator<SmsMsg> CREATOR = new Parcelable.Creator<SmsMsg>() {
+        public SmsMsg createFromParcel(Parcel in) {
+            return new SmsMsg(in);
+        }
+        
+        public SmsMsg[] newArray(int size) {
+            return new SmsMsg[size];
+        }
+    };
 
 
 } // SmsMsg
