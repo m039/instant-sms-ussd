@@ -14,7 +14,7 @@
 
   <!-- new -->
 
-  <color name="f_list__list__divider_color">#FFFFFF</color>
+  <color name="f_list__list__divider_color">#22333333</color>
 
   <color name="e_msg__type">#FFFFFF</color>
   <color name="e_msg__type__sms">#99CC00</color>
@@ -23,6 +23,6 @@
   <color name="a_create_msg__separator">#22333333</color>
   <color name="a_create_msg__type">#44333333</color>
   <color name="a_create_msg__warning_line_2">#77333333</color>
-  <color name="a_create_msg__button__text">#FFF</color>  
+  <color name="a_create_msg__button__text">#FFF</color>
 
 </resources>

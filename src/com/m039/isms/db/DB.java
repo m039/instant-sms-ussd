@@ -20,6 +20,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.m039.isms.items.Msg;
+import com.m039.isms.items.SmsMsg;
+import com.m039.isms.items.UssdMsg;
 import com.m039.mqst.items.InstantItem;
 import com.m039.mqst.items.InstantSms;
 import com.m039.mqst.items.InstantUssd;
@@ -83,6 +85,22 @@ public class DB {
 
     public DBHelper getDBHelper() {
         return mDBHelper;
+    }
+
+    public static ContentValues values(Msg msg) {
+        ContentValues values = new ContentValues();
+                        
+        values.put(Msg.SQL.Columns.TYPE, msg.getType());
+        values.put(Msg.SQL.Columns.DESCRIPTION, msg.getDescription());
+        values.put(Msg.SQL.Columns.ADDRESS, msg.getAddress());
+        values.put(Msg.SQL.Columns.IS_SHOW_WARNING, msg.isShowWarning() ? 1 : 0 );      
+        
+        if (msg instanceof UssdMsg) {
+        } else if(msg instanceof SmsMsg) {
+            values.put(Msg.SQL.Columns.MESSAGE, ((SmsMsg) msg).getMessage());
+        }
+
+        return values;
     }
 
     public boolean importOldData(List<InstantItem> items) {

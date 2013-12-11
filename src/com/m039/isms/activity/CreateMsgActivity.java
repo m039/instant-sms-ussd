@@ -103,7 +103,7 @@ public class CreateMsgActivity extends BaseMsgActivity {
                                     mSmsStub =
                                         (ViewGroup) li.inflate(R.layout.i_create_msg__holder__sms, mStub, false);
 
-                                    setOnPickUserClickListener(mUssdStub);
+                                    setOnPickUserClickListener(mSmsStub);
                                 }
 
                                 mStub.addView(mSmsStub);

@@ -2,7 +2,7 @@
 <resources>
 
   <color name="type_drawable__background">#00FF00</color>
-  <color name="type_drawable__line">#FFFFFF</color>
+  <color name="type_drawable__line">@color/f_list__list__divider_color</color>
 
   <dimen name="type_drawable__line_size">2px</dimen>
   <dimen name="type_drawable__coner_size">4px</dimen>

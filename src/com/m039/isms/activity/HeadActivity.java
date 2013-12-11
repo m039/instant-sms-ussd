@@ -13,7 +13,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.m039.isms.fragment.MsgListFragment;
 import com.m039.isms.items.Msg;
@@ -27,7 +28,9 @@ import com.m039.mqst.R;
  * @version
  * @since
  */
-public class HeadActivity extends BaseActivity {
+public class HeadActivity extends BaseActivity
+    implements MsgListFragment.OnMsgLongClickListener
+{
 
     static final int REQUEST_CREATE_MSG = 1;
     static final int REQUEST_EDIT_MSG = 2;
@@ -70,14 +73,22 @@ public class HeadActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onMsgLongClick (AdapterView<?> parent, View view, int position, long id) {
+        startActivityForResult(new Intent(this, EditMsgActivity.class), REQUEST_EDIT_MSG);
+        overridePendingTransition(R.anim.msg_activity_enter, R.anim.head_activity_exit);
+        return true;
+    }
+
+    @Override
     protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
             case REQUEST_CREATE_MSG:
 
-                Msg msg = (Msg) data.getParcelableExtra(CreateMsgActivity.EXTRA_MSG);
-                
-                Toast.makeText(this, "Created: " + msg, Toast.LENGTH_SHORT).show();
+                MsgListFragment mlf = getMsgListFragment();
+                if (mlf != null) {
+                    mlf.addMsg((Msg) data.getParcelableExtra(CreateMsgActivity.EXTRA_MSG));
+                }
 
                 break;
             default:
@@ -85,6 +96,10 @@ public class HeadActivity extends BaseActivity {
             }
 
         }
+    }
+
+    private MsgListFragment getMsgListFragment() {
+        return (MsgListFragment) getFragmentManager().findFragmentById(R.id.f_list);
     }
 
 } // HeadActivity

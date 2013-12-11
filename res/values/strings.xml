@@ -23,6 +23,10 @@
   <string name="a_create_msg__error__cannot_create_msg">Please, fill out all necessary fields</string>
   <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
 
+  <string name="f_msg_list__empty">Use plus button to add an item</string>
+  <string name="f_msg_list__msg_added">Message \'%1$s\' has been created</string>
+  <string name="f_msg_list__error__msg_added">Fail! Message \'%1$s\'  hasn\'t been created</string>
+
   <!-- -->
 
   <string name="no_items_warning">Use menu button to add an item</string>
