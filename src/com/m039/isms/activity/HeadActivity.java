@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.m039.isms.db.DB;
 import com.m039.isms.fragment.MsgListFragment;
 import com.m039.isms.items.Msg;
 import com.m039.mqst.R;
@@ -74,23 +75,38 @@ public class HeadActivity extends BaseActivity
 
     @Override
     public boolean onMsgLongClick (AdapterView<?> parent, View view, int position, long id) {
-        startActivityForResult(new Intent(this, EditMsgActivity.class), REQUEST_EDIT_MSG);
+        Intent intent = new Intent(this, EditMsgActivity.class);
+
+        intent.putExtra(EditMsgActivity.EXTRA_MSG_ID, id);       
+        intent.putExtra(EditMsgActivity.EXTRA_MSG, DB.getInstance(this).getMsgOrNull(id));
+        
+        startActivityForResult(intent, REQUEST_EDIT_MSG);
         overridePendingTransition(R.anim.msg_activity_enter, R.anim.head_activity_exit);
         return true;
     }
 
     @Override
-    protected void      onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-            case REQUEST_CREATE_MSG:
-
+            case REQUEST_CREATE_MSG: {
                 MsgListFragment mlf = getMsgListFragment();
                 if (mlf != null) {
                     mlf.addMsg((Msg) data.getParcelableExtra(CreateMsgActivity.EXTRA_MSG));
                 }
+            }
 
                 break;
+
+            case REQUEST_EDIT_MSG: {
+                MsgListFragment mlf = getMsgListFragment();
+                if (mlf != null) {
+                    mlf.replaceMsg(data.getLongExtra(EditMsgActivity.EXTRA_MSG_ID, -1L),
+                                  (Msg) data.getParcelableExtra(EditMsgActivity.EXTRA_MSG));
+                }
+            }
+                
+                break;              
             default:
                 break;
             }

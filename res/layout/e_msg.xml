@@ -39,6 +39,8 @@
       android:layout_below="@id/desc"
       android:layout_toLeftOf="@id/type"
       android:textSize="@dimen/text__small"
+      android:lines="1"
+      android:ellipsize="end"
       />
 
   <View

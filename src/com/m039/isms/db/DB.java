@@ -15,6 +15,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -87,14 +88,50 @@ public class DB {
         return mDBHelper;
     }
 
+    public Msg getMsgOrNull(long id) {
+        Msg msg = null;
+
+        Cursor c = mDBHelper
+            .getReadableDatabase()
+            .query(Msg.SQL.TABLE,
+                   null,
+                   Msg.SQL.Columns.ID + " = ?",
+                   new String[] { String.valueOf(id) },
+                   null,
+                   null,
+                   null);
+
+        if (c != null) {
+            try {
+                if (c.moveToFirst()) {
+                    String type = c.getString(c.getColumnIndex(Msg.SQL.Columns.TYPE));
+                    String description = c.getString(c.getColumnIndex(Msg.SQL.Columns.DESCRIPTION));
+                    String address = c.getString(c.getColumnIndex(Msg.SQL.Columns.ADDRESS));
+                    boolean isShowWarning = c.getInt(c.getColumnIndex(Msg.SQL.Columns.IS_SHOW_WARNING)) == 1;
+                    String message = c.getString(c.getColumnIndex(Msg.SQL.Columns.MESSAGE));                    
+
+                    if (Msg.TYPE_USSD.equals(type)) {
+                        return new UssdMsg(description, address, isShowWarning);
+                    } else if(Msg.TYPE_SMS.equals(type)) {
+                        return new SmsMsg(description, address, isShowWarning, message);
+                    }
+                }
+            } finally {
+                c.close();
+            }
+        }
+
+        return msg;
+    }
+
     public static ContentValues values(Msg msg) {
         ContentValues values = new ContentValues();
-                        
+
         values.put(Msg.SQL.Columns.TYPE, msg.getType());
         values.put(Msg.SQL.Columns.DESCRIPTION, msg.getDescription());
         values.put(Msg.SQL.Columns.ADDRESS, msg.getAddress());
-        values.put(Msg.SQL.Columns.IS_SHOW_WARNING, msg.isShowWarning() ? 1 : 0 );      
-        
+        values.put(Msg.SQL.Columns.IS_SHOW_WARNING, msg.isShowWarning() ? 1 : 0 );
+
         if (msg instanceof UssdMsg) {
         } else if(msg instanceof SmsMsg) {
             values.put(Msg.SQL.Columns.MESSAGE, ((SmsMsg) msg).getMessage());

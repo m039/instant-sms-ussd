@@ -17,15 +17,18 @@ import android.content.Context;
 import android.content.Loader;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.m039.isms.adapter.MsgCursorAdapter;
 import com.m039.isms.db.DB;
 import com.m039.isms.items.Msg;
@@ -46,8 +49,10 @@ public class MsgListFragment extends ListFragment {
 
     public final int LOADER_ID_QUERY = 1;
     public final int LOADER_ID_INSERT = 2;
+    public final int LOADER_ID_UPDATE = 3;
 
     public static final String EXTRA_MSG = "com.m039.isms.fragment.extra.msg";
+    public static final String EXTRA_MSG_ID = "com.m039.isms.fragment.extra.msg_id";
 
     public static MsgListFragment newInstance() {
         return new MsgListFragment();
@@ -70,8 +75,38 @@ public class MsgListFragment extends ListFragment {
         list.setOnItemLongClickListener(mOnItemLongClickListener);
 
         setEmptyText(getString(R.string.f_msg_list__empty));
-    }
 
+        SwipeDismissListViewTouchListener touchListener =
+                new SwipeDismissListViewTouchListener(
+                        list,
+                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
+                            @Override
+                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
+                                Adapter a = listView.getAdapter();
+                                if (a instanceof CursorAdapter) {
+                                    CursorAdapter ca = (CursorAdapter) a;
+
+                                    long id;
+
+                                    SQLiteDatabase wdb = DB.getInstance(getActivity())
+                                        .getDBHelper()
+                                        .getWritableDatabase();
+                                    
+                                    for (int position : reverseSortedPositions) {
+                                         id = ca.getItemId(position);
+
+                                         wdb.delete(Msg.SQL.TABLE,
+                                                    Msg.SQL.Columns.ID + " = ?",
+                                                    new String[] { String.valueOf(id) });
+                                    }
+                                    
+                                    ca.swapCursor(wdb.query(Msg.SQL.TABLE, null, null, null, null, null, null));
+                                }
+                            }
+                        });
+        list.setOnTouchListener(touchListener);
+        list.setOnScrollListener(touchListener.makeScrollListener());
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -106,6 +141,15 @@ public class MsgListFragment extends ListFragment {
         args.putParcelable(EXTRA_MSG, userCreatedMsg);
 
         getLoaderManager().restartLoader(LOADER_ID_INSERT, args, mLoaderCallabacks);
+    }
+
+    public void replaceMsg(long msgId, Msg userCreatedMsg) {
+        Bundle args = new Bundle();
+
+        args.putLong(EXTRA_MSG_ID, msgId);
+        args.putParcelable(EXTRA_MSG, userCreatedMsg);
+
+        getLoaderManager().restartLoader(LOADER_ID_UPDATE, args, mLoaderCallabacks);
     }
 
     private static class MsgResult {
@@ -164,8 +208,6 @@ public class MsgListFragment extends ListFragment {
 
         @Override
         public MsgResult loadInBackground () {
-            Log.d(TAG, "loadInBackground");
-
             Context ctx = getContext();
 
             String fmt;
@@ -191,6 +233,50 @@ public class MsgListFragment extends ListFragment {
         }
     }
 
+    private static class MsgUpdateLoader extends MsgQueryLoader  {
+        Msg mMsg;
+        long mMsgId;
+
+        public MsgUpdateLoader(Context ctx, long msgId, Msg msg) {
+            super (ctx);
+
+            mMsg = msg;
+            mMsgId = msgId;
+        }
+
+        @Override
+        public MsgResult loadInBackground () {
+            Context ctx = getContext();
+
+            String fmt;
+
+            if (mMsgId != -1L &&
+                DB.getInstance(ctx)
+                .getDBHelper()
+                .getWritableDatabase()
+                .update(Msg.SQL.TABLE,
+                        DB.values(mMsg),
+                        Msg.SQL.Columns.ID + " = ?",
+                        new String[] {
+                            String.valueOf(mMsgId)
+                        }) > 0) {
+
+                fmt = ctx.getString(R.string.f_msg_list__msg_updated);
+
+            } else {
+
+                fmt = ctx.getString(R.string.f_msg_list__error__msg_updated);
+
+            }
+
+            MsgResult result = super.loadInBackground();
+
+            result.toast = String.format(fmt, mMsg.getDescription());
+
+            return result;
+        }
+    }
+
     private LoaderManager.LoaderCallbacks<MsgResult> mLoaderCallabacks =
         new LoaderManager.LoaderCallbacks<MsgResult>() {
 
@@ -200,6 +286,10 @@ public class MsgListFragment extends ListFragment {
                 return new MsgQueryLoader(getActivity());
             } else if(id == LOADER_ID_INSERT) {
                 return new MsgInsertLoader(getActivity(), (Msg) args.getParcelable(EXTRA_MSG));
+            } else if(id == LOADER_ID_UPDATE) {
+                return new MsgUpdateLoader(getActivity(),
+                                           args.getLong(EXTRA_MSG_ID, -1L),
+                                           (Msg) args.getParcelable(EXTRA_MSG));
             }
 
             return null;

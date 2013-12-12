@@ -27,6 +27,9 @@
   <string name="f_msg_list__msg_added">Message \'%1$s\' has been created</string>
   <string name="f_msg_list__error__msg_added">Fail! Message \'%1$s\'  hasn\'t been created</string>
 
+  <string name="f_msg_list__msg_updated">Message \'%1$s\' has been saved</string>
+  <string name="f_msg_list__error__msg_updated">Fail! Message \'%1$s\'  hasn\'t been saved</string>
+
   <!-- -->
 
   <string name="no_items_warning">Use menu button to add an item</string>
