@@ -1,11 +1,12 @@
 package com.m039.mqst.items;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.content.Context;
 import android.util.Log;
-import org.w3c.dom.Element;
-import org.w3c.dom.Document;
 
 /**
  * Describe class InstantUssd here.

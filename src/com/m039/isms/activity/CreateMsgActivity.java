@@ -12,14 +12,10 @@ package com.m039.isms.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.m039.isms.items.Msg;
-import com.m039.isms.items.SmsMsg;
-import com.m039.isms.items.UssdMsg;
 import com.m039.mqst.R;
 
 
@@ -82,9 +78,9 @@ public class CreateMsgActivity extends BaseMsgActivity {
                 String type = getSelectedMsgType();
 
                 if (Msg.TYPE_SMS.equals(type)) {
-                    msg = createSmsMsg();
+                    msg = createSmsMsgOrNull();
                 } else if(Msg.TYPE_USSD.equals(type)) {
-                    msg = createUssdMsg();
+                    msg = createUssdMsgOrNull();
                 }
 
                 if (msg == null) {
@@ -97,43 +93,6 @@ public class CreateMsgActivity extends BaseMsgActivity {
                     setResult(RESULT_OK, data);
                     onBackPressed();
                 }
-            }
-
-            UssdMsg createUssdMsg() {
-                String description = getDescription();
-                String address = getAddress();
-
-                // mandatory fields
-                for (String field: new String[] {
-                        description, address
-                    }) {
-                    if (TextUtils.isEmpty(field)) {
-                        return null;
-                    }
-                }
-
-                boolean isShowWarning = getIsShowWarning();
-
-                return new UssdMsg(description, address, isShowWarning);
-            }
-
-            SmsMsg createSmsMsg() {
-                String description = getDescription();
-                String address = getAddress();
-                String message = getMessage();
-
-                // mandatory fields
-                for (String field: new String[] {
-                        description, address, message
-                    }) {
-                    if (TextUtils.isEmpty(field)) {
-                        return null;
-                    }
-                }
-
-                boolean isShowWarning = getIsShowWarning();
-
-                return new SmsMsg(description, address, isShowWarning, message);
             }
         };
 

@@ -40,14 +40,8 @@ public class TypeDrawable extends Drawable {
 
     static class RectDrawable {
         float outerR[] = new float[8];
-        // Rect rect;
         ShapeDrawable shape = new ShapeDrawable(new RoundRectShape(outerR, null, null));
-
-        // {
-        //     rect = shape.getBounds();
-        // }
     }
-
 
     RectDrawable mRectOuter = new RectDrawable();
     RectDrawable mRectInner = new RectDrawable();

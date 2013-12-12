@@ -1,20 +1,21 @@
 package com.m039.mqst.items;
 
-import com.m039.mqst.R;
-
-import android.content.Context;
-import android.telephony.SmsManager;
-import android.widget.Toast;
-import android.util.Log;
-import org.w3c.dom.Element;
 import org.w3c.dom.Document;
-import android.content.BroadcastReceiver;
+import org.w3c.dom.Element;
+
 import android.app.Activity;
-import android.content.Intent;
-import android.app.PendingIntent;
-import android.content.IntentFilter;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.telephony.SmsManager;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.m039.mqst.R;
 
 /**
  * Describe class InstantSms here.
@@ -26,7 +27,7 @@ import android.content.DialogInterface;
  * @version 1.0
  */
 public class InstantSms extends InstantItem {
-    private static final String         ACTION_SMS_SENT = "com.m039.mqst.items.SMS_SENT";
+    public static final String         ACTION_SMS_SENT = "com.m039.mqst.items.SMS_SENT";
 
     private static BroadcastReceiver    mReceiver;
     private final String                mAddress;

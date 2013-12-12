@@ -70,10 +70,7 @@ public class DB {
         }
 
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            // db.execSQL("DROP TABLE IF EXISTS " + Msg.SQL.TABLE);
-            // onCreate(db);
-
-            throw new RuntimeException();
+            // unused
         }
 
     }
@@ -108,7 +105,7 @@ public class DB {
                     String description = c.getString(c.getColumnIndex(Msg.SQL.Columns.DESCRIPTION));
                     String address = c.getString(c.getColumnIndex(Msg.SQL.Columns.ADDRESS));
                     boolean isShowWarning = c.getInt(c.getColumnIndex(Msg.SQL.Columns.IS_SHOW_WARNING)) == 1;
-                    String message = c.getString(c.getColumnIndex(Msg.SQL.Columns.MESSAGE));                    
+                    String message = c.getString(c.getColumnIndex(Msg.SQL.Columns.MESSAGE));
 
                     if (Msg.TYPE_USSD.equals(type)) {
                         return new UssdMsg(description, address, isShowWarning);

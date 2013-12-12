@@ -2,31 +2,27 @@ package com.m039.mqst.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.m039.mqst.items.InstantUssd;
-import com.m039.mqst.items.InstantSms;
-import com.m039.mqst.items.InstantItem;
 
 import com.m039.mqst.ItemFactory;
 import com.m039.mqst.R;
-import android.widget.CheckBox;
-import android.widget.TextView;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
-import android.provider.ContactsContract.CommonDataKinds;
-import android.provider.ContactsContract;
-import android.provider.Contacts;
-import android.database.Cursor;
-import android.util.Log;
+import com.m039.mqst.items.InstantItem;
+import com.m039.mqst.items.InstantSms;
+import com.m039.mqst.items.InstantUssd;
 
 /**
  * Describe class CreationTab here.

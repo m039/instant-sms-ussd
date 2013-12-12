@@ -1,12 +1,7 @@
 package com.m039.mqst;
 
+import java.util.Collections;
 import java.util.List;
-
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.IntentAction;
-
-import com.google.ads.AdRequest;
-import com.google.ads.AdView;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -22,21 +17,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.m039.mqst.activities.AddActivity;
-import com.m039.mqst.activities.SortActivity;
-import com.m039.mqst.activities.EditActivity;
-import com.m039.mqst.items.InstantItem;
 import android.widget.Toast;
-import com.m039.mqst.R.menu;
-import android.widget.ImageButton;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+
+import com.m039.mqst.activities.AddActivity;
+import com.m039.mqst.activities.EditActivity;
+import com.m039.mqst.activities.SortActivity;
+import com.m039.mqst.items.InstantItem;
+import com.markupartist.android.widget.ActionBar;
+import com.markupartist.android.widget.ActionBar.IntentAction;
 
 
 /**
@@ -52,9 +45,6 @@ public class InstantActivity extends ListActivity {
     private static final String TAG                 = "m039";
     private static final int ADD_ITEM_REQUEST       = 0;
     private static final int EDIT_ITEM_REQUEST      = 1;
-
-    // for short clicks
-    private final ItemListener mItemListener = new ItemListener();
 
     private boolean isItemsUpdated = false;
 

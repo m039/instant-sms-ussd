@@ -28,7 +28,6 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.android.swipedismiss.SwipeDismissListViewTouchListener;
 import com.m039.isms.adapter.MsgCursorAdapter;
 import com.m039.isms.db.DB;
 import com.m039.isms.items.Msg;
@@ -36,6 +35,7 @@ import com.m039.mqst.R;
 
 /**
  *
+ * HELL IS GOING HERE! 
  *
  * Created: 12/03/13
  *
@@ -62,6 +62,10 @@ public class MsgListFragment extends ListFragment {
         public boolean onMsgLongClick (AdapterView<?> parent, View view, int position, long id);
     }
 
+    public interface OnMsgListItemClickListener {
+        public void onMsgListItemClick(ListView l, View v, int position, long id);     
+    }
+
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         super.onViewCreated (view, savedInstanceState);
@@ -75,37 +79,6 @@ public class MsgListFragment extends ListFragment {
         list.setOnItemLongClickListener(mOnItemLongClickListener);
 
         setEmptyText(getString(R.string.f_msg_list__empty));
-
-        SwipeDismissListViewTouchListener touchListener =
-                new SwipeDismissListViewTouchListener(
-                        list,
-                        new SwipeDismissListViewTouchListener.OnDismissCallback() {
-                            @Override
-                            public void onDismiss(ListView listView, int[] reverseSortedPositions) {
-                                Adapter a = listView.getAdapter();
-                                if (a instanceof CursorAdapter) {
-                                    CursorAdapter ca = (CursorAdapter) a;
-
-                                    long id;
-
-                                    SQLiteDatabase wdb = DB.getInstance(getActivity())
-                                        .getDBHelper()
-                                        .getWritableDatabase();
-                                    
-                                    for (int position : reverseSortedPositions) {
-                                         id = ca.getItemId(position);
-
-                                         wdb.delete(Msg.SQL.TABLE,
-                                                    Msg.SQL.Columns.ID + " = ?",
-                                                    new String[] { String.valueOf(id) });
-                                    }
-                                    
-                                    ca.swapCursor(wdb.query(Msg.SQL.TABLE, null, null, null, null, null, null));
-                                }
-                            }
-                        });
-        list.setOnTouchListener(touchListener);
-        list.setOnScrollListener(touchListener.makeScrollListener());
     }
 
     @Override
@@ -119,10 +92,16 @@ public class MsgListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Toast.makeText(getActivity(), "" + id, Toast.LENGTH_SHORT).show();
+        Activity a = getActivity();
+        
+        if (a instanceof OnMsgLongClickListener) {
+            ((OnMsgListItemClickListener) a).onMsgListItemClick(l, v, position, id);
+        }
     }
 
-    AdapterView.OnItemLongClickListener mOnItemLongClickListener = new AdapterView.OnItemLongClickListener() {
+    AdapterView.OnItemLongClickListener mOnItemLongClickListener =
+        new AdapterView.OnItemLongClickListener() {
+            
             @Override
             public boolean onItemLongClick (AdapterView<?> parent, View view, int position, long id) {
                 Activity a = getActivity();
@@ -132,10 +111,27 @@ public class MsgListFragment extends ListFragment {
 
                 return false;
             }
+            
         };
 
+    public void deleteMsgForce(long msgId) {
+        Adapter a = getListAdapter();
+        if (a instanceof CursorAdapter) {
+            CursorAdapter ca = (CursorAdapter) a;
 
-    public void addMsg(Msg userCreatedMsg) {
+            SQLiteDatabase wdb = DB.getInstance(getActivity())
+                .getDBHelper()
+                .getWritableDatabase();
+                                    
+            wdb.delete(Msg.SQL.TABLE,
+                       Msg.SQL.Columns.ID + " = ?",
+                       new String[] { String.valueOf(msgId) });
+                                    
+            ca.swapCursor(wdb.query(Msg.SQL.TABLE, null, null, null, null, null, null));
+        }
+    }
+    
+    public void insertMsg(Msg userCreatedMsg) {
         Bundle args = new Bundle();
 
         args.putParcelable(EXTRA_MSG, userCreatedMsg);
@@ -143,7 +139,7 @@ public class MsgListFragment extends ListFragment {
         getLoaderManager().restartLoader(LOADER_ID_INSERT, args, mLoaderCallabacks);
     }
 
-    public void replaceMsg(long msgId, Msg userCreatedMsg) {
+    public void updateMsg(long msgId, Msg userCreatedMsg) {
         Bundle args = new Bundle();
 
         args.putLong(EXTRA_MSG_ID, msgId);

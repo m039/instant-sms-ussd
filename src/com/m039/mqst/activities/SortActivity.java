@@ -1,9 +1,9 @@
 package com.m039.mqst.activities;
 
-import com.m039.mqst.R;
-
-import android.preference.PreferenceActivity;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
+
+import com.m039.mqst.R;
 
 /**
  * Describe class SettingsActivity here.

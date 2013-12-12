@@ -11,6 +11,7 @@ package com.m039.isms.activity;
 
 import android.content.Intent;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.m039.isms.items.Msg;
+import com.m039.isms.items.SmsMsg;
+import com.m039.isms.items.UssdMsg;
 import com.m039.mqst.R;
 
 /**
@@ -41,7 +44,7 @@ public class BaseMsgActivity extends BaseActivity {
     protected ViewGroup mSmsStub = null;
 
     static final protected int PICK_CONTACT_REQUEST = 1;
-    static final protected boolean USE_COLORIZE = false; // experimental
+    static protected boolean USE_COLORIZE = false; // experimental
 
     public static final String EXTRA_MSG = "com.m039.isms.activity.extra.msg";
 
@@ -248,5 +251,43 @@ public class BaseMsgActivity extends BaseActivity {
 
         return false;
     }
+
+    protected UssdMsg createUssdMsgOrNull() {
+        String description = getDescription();
+        String address = getAddress();
+
+        // mandatory fields
+        for (String field: new String[] {
+                description, address
+            }) {
+            if (TextUtils.isEmpty(field)) {
+                return null;
+            }
+        }
+
+        boolean isShowWarning = getIsShowWarning();
+
+        return new UssdMsg(description, address, isShowWarning);
+    }
+
+    protected SmsMsg createSmsMsgOrNull() {
+        String description = getDescription();
+        String address = getAddress();
+        String message = getMessage();
+
+        // mandatory fields
+        for (String field: new String[] {
+                description, address, message
+            }) {
+            if (TextUtils.isEmpty(field)) {
+                return null;
+            }
+        }
+
+        boolean isShowWarning = getIsShowWarning();
+
+        return new SmsMsg(description, address, isShowWarning, message);
+    }
+    
 
 } // BaseMsgActivity

@@ -1,8 +1,9 @@
 package com.m039.mqst.items;
 
-import android.content.Context;
-import org.w3c.dom.Element;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import android.content.Context;
 
 /**
  * Describe class InstantItem here.

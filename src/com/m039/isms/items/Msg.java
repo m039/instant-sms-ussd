@@ -9,7 +9,6 @@
 
 package com.m039.isms.items;
 
-import android.content.ContentValues;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.BaseColumns;
@@ -35,7 +34,7 @@ public abstract class Msg implements Parcelable {
             public static final String MESSAGE = "message";
             public static final String IS_SHOW_WARNING = "is_show_warning";
             public static final String ADDRESS = "address";
-        }        
+        }
     }
 
     public static final String TYPE_NONE = "";
@@ -84,17 +83,17 @@ public abstract class Msg implements Parcelable {
     //
     // Parcelable
     //
-    
+
     protected void readFromParcelAux(Parcel in) {
         mDescription = in.readString();
         mAddress = in.readString();
         mIsShowWarning = in.readInt() == 1;
     }
-    
+
     protected void writeToParcelAux(Parcel out, int flags) {
         out.writeString(mDescription);
         out.writeString(mAddress);
-        out.writeInt(mIsShowWarning? 1 : 0);               
+        out.writeInt(mIsShowWarning? 1 : 0);
     }
 
 } // Msg

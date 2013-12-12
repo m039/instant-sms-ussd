@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import com.m039.mqst.items.InstantItem;
 
 public class ItemComparator implements Comparator<InstantItem> {

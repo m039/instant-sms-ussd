@@ -14,6 +14,7 @@ import android.util.Log;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class InstantDebugtActivity extends TabActivity
 {
     private static final String TAG = "InstantSMS";
