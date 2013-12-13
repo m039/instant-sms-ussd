@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item
+      android:left="@dimen/f_list__list__divider__padding_left"
+      android:right="@dimen/f_list__list__divider__padding_right"
+      android:drawable="@drawable/f_list__list__divider_line"
+      />
+
+</layer-list>

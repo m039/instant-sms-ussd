@@ -1,0 +1,10 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:shareInterpolator="@android:anim/accelerate_decelerate_interpolator">
+
+  <translate
+        android:fromXDelta="0%"
+        android:toXDelta="-100%"
+        android:duration="700"
+        />
+  
+</set>

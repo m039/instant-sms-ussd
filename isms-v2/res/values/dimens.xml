@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="e_msg__margin_left">16dp</dimen>
+  <dimen name="e_msg__margin_right">16dp</dimen>
+  <dimen name="e_msg__margin_top">8dp</dimen>
+  <dimen name="e_msg__margin_bottom">8dp</dimen>
+
+  <dimen name="e_msg__type__margin_right">25dp</dimen>
+  <dimen name="e_msg__type__line_width">2px</dimen>
+
+  <dimen name="f_list__list__divider_height">1px</dimen>
+  <dimen name="f_list__list__divider__padding_left">8dp</dimen>
+  <dimen name="f_list__list__divider__padding_right">8dp</dimen>
+
+  <dimen name="a_create_msg__left_padding">16dp</dimen>
+  <dimen name="a_create_msg__right_padding">16dp</dimen>
+  <dimen name="a_create_msg__top_padding">8dp</dimen>
+  <dimen name="a_create_msg__bottom_padding">8dp</dimen>
+
+  <dimen name="a_create_msg__separator_line__margin_bottom">12dp</dimen>
+  <dimen name="a_create_msg__separator_line__height">1px</dimen>
+
+  <dimen name="a_create_msg__separator_text__margin_right">8dp</dimen>
+  <dimen name="a_create_msg__separator_text__margin_left">8dp</dimen>
+  <dimen name="a_create_msg__separator_text__margin_bottom">2dp</dimen>
+
+  <dimen name="a_create_msg__child__margin_right">16dp</dimen>
+  <dimen name="a_create_msg__child__margin_left">16dp</dimen>
+  <dimen name="a_create_msg__child__margin_bottom">4dp</dimen>
+
+  <dimen name="a_create_msg__spinner__min_width">200dp</dimen>
+
+  <dimen name="a_create_msg__address__padding_right">48dp</dimen>
+
+  <dimen name="a_create_msg__pick_user__margin_right">12dp</dimen>
+
+  <dimen name="a_create_msg__checkbox__margin_right">6dp</dimen>
+
+  <integer name="a_create_msg__type__min_ems">3</integer>
+</resources>
