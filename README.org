@@ -1,8 +1,1 @@
-* About
-  *MQST* - my quick sms templates.
-
-  This is the previous and the original name. *MQST* is better for
-  developing, but *Instant SMS* is better for marketplace.
-* License
-
-Instance SMS / USSD is licensed under the terms of the Apache 2.0 license as listed in the LICENSE file.
+/home/m039/Projects/instant-sms-ussd/doc/README.org

@@ -24,7 +24,7 @@
   <string name="a_head__sms_sent_generic_failure">Error: The SMS hasn\'t been sent</string>
   <string name="a_head__sms_sent_no_service">Error: No service</string>
   <string name="a_head__sms_sent_null_pdu">Error: Null PDU</string>
-  <string name="a_head__sms_sent_radio_off">Error: Radio off</string>  
+  <string name="a_head__sms_sent_radio_off">Error: Radio off</string>
 
   <string name="a_create_msg__type">Type</string>
   <string name="a_create_msg__general">General</string>
@@ -100,10 +100,9 @@
   </string-array>
 
   <string-array
-        name="a_create_msg__spinner__entries">
-        <item>USSD</item>
-        <item>SMS</item>
-    </string-array>
-
+      name="a_create_msg__spinner__entries">
+    <item>USSD</item>
+    <item>SMS</item>
+  </string-array>
 
 </resources>

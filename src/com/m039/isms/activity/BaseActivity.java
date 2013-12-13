@@ -11,6 +11,8 @@ package com.m039.isms.activity;
 
 import android.app.Activity;
 
+import com.google.analytics.tracking.android.EasyTracker;
+
 /**
  * 
  *
@@ -22,4 +24,17 @@ import android.app.Activity;
  */
 public class BaseActivity extends Activity {
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EasyTracker.getInstance(this).activityStart(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EasyTracker.getInstance(this).activityStop(this);
+    }
+
+    
 } // BaseActivity
