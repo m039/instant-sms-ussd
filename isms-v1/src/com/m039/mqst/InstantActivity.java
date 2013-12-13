@@ -76,13 +76,9 @@ public class InstantActivity extends ListActivity {
     public boolean      onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id) {
-        case R.id.menu_main_add_item:
+        if (id == R.id.menu_main_add_item) {
             Intent intent = new Intent(this, AddActivity.class);
-            startActivityForResult(intent, ADD_ITEM_REQUEST);
-            break;
-        default:
-            break;
+            startActivityForResult(intent, ADD_ITEM_REQUEST);           
         }
 
         return true;
@@ -121,19 +117,13 @@ public class InstantActivity extends ListActivity {
         int id = mitem.getItemId();
         AdapterContextMenuInfo minfo = (AdapterContextMenuInfo) mitem.getMenuInfo();
 
-
-        switch (id) {
-        case R.id.menu_context_delete:
+        if (id == R.id.menu_context_delete) {
             ItemFactory.getFactory().removeItem(minfo.position);
-            updateAdapter();
-            break;
-        case R.id.menu_context_edit:
+            updateAdapter();            
+        } else if(id == R.id.menu_context_edit) {
             Intent intent = new Intent(this, EditActivity.class);
             intent.putExtra("item position", minfo.position);
-            startActivityForResult(intent, EDIT_ITEM_REQUEST);
-            break;
-        default:
-            break;
+            startActivityForResult(intent, EDIT_ITEM_REQUEST);          
         }
 
         return true;

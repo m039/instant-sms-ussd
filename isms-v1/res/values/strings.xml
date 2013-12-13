@@ -1,4 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ACTIVITY_ENTRY_NAME</string>
+
+  <string name="no_items_warning">Use menu button to add an item</string>
+
+  <string name="sms_sent_ok">The SMS has been sent</string>
+  <string name="sms_sent_generic_failure">Error: The SMS hasn\'t been sent</string>
+  <string name="sms_sent_no_service">Error: No service</string>
+  <string name="sms_sent_null_pdu">Error: Null PDU</string>
+  <string name="sms_sent_radio_off">Error: Radio off</string>
+
+  <string name="sms_sending">Sending SMS</string>
+  <string name="sms_sending_warning">Do you want to send this message?</string>
+  <string name="sms_sending_cbox_warning">Warn me when I send this message (maybe it costs you money)</string>
+
+  <string name="contact_hasnt_phone">This contact doesn\'t have a phone number</string>
+
+  <string name="yes_button">Yes</string>
+  <string name="no_button">No</string>
+
+  <string name="edit_button">Edit</string>
+  <string name="add_button">Add</string>
+  <string name="cancel_button">Cancel</string>
+
+  <string name="edit_context">Edit</string>
+  <string name="delete_context">Delete</string>
+  <string name="go_back_context">Go back</string>
+
+  <string name="add_item_menu">Add item</string>
+
+  <string name="select_type">Select type</string>
+
+  <string name="etext_help_hint">Description</string>
+  <string name="etext_address_hint">Address</string>
+  <string name="etext_text_hint_sms">Message</string>
+  <string name="etext_text_hint_ussd">USSD code</string>
+
+  <string name="widget_top">Instant</string>
+  <string name="widget_bottom">SMS/USSD</string>
+
+  <!-- from preferences -->
+
+  <string name="sort_preferences">Sort preferences</string>
+  <string name="sort_preferences_type">Sort by type</string>
+  <string name="sort_preferences_name">Sort by name (description)</string>
+
+  <string-array
+      name="sort_type_entries">
+    <item>SMS first</item>
+    <item>USSD first</item>
+    <item>none</item>
+  </string-array>
+
+  <string-array
+      name="sort_name_entries">
+    <item>A-Z</item>
+    <item>Z-A</item>
+    <item>none</item>
+  </string-array>
+
+  <string-array
+      name="a_create_msg__spinner__entries">
+    <item>USSD</item>
+    <item>SMS</item>
+  </string-array>
+
 </resources>

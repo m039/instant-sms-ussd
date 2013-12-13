@@ -26,9 +26,7 @@
     </activity>
 
     <!---->
-    <!---->
-    <!--new-->
-    <!---->
+    <!--new activities-->
     <!---->
 
     <activity android:name="com.m039.isms.activity.HeadActivity"
@@ -47,41 +45,26 @@
               />
 
     <!---->
+    <!--old activities-->
     <!---->
-    <!--old-->
-    <!---->
-    <!---->
-
-    <!-- main activity   -->
 
     <activity android:name=".InstantActivity"
               android:theme="@style/Common.Theme"
               android:label="@string/app_name"/>
 
-    <!-- activity for debugging purpose -->
-
     <activity android:name=".InstantDebugActivity"/>
-
-    <!-- dialog to add an item -->
 
     <activity android:name="com.m039.mqst.activities.AddActivity"
               android:theme="@android:style/Theme.NoTitleBar"/>
 
-    <!-- dialog to edit an item -->
-
     <activity android:name="com.m039.mqst.activities.EditActivity"
               android:theme="@android:style/Theme.NoTitleBar"/>
-
-    <!-- sort settings/preferences -->
 
     <activity android:name="com.m039.mqst.activities.SortActivity"
               android:theme="@android:style/Theme.NoTitleBar"/>
 
-    <!-- admob activity -->
     <activity android:name="com.google.ads.AdActivity"
               android:configChanges="keyboard|keyboardHidden|orientation"/>
-
-    <!-- main receiver -->
 
     <receiver android:name=".InstantProvider" >
       <intent-filter>
