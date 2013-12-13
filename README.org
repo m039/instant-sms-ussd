@@ -1,1 +1,1 @@
-/home/m039/Projects/instant-sms-ussd/doc/README.org
+doc/README.org
