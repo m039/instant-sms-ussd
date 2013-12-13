@@ -1,0 +1,10 @@
+bin
+gen
+build.properties
+my-release-key.keystore
+ant.properties
+build.xml
+local.properties
+proguard-project.txt
+.classpath
+.settings
