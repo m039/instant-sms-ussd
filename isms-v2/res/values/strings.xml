@@ -18,7 +18,9 @@
   <string name="f_msg_list__error__msg_added">Fail! Message \'%1$s\'  hasn\'t been created</string>
   <string name="f_msg_list__msg_updated">Message \'%1$s\' has been saved</string>
   <string name="f_msg_list__error__msg_updated">Fail! Message \'%1$s\'  hasn\'t been saved</string>
-
+  
+  <string name="a_head__action_bar__settings">Settings</string>  
+  
   <string name="a_head__sms_sending">The SMS has been sent</string>
   <string name="a_head__sms_sent_ok">The SMS has been sent</string>
   <string name="a_head__sms_sent_generic_failure">Error: The SMS hasn\'t been sent</string>
@@ -40,4 +42,8 @@
   <string name="a_create_msg__error__cannot_create_msg">Please, fill out all necessary fields</string>
   <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
 
+  <string name="pref__is_show_banner__title">Show banner</string>
+  <string name="pref__is_show_address__title">Show address field</string>
+  <string name="pref__descriptions_lines__title">Number of lines in description</string>      
+  
 </resources>

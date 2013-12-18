@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.m039.mqst"
-          android:versionCode="15"
-          android:versionName="2.0.0"
+          android:versionCode="16"
+          android:versionName="2.0.1"
           >
 
   <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="14" />
 
   <application android:label="@string/app_name"
                android:icon="@drawable/icon"
+               android:name="com.m039.isms.app.BaseApplication"
                >
 
     <activity android:name="com.m039.isms.activity.MainActivity"
@@ -44,6 +45,9 @@
               android:screenOrientation="portrait"
               />
 
+    <activity android:name="com.google.ads.AdActivity"
+              android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+
     <!---->
     <!--old activities-->
     <!---->
@@ -63,8 +67,6 @@
     <activity android:name="com.m039.mqst.activities.SortActivity"
               android:theme="@android:style/Theme.NoTitleBar"/>
 
-    <activity android:name="com.google.ads.AdActivity"
-              android:configChanges="keyboard|keyboardHidden|orientation"/>
 
     <receiver android:name=".InstantProvider" >
       <intent-filter>

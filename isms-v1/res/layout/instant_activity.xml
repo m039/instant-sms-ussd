@@ -15,10 +15,11 @@
             android:layout_height="0dip"
             android:layout_weight="1" />
 
-  <!-- <com.google.ads.AdView android:id="@+id/instant_activity_ad" -->
-  <!--                        android:layout_width="wrap_content" -->
-  <!--                        android:layout_height="wrap_content" -->
-  <!--                        ads:adUnitId="a14e626f96d7014" -->
-  <!--                        ads:adSize="BANNER" -->
-  <!--                        ads:loadAdOnCreate="false"/> -->
+  <com.google.ads.AdView android:id="@+id/instant_activity_ad"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         ads:adUnitId="a14e626f96d7014"
+                         ads:adSize="BANNER"
+                         ads:loadAdOnCreate="false"
+                         />
 </LinearLayout>

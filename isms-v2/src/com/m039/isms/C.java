@@ -22,4 +22,13 @@ public class C {
 
     public static final String PACKAGE = "com.m039.mqst"; // don't change it.. ever and ever
 
+    public static class Preferences {
+        private static final String PREFIX = "pref__";
+
+        public static final String IS_SHOW_BANNER = PREFIX + "is_show_banner";
+        public static final String IS_SHOW_ADDRESS = PREFIX + "is_show_address";
+        public static final String DESCRIPTION_LINES = PREFIX + "description_lines";
+
+    }
+
 } // C
