@@ -9,12 +9,14 @@
 
 package com.m039.isms.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.widget.Toast;
 
 import com.m039.isms.C;
+import com.m039.isms.activity.AboutActivity;
 import com.m039.mqst.R;
 
 /**
@@ -42,7 +44,11 @@ public class SettingsFragment extends PreferenceFragment {
             p.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                     @Override
                     public boolean onPreferenceClick (Preference preference) {
-                        Toast.makeText(getActivity(), "On About click", Toast.LENGTH_SHORT).show();
+                        Activity a = getActivity();
+                        if (a != null) {
+                            a.startActivity(new Intent(a, AboutActivity.class));
+                        }
+                        
                         return true;
                     }
                 });

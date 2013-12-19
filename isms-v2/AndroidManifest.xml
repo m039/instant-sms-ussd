@@ -45,6 +45,12 @@
               android:screenOrientation="portrait"
               />
 
+    <activity android:name="com.m039.isms.activity.AboutActivity"
+              android:theme="@style/Common.Theme.Dialog"
+              android:label="@string/a_about__label"
+              android:screenOrientation="portrait"
+              />
+
     <activity android:name="com.google.ads.AdActivity"
               android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 

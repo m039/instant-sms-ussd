@@ -36,6 +36,7 @@ import com.google.ads.AdRequest;
 import com.google.ads.AdView;
 import com.m039.isms.C;
 import com.m039.isms.db.DB;
+import com.m039.isms.fragment.GreetOldFriendDialogFragment;
 import com.m039.isms.fragment.MsgListFragment;
 import com.m039.isms.fragment.MsgPickActionsDialogFragment;
 import com.m039.isms.fragment.MsgShowSendWarningDialogFragment;
@@ -98,6 +99,8 @@ public class HeadActivity extends BaseActivity
 
         onCreateDrawer();
         onCreateAd();
+
+        GreetOldFriendDialogFragment.showGreetIfNeccesary(this);
     }
 
     private void onCreateDrawer() {

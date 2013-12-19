@@ -20,6 +20,7 @@ import android.util.Log;
 import com.m039.isms.C;
 import com.m039.isms.Utils;
 import com.m039.isms.db.DB;
+import com.m039.isms.fragment.GreetOldFriendDialogFragment;
 import com.m039.mqst.InstantActivity;
 import com.m039.mqst.ItemFactory;
 import com.m039.mqst.R;
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity {
 
             if (hasOldData()) {
                 success = importOldData();
+                GreetOldFriendDialogFragment.shouldShowGreet(this);
             }
 
             sp.edit().putBoolean(EXTRA_IS_IMPORTED_OLD_DATA, success).commit();

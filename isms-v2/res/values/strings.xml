@@ -5,6 +5,9 @@
 
   <string name="head__action_new">Add message</string>
 
+  <string name="f_greet_old_friend__title">Hello old friend!</string>
+  <string name="f_greet_old_friend__message">Thank you for using this application! It is you, why this application has got new update, I hope you\'ll enjoy it! But if you get into trouble with migrating to a new version, please contact.</string>
+
   <string name="f_msg_actions_dialog__title">Pick an action</string>
   <string name="f_msg_actions_dialog__action__edit">Edit</string>
   <string name="f_msg_actions_dialog__action__delete">Delete</string>
@@ -42,6 +45,9 @@
   <string name="a_create_msg__error__cannot_create_msg">Please, fill out all necessary fields</string>
   <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
 
+  <string name="a_about__label">About application</string>
+  <string name="a_about__html">Feel free to &lt;a href="mailto:m0391n@gmail.com">contact&lt;/a> me.&lt;/br>&lt;/br>This is open-source application (&lt;a href="http://github.com/m039/instant-sms-ussd">visit github page&lt;/a>).</string>
+
   <string name="pref__category__display">Display</string>
   <string name="pref__category__sort">Sort</string>
   <string name="pref__category__extras">Extras</string>
@@ -66,7 +72,7 @@
     <item>none</item>
   </string-array>
 
-  <!-- values  -->
+  <!-- values (use default locale)  -->
 
   <string-array name="pref__sort_type_order__values">
     <item>sms</item>
