@@ -29,6 +29,16 @@ public class C {
         public static final String IS_SHOW_ADDRESS = PREFIX + "is_show_address";
         public static final String DESCRIPTION_LINES = PREFIX + "description_lines";
 
+        public static final String SORT_TYPE_ORDER = PREFIX + "sort_type_order";
+        public static final String SORT_DESC_ORDER = PREFIX + "sort_desc_order";
     }
+
+    public static class PreferenceValues {
+        public static final String AZ = "a-z";
+        public static final String ZA = "z-a";
+        public static final String NONE = "none";
+    }
+
+
 
 } // C

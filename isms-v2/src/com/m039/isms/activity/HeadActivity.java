@@ -220,8 +220,16 @@ public class HeadActivity extends BaseActivity
 
     private void onDrawerClosed() {
         syncAdState();
+        syncListState();
     }
 
+    private void syncListState() {
+        MsgListFragment mlf = getMsgListFragment();
+        if (mlf != null) {
+            mlf.requery();
+        }
+    }
+    
     private void syncAdState() {
         if (mAd != null) {
             if (PreferenceManager
