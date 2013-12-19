@@ -64,7 +64,8 @@ public class AboutActivity extends BaseActivity {
                 }
 
             });
-        mWeb.loadData(getString(R.string.a_about__html), null, "UTF8");
+
+        mWeb.loadDataWithBaseURL(null, getString(R.string.a_about__html), "text/html", "UTF-8", null);
 
         setContentView(mWeb);
     }
