@@ -17,6 +17,13 @@
         android:defaultValue="false"
         />
 
+    <com.m039.isms.preference.NumberPreference
+        android:key="pref__nol_in_message"
+        android:title="@string/pref__nol_in_message__title"
+        android:summary="@string/pref__nol_in_message__summary"
+        android:defaultValue="1"
+        />
+
   </PreferenceCategory>
 
   <PreferenceCategory
@@ -41,15 +48,15 @@
 
   </PreferenceCategory>
 
-  <!-- <PreferenceCategory -->
-  <!--     android:title="About" -->
-  <!--     > -->
+  <PreferenceCategory
+      android:title="@string/pref__category__extras"
+      >
 
-  <!--   <Preference -->
-  <!--       android:summary="" -->
-  <!--       android:title="About application" -->
-  <!--       /> -->
+    <Preference
+        android:key="pref__about"
+        android:title="@string/pref__about__title"
+        />
 
-  <!-- </PreferenceCategory> -->
+  </PreferenceCategory>
 
 </PreferenceScreen>

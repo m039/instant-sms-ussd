@@ -195,30 +195,30 @@ public class MsgListFragment extends ListFragment {
 
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
 
-            String sortTypeOrder = sp.getString(C.Preferences.SORT_TYPE_ORDER, Msg.TYPE_NONE);
-            
-            if (Msg.TYPE_SMS.equalsIgnoreCase(sortTypeOrder)) {
+            String sortTypeOrder = sp.getString(C.Preferences.Key.SORT_TYPE_ORDER, C.Preferences.Value.NONE);
+
+            if (C.Preferences.Value.SMS.equals(sortTypeOrder)) {
                 sortOrder += Msg.SQL.Columns.TYPE + " ASC";
-            } else if(Msg.TYPE_USSD.equalsIgnoreCase(sortTypeOrder)) {
+            } else if(C.Preferences.Value.USSD.equals(sortTypeOrder)) {
                 sortOrder += Msg.SQL.Columns.TYPE + " DESC";
             }
 
-            String sortDescOrder = sp.getString(C.Preferences.SORT_DESC_ORDER, C.PreferenceValues.NONE);
-            if (C.PreferenceValues.AZ.equals(sortDescOrder)) {
+            String sortDescOrder = sp.getString(C.Preferences.Key.SORT_DESC_ORDER, C.Preferences.Value.NONE);
+            if (C.Preferences.Value.AZ.equals(sortDescOrder)) {
                 if (!TextUtils.isEmpty(sortOrder)) {
                     sortOrder += ", ";
                 }
 
                 sortOrder += Msg.SQL.Columns.DESCRIPTION + " ASC";
-                
-            } else if (C.PreferenceValues.ZA.equals(sortDescOrder)) {
+
+            } else if (C.Preferences.Value.ZA.equals(sortDescOrder)) {
                 if (!TextUtils.isEmpty(sortOrder)) {
                     sortOrder += ", ";
                 }
 
-                sortOrder += Msg.SQL.Columns.DESCRIPTION + " DESC";             
+                sortOrder += Msg.SQL.Columns.DESCRIPTION + " DESC";
             }
-            
+
             return  DB.getInstance(ctx)
                 .getDBHelper()
                 .getReadableDatabase()

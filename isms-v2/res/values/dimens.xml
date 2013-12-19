@@ -17,7 +17,7 @@
   <dimen name="a_create_msg__top_padding">8dp</dimen>
   <dimen name="a_create_msg__bottom_padding">8dp</dimen>
 
-  <dimen name="a_create_msg__separator_line__margin_bottom">12dp</dimen>
+  <dimen name="a_create_msg__separator_line__margin_bottom">16dp</dimen>
   <dimen name="a_create_msg__separator_line__height">1px</dimen>
 
   <dimen name="a_create_msg__separator_text__margin_right">8dp</dimen>
@@ -26,9 +26,11 @@
 
   <dimen name="a_create_msg__child__margin_right">16dp</dimen>
   <dimen name="a_create_msg__child__margin_left">16dp</dimen>
-  <dimen name="a_create_msg__child__margin_bottom">4dp</dimen>
+  <dimen name="a_create_msg__child__margin_bottom">14dp</dimen>
 
   <dimen name="a_create_msg__spinner__min_width">200dp</dimen>
+  <dimen name="a_create_msg__spinner__padding_top">12dp</dimen>
+  <dimen name="a_create_msg__spinner__padding_bottom">12dp</dimen>    
 
   <dimen name="a_create_msg__address__padding_right">48dp</dimen>
 

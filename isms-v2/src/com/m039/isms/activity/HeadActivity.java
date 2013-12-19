@@ -234,7 +234,7 @@ public class HeadActivity extends BaseActivity
         if (mAd != null) {
             if (PreferenceManager
                 .getDefaultSharedPreferences(this)
-                .getBoolean(C.Preferences.IS_SHOW_BANNER, false)) {
+                .getBoolean(C.Preferences.Key.IS_SHOW_BANNER, false)) {
 
                 AdRequest adRequest = new AdRequest();
                 adRequest.addTestDevice("2E3072A5A0253BC66B3E0B419F8D0E85");

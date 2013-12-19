@@ -44,11 +44,15 @@
 
   <string name="pref__category__display">Display</string>
   <string name="pref__category__sort">Sort</string>
+  <string name="pref__category__extras">Extras</string>
 
   <string name="pref__is_show_banner__title">Show banner</string>
   <string name="pref__is_show_address__title">Show address field</string>
+  <string name="pref__nol_in_message__title">Max number of lines</string>
+  <string name="pref__nol_in_message__summary">in a message field</string>
   <string name="pref__sort_type_order__title">Sort by type</string>
   <string name="pref__sort_desc_order__title">Sort by description</string>
+  <string name="pref__about__title">About</string>
 
   <string-array name="pref__sort_type_order__entries">
     <item>SMS first</item>

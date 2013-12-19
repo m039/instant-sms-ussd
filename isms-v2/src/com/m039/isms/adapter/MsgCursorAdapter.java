@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,7 +56,7 @@ public class MsgCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View v, Context context, Cursor cursor) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        
+
         Holder h = (Holder) v.getTag();
 
         int columnIndex;
@@ -68,15 +69,15 @@ public class MsgCursorAdapter extends CursorAdapter {
                 type = cursor.getString(columnIndex);
 
                 if (Msg.TYPE_SMS.equals(type)) {
-                    h.typeDrawable.setBackgroundColor(COLOR_SMS);
+                    h.type.setTextColor(COLOR_SMS);
                 } else if(Msg.TYPE_USSD.equals(type)) {
-                    h.typeDrawable.setBackgroundColor(COLOR_USSD);
+                    h.type.setTextColor(COLOR_USSD);
                 }
 
                 h.type.setText(type);
             }
         }
-        
+
         if (h.desc != null) {
             columnIndex = cursor.getColumnIndex(Msg.SQL.Columns.DESCRIPTION);
             if (columnIndex != -1) {
@@ -87,28 +88,31 @@ public class MsgCursorAdapter extends CursorAdapter {
         boolean isShowAddress = false;
 
         if (h.addr != null) {
-            if (isShowAddress = sp.getBoolean(C.Preferences.IS_SHOW_ADDRESS, false)) {
+            if (isShowAddress = sp.getBoolean(C.Preferences.Key.IS_SHOW_ADDRESS, false)) {
                 columnIndex = cursor.getColumnIndex(Msg.SQL.Columns.ADDRESS);
                 if (columnIndex != -1) {
                     h.addr.setText(cursor.getString(columnIndex));
-                    h.addr.setVisibility(View.VISIBLE);                 
-                }               
+                    h.addr.setVisibility(View.VISIBLE);
+                }
             } else {
                 h.addr.setVisibility(View.GONE);
             }
-        }       
+        }
 
-        if (h.message != null) {
-            // in ussd msg message field is empty 
+        if (h.message != null) {            
+            // in ussd msg message field is empty
             if (Msg.TYPE_USSD.equals(type) && isShowAddress) {
                 h.message.setVisibility(View.GONE);
             } else {
                 h.message.setVisibility(View.VISIBLE);
             }
+
+            int nolInMessage =  sp.getInt(C.Preferences.Key.NOL_IN_MESSAGE, 1);
             
             columnIndex = cursor.getColumnIndex(Msg.SQL.Columns.MESSAGE);
             if (columnIndex != -1) {
                 h.message.setText(cursor.getString(columnIndex));
+                h.message.setMaxLines(nolInMessage);
             }
         }
     }
@@ -125,7 +129,6 @@ public class MsgCursorAdapter extends CursorAdapter {
             CONSTANTS_INITIALIZED = true;
         }
 
-
         LayoutInflater inflater = (LayoutInflater) context.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
 
         View v = inflater.inflate(R.layout.e_msg, parent, false);
@@ -135,11 +138,6 @@ public class MsgCursorAdapter extends CursorAdapter {
         h.message = (TextView) v.findViewById(R.id.message);
         h.type = (TextView) v.findViewById(R.id.type);
         h.addr = (TextView) v.findViewById(R.id.addr);
-
-        if (h.type != null) {
-            h.typeDrawable = new TypeDrawable(context);
-            h.type.setBackgroundDrawable(h.typeDrawable);
-        }
 
         v.setTag(h);
 
