@@ -37,7 +37,7 @@ public class AboutActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mWeb = new WebView(this);
-        mWeb.setWebViewClient(new WebViewClient(){
+        mWeb.setWebViewClient(new WebViewClient() {
 
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -50,20 +50,20 @@ public class AboutActivity extends BaseActivity {
                                                   mt.getCc());
                         startActivity(i);
                         view.reload();
-                        
+
                     } else if(url.startsWith("http://")) {
-                        
+
                         view.getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-                        
+
                     } else {
 
                         view.loadUrl(url);
                     }
-                    
+
                     return true;
                 }
-            });
 
+            });
         mWeb.loadData(getString(R.string.a_about__html), null, "UTF8");
 
         setContentView(mWeb);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Instant\nSMS / USSD</string>
+
+  <string name="head__action_new">Добавить сообщение</string>
+
+  <string name="f_greet_old_friend__title">Привет друг!</string>
+  <string name="f_greet_old_friend__message">Огромное спасибо, что пользуешься этим приложением! Если бы не ты, то это приложение никогда бы не получило обновление, надеюсь тебе оно понравится! Но если возникнет какая-нибудь проблема, пожалуйста, сразу напиши о ней.</string>
+
+  <string name="f_msg_actions_dialog__title">Выбрать действие</string>
+  <string name="f_msg_actions_dialog__action__edit">Изменить</string>
+  <string name="f_msg_actions_dialog__action__delete">Удалить</string>
+
+  <string name="f_msg_show_send_warning_dialog__title">Действительно отправить это сообщение?</string>
+  <string name="f_msg_show_send_warning_dialog__positive_button">Да</string>
+  <string name="f_msg_show_send_warning_dialog__negative_button">Нет</string>
+
+  <string name="f_msg_list__empty">Используйте кнопку "плюс", чтобы добавить сообщение</string>
+  <string name="f_msg_list__msg_added">Сообщение \'%1$s\' было создано</string>
+  <string name="f_msg_list__error__msg_added">Ошибка! Сообщение \'%1$s\'  не было создано</string>
+  <string name="f_msg_list__msg_updated">Сообщение \'%1$s\' было изменено</string>
+  <string name="f_msg_list__error__msg_updated">Ошибка! Сообщение \'%1$s\'  не было изменено</string>
+
+  <string name="a_head__action_bar__settings">Настройки</string>
+
+  <string name="a_head__sms_sending">Сообщение отправляется</string>
+  <string name="a_head__sms_sent_ok">Сообщение удачно отправлено</string>
+  <string name="a_head__sms_sent_generic_failure">Ошибка! Сообщени не было отправлено</string>
+  <string name="a_head__sms_sent_no_service">Ошибка! No service</string>
+  <string name="a_head__sms_sent_null_pdu">Ошибка! Null PDU</string>
+  <string name="a_head__sms_sent_radio_off">Ошибка! Radio off</string>
+
+  <string name="a_create_msg__type">Тип</string>
+  <string name="a_create_msg__general">Общее</string>
+  <string name="a_create_msg__options">Опции</string>
+  <string name="a_create_msg__address__hint">Адрес</string>
+  <string name="a_create_msg__description__hint">Описание</string>
+  <string name="a_create_msg__message__hint">Текст сообщения</string>
+  <string name="a_create_msg__warning__costs_money__line_1">Предупреждать меня, если отправляю это сообщение</string>
+  <string name="a_create_msg__warning__costs_money__line_2">возможно оно стоит денег</string>
+  <string name="a_create_msg__buttons__add">Добавить</string>
+  <string name="a_create_msg__buttons__save">Сохранить</string>
+  <string name="a_create_msg__buttons__cancel">Отмена</string>
+  <string name="a_create_msg__error__cannot_create_msg">Пожалуйста, заполните необходимые поля</string>
+  <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
+
+  <string name="a_about__label">О приложении</string>
+  <string name="a_about__html">Со мной вы можете связаться по &lt;a href="mailto:m0391n@gmail.com">почте&lt;/a>.&lt;/br>&lt;/br>Это open-source приложение (&lt;a href="http://github.com/m039/instant-sms-ussd">перейти на страницу github&lt;/a>).</string>
+
+  <string name="pref__category__display">Отображение</string>
+  <string name="pref__category__sort">Сортировка</string>
+  <string name="pref__category__extras">Дополнительное</string>
+
+  <string name="pref__is_show_banner__title">Показывать баннер</string>
+  <string name="pref__is_show_address__title">Показывать поле адреса</string>
+  <string name="pref__nol_in_message__title">Максимальное количество линий</string>
+  <string name="pref__nol_in_message__summary">в поле текста сообщения</string>
+  <string name="pref__sort_type_order__title">Сортировка по типу</string>
+  <string name="pref__sort_desc_order__title">Сортировка по тексту сообщения</string>
+  <string name="pref__about__title">О приложении</string>
+
+  <string-array name="pref__sort_type_order__entries">
+    <item>SMS первые</item>
+    <item>USSD первые</item>
+    <item>неважно</item>
+  </string-array>
+
+  <string-array name="pref__sort_desc_order__entries">
+    <item>А-Я</item>
+    <item>Я-А</item>
+    <item>неважно</item>
+  </string-array>
+
+</resources>
