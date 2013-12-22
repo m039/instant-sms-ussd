@@ -6,7 +6,7 @@
   <string name="head__action_new">Add message</string>
 
   <string name="f_greet_old_friend__title">Hello old friend!</string>
-  <string name="f_greet_old_friend__message">Thank you for using this application! It is you, why this application has got new update, I hope you\'ll enjoy it! But if you get into trouble with migrating to a new version, please contact.</string>
+  <string name="f_greet_old_friend__message">Thank you for using this application! It is you, why this application has got new update, I hope you\'ll enjoy it! But if you get into trouble with migrating to a new version, please contact me.</string>
 
   <string name="f_msg_actions_dialog__title">Pick an action</string>
   <string name="f_msg_actions_dialog__action__edit">Edit</string>
@@ -74,13 +74,13 @@
 
   <!-- values (use default locale)  -->
 
-  <string-array name="pref__sort_type_order__values">
+  <string-array name="pref__sort_type_order__values" translatable="false" >
     <item>sms</item>
     <item>ussd</item>
     <item>none</item>
   </string-array>
 
-  <string-array name="pref__sort_desc_order__values">
+  <string-array name="pref__sort_desc_order__values" translatable="false" >
     <item>a-z</item>
     <item>z-a</item>
     <item>none</item>

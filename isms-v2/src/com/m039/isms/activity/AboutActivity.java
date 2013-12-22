@@ -49,7 +49,6 @@ public class AboutActivity extends BaseActivity {
                                                   mt.getBody(),
                                                   mt.getCc());
                         startActivity(i);
-                        view.reload();
 
                     } else if(url.startsWith("http://")) {
 
