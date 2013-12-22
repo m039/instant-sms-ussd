@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Instant\nSMS / USSD</string>
+
+  <string name="head__action_new">Add message</string>
+
+  <string name="f_greet_old_friend__title">Hello old friend!</string>
+  <string name="f_greet_old_friend__message">Thank you for using this application! It is you, why this application has got new update, I hope you\'ll enjoy it! But if you get into trouble with migrating to a new version, please contact me.</string>
+
+  <string name="f_msg_actions_dialog__title">Pick an action</string>
+  <string name="f_msg_actions_dialog__action__edit">Edit</string>
+  <string name="f_msg_actions_dialog__action__delete">Delete</string>
+
+  <string name="f_msg_show_send_warning_dialog__title">Do you want to send this message?</string>
+  <string name="f_msg_show_send_warning_dialog__positive_button">Yes</string>
+  <string name="f_msg_show_send_warning_dialog__negative_button">No</string>
+
+  <string name="f_msg_list__empty">Use plus button to add an item</string>
+  <string name="f_msg_list__msg_added">Message \'%1$s\' has been created</string>
+  <string name="f_msg_list__error__msg_added">Fail! Message \'%1$s\'  hasn\'t been created</string>
+  <string name="f_msg_list__msg_updated">Message \'%1$s\' has been saved</string>
+  <string name="f_msg_list__error__msg_updated">Fail! Message \'%1$s\'  hasn\'t been saved</string>
+
+  <string name="a_head__action_bar__settings">Settings</string>
+
+  <string name="a_head__sms_sending">The SMS has been sent</string>
+  <string name="a_head__sms_sent_ok">The SMS has been sent</string>
+  <string name="a_head__sms_sent_generic_failure">Error: The SMS hasn\'t been sent</string>
+  <string name="a_head__sms_sent_no_service">Error: No service</string>
+  <string name="a_head__sms_sent_null_pdu">Error: Null PDU</string>
+  <string name="a_head__sms_sent_radio_off">Error: Radio off</string>
+
+  <string name="a_create_msg__type">Type</string>
+  <string name="a_create_msg__general">General</string>
+  <string name="a_create_msg__options">Options</string>
+  <string name="a_create_msg__address__hint">Address</string>
+  <string name="a_create_msg__description__hint">Description</string>
+  <string name="a_create_msg__message__hint">Message</string>
+  <string name="a_create_msg__warning__costs_money__line_1">Warn me when I send this message</string>
+  <string name="a_create_msg__warning__costs_money__line_2">maybe it costs you money</string>
+  <string name="a_create_msg__buttons__add">Add</string>
+  <string name="a_create_msg__buttons__save">Save</string>
+  <string name="a_create_msg__buttons__cancel">Cancel</string>
+  <string name="a_create_msg__error__cannot_create_msg">Please, fill out all necessary fields</string>
+  <string name="a_create_msg__error__contact_hasnot_phone">@string/contact_hasnt_phone</string>
+
+  <string name="a_about__label">About application</string>
+  <string name="a_about__html">Feel free to &lt;a href="mailto:m0391n@gmail.com">contact&lt;/a> me.&lt;/br>&lt;/br>This is open-source application (&lt;a href="http://github.com/m039/instant-sms-ussd">visit github page&lt;/a>).</string>
+
+  <string name="pref__category__display">Display</string>
+  <string name="pref__category__sort">Sort</string>
+  <string name="pref__category__extras">Extras</string>
+
+  <string name="pref__is_show_banner__title">Show banner</string>
+  <string name="pref__is_show_address__title">Show address field</string>
+  <string name="pref__nol_in_message__title">Max number of lines</string>
+  <string name="pref__nol_in_message__summary">in a message field</string>
+  <string name="pref__sort_type_order__title">Sort by type</string>
+  <string name="pref__sort_desc_order__title">Sort by description</string>
+  <string name="pref__about__title">About</string>
+
+  <string-array name="pref__sort_type_order__entries">
+    <item>SMS first</item>
+    <item>USSD first</item>
+    <item>none</item>
+  </string-array>
+
+  <string-array name="pref__sort_desc_order__entries">
+    <item>A-Z</item>
+    <item>Z-A</item>
+    <item>none</item>
+  </string-array>
+
+  <!-- values (use default locale)  -->
+
+  <string-array name="pref__sort_type_order__values" translatable="false" >
+    <item>sms</item>
+    <item>ussd</item>
+    <item>none</item>
+  </string-array>
+
+  <string-array name="pref__sort_desc_order__values" translatable="false" >
+    <item>a-z</item>
+    <item>z-a</item>
+    <item>none</item>
+  </string-array>
+
+</resources>

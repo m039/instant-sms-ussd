@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_marginBottom="@dimen/a_create_msg__bottom_padding"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/a_create_msg__left_padding"
+        android:paddingRight="@dimen/a_create_msg__right_padding"
+        android:orientation="vertical"
+        >
+
+      <!-- separator: type -->
+
+      <TextView
+          style="@style/a_msg__separator__text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/a_create_msg__top_padding"
+          android:layout_marginRight="@dimen/a_create_msg__separator_text__margin_right"
+          android:layout_marginLeft="@dimen/a_create_msg__separator_text__margin_left"
+          android:layout_marginBottom="@dimen/a_create_msg__separator_text__margin_bottom"
+          android:layout_gravity="left"
+          android:text="@string/a_create_msg__type"
+          />
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="@dimen/a_create_msg__separator_line__height"
+          android:layout_marginBottom="@dimen/a_create_msg__separator_line__margin_bottom"
+          android:background="@color/a_create_msg__separator"
+          />
+
+      <!-- spinner -->
+      <FrameLayout
+          android:id="@+id/spinner_bg"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginLeft="@dimen/a_create_msg__child__margin_left"
+          android:layout_marginRight="@dimen/a_create_msg__child__margin_right"
+          android:background="@drawable/a_create_msg__spinner_bg"
+          >
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:minWidth="@dimen/a_create_msg__spinner__min_width"
+            android:entries="@array/a_create_msg__spinner__entries"
+            android:textColor="#FFF"
+            android:paddingTop="@dimen/a_create_msg__spinner__padding_top"
+            android:paddingBottom="@dimen/a_create_msg__spinner__padding_bottom"            
+            />
+
+      </FrameLayout>
+
+      <FrameLayout
+          android:id="@+id/stub"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />
+
+    </LinearLayout>
+  </ScrollView>
+
+  <!-- bottom buttons -->
+  <LinearLayout
+      android:id="@+id/buttons"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:orientation="horizontal"
+      android:layout_gravity="center_horizontal"
+      android:paddingBottom="@dimen/a_create_msg__bottom_padding"
+      >
+
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/create_msg__buttons__add"
+        android:background="@drawable/a_create_msg__button_bg"
+        android:minWidth="140dp"
+        android:text="@string/a_create_msg__buttons__add"
+        />
+
+    <View
+        android:layout_width="8dp"
+        android:layout_height="1px"
+        />
+
+    <Button
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/create_msg__buttons__cancel"
+        android:background="@drawable/a_create_msg__button_bg"
+        android:minWidth="140dp"
+        android:text="@string/a_create_msg__buttons__cancel"
+        />
+
+  </LinearLayout>
+
+</LinearLayout>

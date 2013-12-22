@@ -1,0 +1,12 @@
+* About
+  "Instant SMS / USSD" lets you to send preprogrammed SMS or USSD message.
+    
+  This my personal project, I thought it would be helpful to create this utility and it here it is.
+
+* Thanks
+  
+  Thanks all of you, who are using this application, as a gift to you I've rewrote this app for 4+ androids!
+
+* License
+
+Instance SMS / USSD is licensed under the terms of the Apache 2.0 license as listed in the LICENSE file.

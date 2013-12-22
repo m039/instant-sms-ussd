@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <style name="Common.Theme" parent="android:Theme.Holo.Light">
+    <item name="android:actionBarStyle">@style/Common.ActionBar</item>
+  </style>
+
+  <style name="Common.Theme.NoActionBar" parent="android:Theme.Holo.Light.NoActionBar">
+  </style>
+
+  <style name="Common.Theme.Dialog" parent="android:Theme.Holo.Light.Dialog.MinWidth">
+  </style>
+
+  <style name="Common.ActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+    <item name="android:displayOptions">showHome</item>
+  </style>
+
+</resources>
