@@ -35,8 +35,8 @@
   <string name="etext_text_hint_sms">Message</string>
   <string name="etext_text_hint_ussd">USSD code</string>
 
-  <string name="widget_top">Instant</string>
-  <string name="widget_bottom">SMS/USSD</string>
+  <string name="widget_top" translatable="false">Instant</string>
+  <string name="widget_bottom" translatable="false">SMS/USSD</string>
 
   <!-- from preferences -->
 
@@ -59,7 +59,7 @@
   </string-array>
 
   <string-array
-      name="a_create_msg__spinner__entries">
+      name="a_create_msg__spinner__entries" translatable="false" >
     <item>USSD</item>
     <item>SMS</item>
   </string-array>

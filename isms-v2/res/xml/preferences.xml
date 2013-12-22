@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <PreferenceCategory
+      android:title="@string/pref__category__display"
+      >
+
+    <CheckBoxPreference
+        android:key="pref__is_show_banner"
+        android:title="@string/pref__is_show_banner__title"
+        android:defaultValue="true"
+        />
+
+    <CheckBoxPreference
+        android:key="pref__is_show_address"
+        android:title="@string/pref__is_show_address__title"
+        android:defaultValue="false"
+        />
+
+    <com.m039.isms.preference.NumberPreference
+        android:key="pref__nol_in_message"
+        android:title="@string/pref__nol_in_message__title"
+        android:summary="@string/pref__nol_in_message__summary"
+        android:defaultValue="1"
+        />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:title="@string/pref__category__sort"
+      >
+
+    <ListPreference
+        android:key="pref__sort_type_order"
+        android:title="@string/pref__sort_type_order__title"
+        android:defaultValue="none"
+        android:entries="@array/pref__sort_type_order__entries"
+        android:entryValues="@array/pref__sort_type_order__values"
+        />
+
+    <ListPreference
+        android:key="pref__sort_desc_order"
+        android:title="@string/pref__sort_desc_order__title"
+        android:defaultValue="none"
+        android:entries="@array/pref__sort_desc_order__entries"
+        android:entryValues="@array/pref__sort_desc_order__values"
+        />
+
+  </PreferenceCategory>
+
+  <PreferenceCategory
+      android:title="@string/pref__category__extras"
+      >
+
+    <Preference
+        android:key="pref__about"
+        android:title="@string/pref__about__title"
+        />
+
+  </PreferenceCategory>
+
+</PreferenceScreen>

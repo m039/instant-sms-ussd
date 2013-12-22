@@ -2,14 +2,16 @@
 <resources>
 
   <string-array
-      name="sort_type_values">
+      name="sort_type_values"
+      translatable="false" >
     <item>sms</item>
     <item>ussd</item>
     <item>none</item>
   </string-array>
 
   <string-array
-      name="sort_name_values">
+      name="sort_name_values"
+      translatable="false" >
     <item>a-z</item>
     <item>z-a</item>
     <item>none</item>

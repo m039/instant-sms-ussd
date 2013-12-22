@@ -6,8 +6,8 @@
     <shape>
       <gradient
           android:startColor="#F2F2F2"
-          android:centerColor="#FFFFFF"
-          android:endColor="#FFFFFF"
+          android:centerColor="#00F2F2F2"
+          android:endColor="#00F2F2F2"
           android:centerY="0.2"
           android:angle="270"
           />
@@ -23,8 +23,8 @@
     <shape>
       <gradient
           android:startColor="#F2F2F2"
-          android:centerColor="#FFFFFF"
-          android:endColor="#FFFFFF"
+          android:centerColor="#00F2F2F2"
+          android:endColor="#00F2F2F2"
           android:centerY="0.2"
           android:angle="270"
           />
@@ -40,8 +40,8 @@
     <shape>
       <gradient
           android:startColor="#F2F2F2"
-          android:centerColor="#FFFFFF"
-          android:endColor="#FFFFFF"
+          android:centerColor="#00F2F2F2"
+          android:endColor="#00F2F2F2"
           android:centerY="0.2"
           android:angle="270"
           />
@@ -59,8 +59,8 @@
 
       <gradient
           android:startColor="#F2F2F2"
-          android:centerColor="#FFFFFF"
-          android:endColor="#FFFFFF"
+          android:centerColor="#00F2F2F2"
+          android:endColor="#00F2F2F2"
           android:centerY="0.2"
           android:angle="270"
           />
@@ -79,10 +79,10 @@
   <item android:state_enabled="true">
     <shape>
       <padding
-          android:left="12dp"
-          android:right="12dp"
-          android:top="6dp"
-          android:bottom="6dp"
+          android:left="16dp"
+          android:right="16dp"
+          android:top="12dp"
+          android:bottom="12dp"
           />
     </shape>
   </item>

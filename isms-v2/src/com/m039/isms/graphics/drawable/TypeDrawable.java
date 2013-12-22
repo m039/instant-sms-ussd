@@ -132,7 +132,7 @@ public class TypeDrawable extends Drawable {
 
     @Override
     public int getOpacity() {
-        return PixelFormat.OPAQUE ;
+        return PixelFormat.OPAQUE;
     }
 
     @Override

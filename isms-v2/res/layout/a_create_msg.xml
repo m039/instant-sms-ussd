@@ -61,6 +61,8 @@
             android:minWidth="@dimen/a_create_msg__spinner__min_width"
             android:entries="@array/a_create_msg__spinner__entries"
             android:textColor="#FFF"
+            android:paddingTop="@dimen/a_create_msg__spinner__padding_top"
+            android:paddingBottom="@dimen/a_create_msg__spinner__padding_bottom"            
             />
 
       </FrameLayout>

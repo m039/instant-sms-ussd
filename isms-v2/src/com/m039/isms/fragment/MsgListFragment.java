@@ -15,10 +15,13 @@ import android.app.LoaderManager;
 import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
@@ -28,6 +31,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.m039.isms.C;
 import com.m039.isms.adapter.MsgCursorAdapter;
 import com.m039.isms.db.DB;
 import com.m039.isms.items.Msg;
@@ -35,7 +39,7 @@ import com.m039.mqst.R;
 
 /**
  *
- * HELL IS GOING HERE! 
+ * HELL IS GOING HERE!
  *
  * Created: 12/03/13
  *
@@ -63,7 +67,7 @@ public class MsgListFragment extends ListFragment {
     }
 
     public interface OnMsgListItemClickListener {
-        public void onMsgListItemClick(ListView l, View v, int position, long id);     
+        public void onMsgListItemClick(ListView l, View v, int position, long id);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class MsgListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Activity a = getActivity();
-        
+
         if (a instanceof OnMsgLongClickListener) {
             ((OnMsgListItemClickListener) a).onMsgListItemClick(l, v, position, id);
         }
@@ -101,7 +105,7 @@ public class MsgListFragment extends ListFragment {
 
     AdapterView.OnItemLongClickListener mOnItemLongClickListener =
         new AdapterView.OnItemLongClickListener() {
-            
+
             @Override
             public boolean onItemLongClick (AdapterView<?> parent, View view, int position, long id) {
                 Activity a = getActivity();
@@ -111,26 +115,30 @@ public class MsgListFragment extends ListFragment {
 
                 return false;
             }
-            
         };
+
+    public void requery() {
+        getLoaderManager().restartLoader(LOADER_ID_QUERY, null, mLoaderCallabacks);
+    }
 
     public void deleteMsgForce(long msgId) {
         Adapter a = getListAdapter();
-        if (a instanceof CursorAdapter) {
+        Activity activity = getActivity();
+        if (a instanceof CursorAdapter && activity != null) {
             CursorAdapter ca = (CursorAdapter) a;
 
-            SQLiteDatabase wdb = DB.getInstance(getActivity())
+            SQLiteDatabase wdb = DB.getInstance(activity)
                 .getDBHelper()
                 .getWritableDatabase();
-                                    
+
             wdb.delete(Msg.SQL.TABLE,
                        Msg.SQL.Columns.ID + " = ?",
                        new String[] { String.valueOf(msgId) });
-                                    
-            ca.swapCursor(wdb.query(Msg.SQL.TABLE, null, null, null, null, null, null));
+
+            ca.swapCursor(MsgQueryLoader.queryAll(activity));
         }
     }
-    
+
     public void insertMsg(Msg userCreatedMsg) {
         Bundle args = new Bundle();
 
@@ -176,7 +184,42 @@ public class MsgListFragment extends ListFragment {
         public MsgResult loadInBackground () {
             Log.d(TAG, "loadInBackground");
 
-            mQueryResult.cursor = DB.getInstance(getContext())
+            mQueryResult.cursor = queryAll(getContext());
+            mQueryResult.isReadyToDeliver = true;
+
+            return mQueryResult;
+        }
+
+        private static Cursor queryAll(Context ctx) {
+            String sortOrder = "";
+
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(ctx);
+
+            String sortTypeOrder = sp.getString(C.Preferences.Key.SORT_TYPE_ORDER, C.Preferences.Value.NONE);
+
+            if (C.Preferences.Value.SMS.equals(sortTypeOrder)) {
+                sortOrder += Msg.SQL.Columns.TYPE + " ASC";
+            } else if(C.Preferences.Value.USSD.equals(sortTypeOrder)) {
+                sortOrder += Msg.SQL.Columns.TYPE + " DESC";
+            }
+
+            String sortDescOrder = sp.getString(C.Preferences.Key.SORT_DESC_ORDER, C.Preferences.Value.NONE);
+            if (C.Preferences.Value.AZ.equals(sortDescOrder)) {
+                if (!TextUtils.isEmpty(sortOrder)) {
+                    sortOrder += ", ";
+                }
+
+                sortOrder += Msg.SQL.Columns.DESCRIPTION + " ASC";
+
+            } else if (C.Preferences.Value.ZA.equals(sortDescOrder)) {
+                if (!TextUtils.isEmpty(sortOrder)) {
+                    sortOrder += ", ";
+                }
+
+                sortOrder += Msg.SQL.Columns.DESCRIPTION + " DESC";
+            }
+
+            return  DB.getInstance(ctx)
                 .getDBHelper()
                 .getReadableDatabase()
                 .query(Msg.SQL.TABLE,
@@ -185,11 +228,7 @@ public class MsgListFragment extends ListFragment {
                        null,
                        null,
                        null,
-                       null);
-
-            mQueryResult.isReadyToDeliver = true;
-
-            return mQueryResult;
+                       sortOrder);
         }
     }
 

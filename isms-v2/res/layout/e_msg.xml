@@ -15,7 +15,7 @@
       android:textSize="12sp"
       android:textColor="@color/e_msg__type"
       android:typeface="monospace"
-      android:minEms="3"      
+      android:minEms="3"
       android:gravity="center"
       />
 
@@ -30,22 +30,34 @@
       />
 
   <TextView
+      android:id="@+id/addr"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/e_msg__margin_left"
+      android:layout_marginRight="@dimen/e_msg__margin_right"
+      android:layout_below="@id/desc"
+      android:textSize="@dimen/text__small"
+      android:visibility="gone"
+      />
+
+  <TextView
       android:id="@+id/message"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginBottom="@dimen/e_msg__margin_bottom"
       android:layout_marginRight="@dimen/e_msg__margin_right"
       android:layout_alignLeft="@id/desc"
-      android:layout_below="@id/desc"
       android:layout_toLeftOf="@id/type"
+      android:layout_below="@id/addr"
       android:textSize="@dimen/text__small"
-      android:lines="1"
+      android:minLines="1"    
+      android:maxLines="1"
       android:ellipsize="end"
       />
 
   <View
       android:layout_width="0dp"
       android:layout_height="0dp"
+      android:layout_marginTop="@dimen/e_msg__margin_bottom"
       android:layout_below="@id/message"
       />
 

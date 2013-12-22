@@ -164,9 +164,9 @@ public class DB {
                 InstantUssd iussd = (InstantUssd) item;
 
                 type = Msg.TYPE_USSD;
-                message = iussd.getText();
+                message = "";
                 isShowWarning = false;
-                address = "";
+                address = iussd.getText();
             }
 
             if (!importOldInstantItem(db, values, type, description, message, address, isShowWarning)) {
